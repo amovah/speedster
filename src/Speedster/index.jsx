@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseLine from '@material-ui/core/CssBaseline';
+import 'typeface-roboto';
 
 import store from 'Root/store';
 import Components from 'Root/components';

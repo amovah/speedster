@@ -26,7 +26,15 @@ module.exports = {
           presets: babelConfig.presets,
           plugins: babelConfig.plugins
         }
-      }, {
+      },
+      {
+        test: /\.(css|less)$/,
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
+      },
+      {
         test: /\.(png|jpg|jpeg|gif|woff|woff2|ttf|eot|svg)$/,
         use: [
           'url-loader'
@@ -48,7 +56,11 @@ module.exports = {
   watch: true,
   devtool: 'source-map',
   target: 'node',
-  externals: [nodeExternals()],
+  externals: [
+    nodeExternals({
+      whitelist: ['typeface-roboto'],
+    }),
+  ],
   node: {
     __dirname: false,
   },

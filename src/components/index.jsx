@@ -1,3 +1,4 @@
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
 
-export default () => <p>a</p>;
+export default () => <Typography>a</Typography>;

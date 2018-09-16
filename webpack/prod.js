@@ -27,13 +27,27 @@ module.exports = {
           presets: babelConfig.presets,
           plugins: babelConfig.plugins
         }
-      }, {
+      },
+      {
+        test: /\.(css)$/,
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
+      },
+      {
         test: /\.(png|jpg|jpeg|gif|woff|woff2|ttf|eot|svg)$/,
         use: [
           'url-loader'
         ]
-      }
-    ]
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|woff|woff2|ttf|eot|svg)$/,
+        use: [
+          'file-loader'
+        ]
+      },
+    ],
   },
   resolve: {
     alias: {
@@ -52,7 +66,11 @@ module.exports = {
     })
   ],
   target: 'node',
-  externals: [nodeExternals()],
+  externals: [
+    nodeExternals({
+      whitelist: ['typeface-roboto'],
+    }),
+  ],
   node: {
     __dirname: false,
   },
