@@ -8,5 +8,8 @@ export default createMuiTheme({
       dark: '#002f6c',
       contrastText: 'white',
     },
+    background: {
+      default: '#eeeeee',
+    },
   },
 });

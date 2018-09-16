@@ -1,4 +1,10 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
+import { Switch, Route } from 'react-router-dom';
 
-export default () => <Typography>a</Typography>;
+import Initializing from './Initializing';
+
+export default () => (
+  <Switch>
+    <Route path="/initializing" exact component={Initializing} />
+  </Switch>
+);
