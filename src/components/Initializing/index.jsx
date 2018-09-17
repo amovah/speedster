@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
-import Typography from '@material-ui/core/Typography';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import {
+  Typography,
+  CircularProgress,
+} from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 import styles from './styles';

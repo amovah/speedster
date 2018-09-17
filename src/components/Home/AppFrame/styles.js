@@ -23,14 +23,21 @@ const styles = theme => ({
     position: 'relative',
     width: drawerWidth,
   },
-  toolbar: theme.mixins.toolbar,
+  toolbar: {
+    ...theme.mixins.toolbar,
+    padding: '10px 10px 0px 10px',
+  },
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
   },
   drawerContainer: {
-    minHeight: '100vh',
+    height: '100vh',
+    overflowY: 'auto',
+  },
+  title: {
+    flexGrow: 1,
   },
 });
 

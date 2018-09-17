@@ -1,9 +1,18 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Drawer,
+  Button,
+  Divider,
+  Tooltip,
+} from '@material-ui/core';
+import {
+  Add,
+  Timer,
+} from '@material-ui/icons';
 import PropType from 'prop-types';
-import Drawer from '@material-ui/core/Drawer';
 
 import styles from './styles';
 
@@ -17,9 +26,16 @@ const CustomAppBar = ({
       className={`${classes.appBar} ${classes['appBar-left']}`}
     >
       <Toolbar>
-        <Typography variant="title" color="inherit" noWrap>
-          Permanent drawer
-        </Typography>
+        <Tooltip title="Add URL">
+          <Button color="inherit">
+            <Add />
+          </Button>
+        </Tooltip>
+        <Tooltip title="Manage Queues">
+          <Button color="inherit">
+            <Timer />
+          </Button>
+        </Tooltip>
       </Toolbar>
     </AppBar>
     <Drawer
@@ -30,7 +46,14 @@ const CustomAppBar = ({
       anchor="left"
       className={classes.drawerContainer}
     >
-      <div className={classes.toolbar} />
+      <div className={classes.toolbar}>
+        <Typography
+          variant="title"
+        >
+          Speedster
+        </Typography>
+      </div>
+      <Divider />
     </Drawer>
     <main className={classes.content}>
       <div className={classes.toolbar} />

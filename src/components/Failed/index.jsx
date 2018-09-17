@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
-import Typography from '@material-ui/core/Typography';
-import Fade from '@material-ui/core/Fade';
+import {
+  Typography,
+  Fade,
+} from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 import styles from './styles';

@@ -4,6 +4,6 @@ import AppFrame from './AppFrame';
 
 export default () => (
   <AppFrame>
-    <p>a</p>
+    <p />
   </AppFrame>
 );
