@@ -1,7 +1,12 @@
 import { app, BrowserWindow } from 'electron';
 import { resolve } from 'path';
+import { env } from 'process';
 
 let win;
+
+// function closeAria2() {
+//
+// }
 
 function createWindow() {
   win = new BrowserWindow({
@@ -12,7 +17,9 @@ function createWindow() {
 
   win.loadFile(resolve(__dirname, 'index.html'));
 
-  win.webContents.openDevTools();
+  if (env.NODE_ENV === 'development') {
+    win.webContents.openDevTools();
+  }
 
   win.on('closed', () => {
     win = null;

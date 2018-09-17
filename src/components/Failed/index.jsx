@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Typography from '@material-ui/core/Typography';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import Fade from '@material-ui/core/Fade';
 import PropTypes from 'prop-types';
 
 import styles from './styles';
@@ -10,20 +10,17 @@ const Initializing = ({
 }) => (
   <div className={classes.root}>
     <Fragment>
-      <Typography
-        variant="display3"
-        paragraph
-        style={{
-          color: 'white',
-        }}
-      >
-        Prepairing App For You!
-      </Typography>
-      <CircularProgress
-        color="secondary"
-        thickness={5}
-        size={60}
-      />
+      <Fade in timeout={600}>
+        <Typography
+          variant="display3"
+          paragraph
+          style={{
+            color: 'white',
+          }}
+        >
+          Failed at starting Aria2 :(
+        </Typography>
+      </Fade>
     </Fragment>
   </div>
 );
