@@ -54,7 +54,6 @@ module.exports = {
     })
   ],
   watch: true,
-  devtool: 'source-map',
   target: 'node',
   externals: [
     nodeExternals({
