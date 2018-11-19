@@ -48,7 +48,7 @@ const CustomAppBar = ({
     >
       <div className={classes.toolbar}>
         <Typography
-          variant="title"
+          variant="h6"
         >
           Speedster
         </Typography>
