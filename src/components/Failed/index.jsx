@@ -14,7 +14,7 @@ const Initializing = ({
     <Fragment>
       <Fade in timeout={600}>
         <Typography
-          variant="display3"
+          variant="h2"
           paragraph
           style={{
             color: 'white',

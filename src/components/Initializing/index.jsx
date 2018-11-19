@@ -13,7 +13,7 @@ const Initializing = ({
   <div className={classes.root}>
     <Fragment>
       <Typography
-        variant="display3"
+        variant="h2"
         paragraph
         style={{
           color: 'white',
