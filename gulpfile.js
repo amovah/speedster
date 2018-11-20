@@ -13,7 +13,7 @@ gulp.task('clean', cb =>
 );
 
 gulp.task('copy', ['clean'], () =>
-  gulp.src('src/index.html')
+  gulp.src('src/htmls/**')
   .pipe(gulp.dest('build/'))
 );
 

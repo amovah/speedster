@@ -7,7 +7,7 @@ const nodeExternals = require('webpack-node-externals');
 module.exports = {
   entry: {
     electron: resolve(__dirname, '..', 'src/electron.js'),
-    app: resolve(__dirname, '..', 'src/app.js'),
+    MainApp: resolve(__dirname, '..', 'src/StartScripts/MainApp.js'),
   },
   output: {
     filename: '[name].js',
