@@ -6,7 +6,6 @@ const adapter = new FileSync(resolve(__dirname, 'database.json'));
 const db = lowdb(adapter);
 
 db.defaults({
-  aria2: 0,
   config: {
     port: 6812,
     url: 'http://localhost:6812/jsonrpc',

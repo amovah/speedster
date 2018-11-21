@@ -1,15 +1,19 @@
 import { spawn } from 'child_process';
 
 import db from 'Root/db';
+import fetch from 'Root/helpers/fetch';
 
-export default () => new Promise((resolve, reject) => {
-  const { port } = db.get('config').value();
-  const aria2PID = db.get('aria2').value();
+export default () => new Promise(async (resolve, reject) => {
+  const res = await fetch({
+    method: 'aria2.getGlobalOption',
+  });
 
-  if (aria2PID) {
-    return resolve();
+  if (res.status === 200) {
+    resolve();
+    return;
   }
 
+  const { port } = db.get('config').value();
 
   const aria2 = spawn(
     'aria2c',
@@ -21,20 +25,17 @@ export default () => new Promise((resolve, reject) => {
 
   aria2.stdout.on('data', (data) => {
     if (data.includes('errorCode=')) {
-      reject(data);
+      reject(data.toString());
     }
 
-    db.set('aria2', aria2.pid).write();
     resolve();
   });
 
   aria2.stderr.on('data', (data) => {
-    reject(data);
+    reject(data.toString());
   });
 
   aria2.on('close', (data) => {
-    reject(data);
+    reject(data.toString());
   });
-
-  return 0;
 });
