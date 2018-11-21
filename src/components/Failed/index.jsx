@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 import styles from './styles';
 
-const Initializing = ({
+const Failed = ({
   classes,
 }) => (
   <div className={classes.root}>
@@ -27,8 +27,8 @@ const Initializing = ({
   </div>
 );
 
-Initializing.propTypes = {
+Failed.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default styles(Initializing);
+export default styles(Failed);
