@@ -1,14 +1,11 @@
-import { resolve } from 'path';
+import { BrowserWindow } from 'electron';
 
-const { BrowserWindow } = require('electron').remote;
+export default page => {
 
-export default page => () => {
-  let win = new BrowserWindow({
-    width: 800,
-    height: 400,
-    title: 'Download',
-  });
-  win.loadFile(resolve(__dirname, '..', 'build', `${page}.html`));
+}
+let win = new BrowserWindow({
+  width: 800,
+  height: 400,
+});
 
-  win.webContents.openDevTools();
-};
+win.loadURL('http://www.google.com');

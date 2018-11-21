@@ -8,7 +8,6 @@ module.exports = {
   entry: {
     electron: resolve(__dirname, '..', 'src/electron.js'),
     MainApp: resolve(__dirname, '..', 'src/StartScripts/MainApp.js'),
-    DownloadWindow: resolve(__dirname, '..', 'src/StartScripts/DownloadWindow.js'),
   },
   output: {
     filename: '[name].js',
