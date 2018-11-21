@@ -2,7 +2,7 @@ import { spawn } from 'child_process';
 
 import db from 'Root/db';
 
-export default async () => new Promise((resolve, reject) => {
+export default () => new Promise((resolve, reject) => {
   const { port } = db.get('config').value();
   const aria2PID = db.get('aria2').value();
 
@@ -21,19 +21,19 @@ export default async () => new Promise((resolve, reject) => {
 
   aria2.stdout.on('data', (data) => {
     if (data.includes('errorCode=')) {
-      reject();
+      reject(data);
     }
 
     db.set('aria2', aria2.pid).write();
     resolve();
   });
 
-  aria2.stderr.on('data', () => {
-    reject();
+  aria2.stderr.on('data', (data) => {
+    reject(data);
   });
 
-  aria2.on('close', () => {
-    reject();
+  aria2.on('close', (data) => {
+    reject(data);
   });
 
   return 0;
