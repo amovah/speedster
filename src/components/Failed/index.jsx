@@ -20,7 +20,7 @@ const Initializing = ({
             color: 'white',
           }}
         >
-          Failed at starting Aria2 :(
+          Failed Gathering Will :(
         </Typography>
       </Fade>
     </Fragment>
