@@ -6,8 +6,8 @@ import CssBaseLine from '@material-ui/core/CssBaseline';
 import 'typeface-roboto';
 
 import store from 'Root/store';
+import Components from 'Root/components';
 import history from 'Root/history';
-import Components from './components';
 import theme from './theme';
 
 const Speedster = () => (

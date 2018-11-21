@@ -11,7 +11,7 @@ function createWindow() {
     title: 'Speedster',
   });
 
-  win.loadFile(resolve(__dirname, 'MainApp.html'));
+  win.loadFile(resolve(__dirname, 'index.html'));
 
   if (env.NODE_ENV === 'development') {
     win.webContents.openDevTools();

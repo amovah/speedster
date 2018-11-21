@@ -1,14 +1,14 @@
 import 'babel-polyfill';
 import { render } from 'react-dom';
 
-import MainApp from 'Root/MainApp';
-import startAria2 from 'Root/helpers/startAria2';
-import history from 'Root/history';
+import history from './history';
+import Speedster from './Speedster';
+import startAria2 from './helpers/startAria2';
 
 history.push('/initializing');
 
 render(
-  MainApp,
+  Speedster,
   global.document.getElementById('root'),
 );
 
@@ -17,7 +17,6 @@ render(
     await startAria2();
     history.push('/');
   } catch (e) {
-    console.log(e);
     history.push('/failed');
   }
 })();
