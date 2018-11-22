@@ -9,6 +9,6 @@ export default () => (
   <Switch>
     <Route path="/initializing" exact component={Initializing} />
     <Route path="/failed" exact component={Failed} />
-    <Route path="/" component={Home} />
+    <Route exact path="/" component={Home} />
   </Switch>
 );

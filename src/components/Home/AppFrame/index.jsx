@@ -14,6 +14,7 @@ import {
 } from '@material-ui/icons';
 import PropType from 'prop-types';
 
+import openPage from 'Root/helpers/openPage';
 import styles from './styles';
 
 const CustomAppBar = ({
@@ -27,7 +28,12 @@ const CustomAppBar = ({
     >
       <Toolbar>
         <Tooltip title="Add URL">
-          <Button color="inherit">
+          <Button
+            color="inherit"
+            onClick={() => {
+              openPage('/addUrl');
+            }}
+          >
             <Add />
           </Button>
         </Tooltip>
