@@ -8,7 +8,7 @@ export default () => new Promise(async (resolve, reject) => {
     method: 'aria2.getGlobalOption',
   });
 
-  if (res && res.status === 200) {
+  if (res && res.res.status === 200) {
     resolve();
     return;
   }

@@ -5,7 +5,7 @@ import {
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
-import startAria2 from 'Root/helpers/startAria2';
+import init from 'Root/init';
 import history from 'Root/history';
 import styles from './styles';
 
@@ -16,10 +16,9 @@ class Initializing extends Component {
 
   async componentDidMount() {
     try {
-      await startAria2();
-      history.push('/');
+      await init();
     } catch (e) {
-      console.log(e);
+      console.log('error', e);
       history.push('/failed');
     }
   }

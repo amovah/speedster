@@ -17,7 +17,6 @@ export default async (json) => {
         ...json,
       }),
       method: 'POST',
-      mode: 'no-cors',
     });
 
     return {
