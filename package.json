@@ -12,6 +12,7 @@
     "@material-ui/icons": "^3.0.1",
     "babel-polyfill": "^6.26.0",
     "electron": "^3.0.9",
+    "fs-extra": "^7.0.1",
     "history": "^4.7.2",
     "lowdb": "^1.0.0",
     "prop-types": "^15.6.2",
