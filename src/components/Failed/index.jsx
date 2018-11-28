@@ -1,34 +1,13 @@
-import React, { Fragment } from 'react';
-import {
-  Typography,
-  Fade,
-} from '@material-ui/core';
-import PropTypes from 'prop-types';
+import React from 'react';
 
-import styles from './styles';
+import styles from './index.less';
 
-const Failed = ({
-  classes,
-}) => (
-  <div className={classes.root}>
-    <Fragment>
-      <Fade in timeout={600}>
-        <Typography
-          variant="h2"
-          paragraph
-          style={{
-            color: 'white',
-          }}
-        >
-          Failed Gathering Will :(
-        </Typography>
-      </Fade>
-    </Fragment>
+const Failed = () => (
+  <div className={styles.root}>
+    <h1>
+      Failed Gathering Will :(
+    </h1>
   </div>
 );
 
-Failed.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default styles(Failed);
+export default Failed;

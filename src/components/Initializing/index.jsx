@@ -3,7 +3,7 @@ import { Spin } from 'antd';
 
 import init from 'Root/init';
 import history from 'Root/history';
-import style from './index.less';
+import styles from './index.less';
 
 class Initializing extends Component {
   async componentDidMount() {
@@ -17,7 +17,7 @@ class Initializing extends Component {
 
   render() {
     return (
-      <div className={style.root}>
+      <div className={styles.root}>
         <Fragment>
           <h1>
             Gathering Will!
