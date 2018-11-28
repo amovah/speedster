@@ -18,5 +18,5 @@ export default async () => {
   }
   await Promise.all(ensures);
 
-  history.push('/');
+  // history.push('/');
 };

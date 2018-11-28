@@ -1,19 +1,11 @@
 import React, { Fragment, Component } from 'react';
-import {
-  Typography,
-  CircularProgress,
-} from '@material-ui/core';
-import PropTypes from 'prop-types';
+import { Spin } from 'antd';
 
 import init from 'Root/init';
 import history from 'Root/history';
-import styles from './styles';
+import style from './index.less';
 
 class Initializing extends Component {
-  static propTypes = {
-    classes: PropTypes.object.isRequired,
-  }
-
   async componentDidMount() {
     try {
       await init();
@@ -24,26 +16,14 @@ class Initializing extends Component {
   }
 
   render() {
-    const {
-      classes,
-    } = this.props;
-
     return (
-      <div className={classes.root}>
+      <div className={style.root}>
         <Fragment>
-          <Typography
-            variant="h2"
-            paragraph
-            style={{
-              color: 'white',
-            }}
-          >
+          <p>
             Gathering Will!
-          </Typography>
-          <CircularProgress
-            color="secondary"
-            thickness={5}
-            size={60}
+          </p>
+          <Spin
+            size="large"
           />
         </Fragment>
       </div>
@@ -51,4 +31,4 @@ class Initializing extends Component {
   }
 }
 
-export default styles(Initializing);
+export default Initializing;

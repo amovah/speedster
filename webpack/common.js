@@ -35,6 +35,12 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              javascriptEnabled: true,
+            }
+          }
         ],
       },
       {
@@ -60,7 +66,7 @@ module.exports = {
   target: 'node',
   externals: [
     nodeExternals({
-      whitelist: ['typeface-roboto'],
+      whitelist: ['antd/dist/antd.less'],
     }),
   ],
   node: {

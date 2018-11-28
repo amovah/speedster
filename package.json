@@ -10,6 +10,7 @@
   "dependencies": {
     "@material-ui/core": "^3.5.1",
     "@material-ui/icons": "^3.0.1",
+    "antd": "^3.10.9",
     "babel-polyfill": "^6.26.0",
     "electron": "^3.0.9",
     "fs-extra": "^7.0.1",
@@ -42,6 +43,8 @@
     "gulp": "^3.9.1",
     "gulp-cli": "^2.0.1",
     "gulp-eslint": "^5.0.0",
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0",
     "style-loader": "^0.23.1",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "url-loader": "^1.1.2",
