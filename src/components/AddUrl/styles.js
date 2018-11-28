@@ -2,11 +2,11 @@ import { withStyles } from '@material-ui/core/styles';
 
 export default withStyles(theme => ({
   root: {
-    backgroundColor: theme.palette.secondary.light,
-    height: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    padding: theme.spacing.unit * 3,
+  },
+  paper: {
+    ...theme.mixins.gutters(),
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
   },
 }));
