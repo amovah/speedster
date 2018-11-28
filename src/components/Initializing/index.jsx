@@ -19,9 +19,9 @@ class Initializing extends Component {
     return (
       <div className={style.root}>
         <Fragment>
-          <p>
+          <h1>
             Gathering Will!
-          </p>
+          </h1>
           <Spin
             size="large"
           />
