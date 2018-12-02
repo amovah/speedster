@@ -5,7 +5,6 @@ import {
   Icon,
 } from 'antd';
 
-
 const {
   Sider,
 } = Layout;

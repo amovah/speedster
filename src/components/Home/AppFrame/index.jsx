@@ -4,7 +4,6 @@ import {
 } from 'antd';
 import PropType from 'prop-types';
 
-import openPage from 'Root/helpers/openPage';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import styles from './index.less';
