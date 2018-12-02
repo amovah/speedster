@@ -1,80 +1,43 @@
 import React from 'react';
 import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Drawer,
+  Layout,
   Button,
-  Divider,
-  Tooltip,
-} from '@material-ui/core';
-import {
-  Add,
-  Timer,
-} from '@material-ui/icons';
+} from 'antd';
 import PropType from 'prop-types';
 
 import openPage from 'Root/helpers/openPage';
-import styles from './styles';
+import Sidebar from './Sidebar';
+import styles from './index.less';
 
-const CustomAppBar = ({
-  classes,
+const {
+  Header,
+  Content,
+} = Layout;
+
+const AppFrame = ({
   children,
 }) => (
-  <div className={classes.appFrame}>
-    <AppBar
-      position="absolute"
-      className={`${classes.appBar} ${classes['appBar-left']}`}
-    >
-      <Toolbar>
-        <Tooltip title="Add URL">
-          <Button
-            color="inherit"
-            onClick={() => {
-              openPage('/addUrl');
-            }}
-          >
-            <Add />
-          </Button>
-        </Tooltip>
-        <Tooltip title="Manage Queues">
-          <Button color="inherit">
-            <Timer />
-          </Button>
-        </Tooltip>
-      </Toolbar>
-    </AppBar>
-    <Drawer
-      variant="permanent"
-      classes={{
-        paper: classes.drawerPaper,
-      }}
-      anchor="left"
-      className={classes.drawerContainer}
-    >
-      <div className={classes.toolbar}>
-        <Typography
-          variant="h6"
-        >
-          Speedster
-        </Typography>
-      </div>
-      <Divider />
-    </Drawer>
-    <main className={classes.content}>
-      <div className={classes.toolbar} />
-      {children}
-    </main>
-  </div>
+  <Layout>
+    <Header>
+      <Button>
+        Add Url
+      </Button>
+    </Header>
+    <Layout>
+      <Sidebar />
+      <Content className={styles.content}>
+        {children}
+      </Content>
+    </Layout>
+  </Layout>
 );
 
-CustomAppBar.defaultProps = {
+AppFrame.defaultProps = {
   children: () => null,
 };
 
-CustomAppBar.propTypes = {
-  classes: PropType.object.isRequired,
+AppFrame.propTypes = {
   children: PropType.node,
 };
 
-export default styles(CustomAppBar);
+export default AppFrame;
