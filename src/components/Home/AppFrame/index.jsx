@@ -1,16 +1,15 @@
 import React from 'react';
 import {
   Layout,
-  Button,
 } from 'antd';
 import PropType from 'prop-types';
 
 import openPage from 'Root/helpers/openPage';
 import Sidebar from './Sidebar';
+import Header from './Header';
 import styles from './index.less';
 
 const {
-  Header,
   Content,
 } = Layout;
 
@@ -18,11 +17,7 @@ const AppFrame = ({
   children,
 }) => (
   <Layout>
-    <Header>
-      <Button>
-        Add Url
-      </Button>
-    </Header>
+    <Header />
     <Layout>
       <Sidebar />
       <Content className={styles.content}>
