@@ -11,7 +11,7 @@ const {
 
 export default () => (
   <Header>
-    <Button>
+    <Button type="primary">
       Add Url
     </Button>
   </Header>
