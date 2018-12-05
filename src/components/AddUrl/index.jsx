@@ -4,6 +4,7 @@ import {
 } from 'antd';
 
 import EnterUrl from './EnterUrl';
+import Options from './Options';
 import styles from './index.less';
 
 const steps = [{
@@ -11,14 +12,13 @@ const steps = [{
   content: EnterUrl,
 }, {
   title: 'Desitnation',
-  content: EnterUrl,
-}, {
-  title: 'Downloading',
+  content: Options,
 }];
 
 class AddUrl extends Component {
   state = {
     current: 0,
+    downloadInfo: {},
   }
 
   navigate = (direction) => {
@@ -27,10 +27,22 @@ class AddUrl extends Component {
     }));
   }
 
+  setDownloadInfo = (info) => {
+    this.setState(state => ({
+      downloadInfo: Object.assign({}, state.downloadInfo, info),
+    }));
+  }
+
   currentScene() {
     const Current = steps[this.state.current].content;
 
-    return <Current navigate={this.navigate} />;
+    return (
+      <Current
+        navigate={this.navigate}
+        downloadInfo={this.state.downloadInfo}
+        setDownloadInfo={this.setDownloadInfo}
+      />
+    );
   }
 
   render() {

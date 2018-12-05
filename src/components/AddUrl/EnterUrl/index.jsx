@@ -3,15 +3,24 @@ import {
   Input,
   Button,
 } from 'antd';
+import propType from 'prop-types';
 
 import styles from './index.less';
 
 export default class extends Component {
+  static propTypes = {
+    setDownloadInfo: propType.func.isRequired,
+    navigate: propType.func.isRequired,
+  }
+
   inputRef = React.createRef();
 
   click() {
+    this.props.setDownloadInfo({
+      url: this.inputRef.current.input.value,
+    });
 
-    console.log(this.inputRef.current.input.value);
+    this.props.navigate(1);
   }
 
   render() {
