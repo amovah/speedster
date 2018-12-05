@@ -27,7 +27,7 @@ export default class extends Component {
             onClick={() => this.click()}
             type="primary"
           >
-              Download
+            Next
           </Button>
         </div>
       </div>
