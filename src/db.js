@@ -2,6 +2,7 @@ import lowdb from 'lowdb';
 import FileSync from 'lowdb/adapters/FileSync';
 import { resolve } from 'path';
 import { homedir } from 'os';
+import uid from 'uuid/v4';
 
 const adapter = new FileSync(resolve(__dirname, 'database.json'));
 const db = lowdb(adapter);
@@ -14,6 +15,7 @@ db.defaults({
   },
   categories: [
     {
+      id: uid(),
       name: 'Compressed',
       extensions: [
         '.tar.gz',
@@ -22,11 +24,14 @@ db.defaults({
       ],
     },
     {
+      id: uid(),
       name: 'Music',
       extensions: [
         '.mp3',
       ],
     },
+  ],
+  downloads: [
   ],
 }).write();
 

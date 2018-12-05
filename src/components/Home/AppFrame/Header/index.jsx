@@ -15,7 +15,7 @@ export default () => (
   <Header>
     <Button
       type="primary"
-      onClick={() => openPage('/addUrl')}
+      onClick={() => openPage('/addUrl/first')}
     >
       Add Url
     </Button>
