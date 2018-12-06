@@ -1,63 +1,106 @@
 import React, { Component } from 'react';
 import {
-  Steps,
+  Input,
+  Row,
+  Radio,
+  Divider,
+  Button,
 } from 'antd';
+import { connect } from 'react-redux';
+import propType from 'prop-types';
+import { remote } from 'electron';
 
-import EnterUrl from './EnterUrl';
-import Options from './Options';
 import styles from './index.less';
 
-const steps = [{
-  title: 'Enter URL',
-  content: EnterUrl,
-}, {
-  title: 'Desitnation',
-  content: Options,
-}];
-
 class AddUrl extends Component {
+  static propTypes = {
+    config: propType.object.isRequired,
+  }
+
   state = {
-    current: 0,
-    downloadInfo: {},
+    radioValue: 1,
+    customDirectory: '',
   }
 
-  navigate = (direction) => {
-    this.setState(state => ({
-      current: state.current + direction,
-    }));
+  urlRef = React.createRef();
+
+  changeRadio = (e) => {
+    this.setState({
+      radioValue: e.target.value,
+    });
   }
 
-  setDownloadInfo = (info) => {
-    this.setState(state => ({
-      downloadInfo: Object.assign({}, state.downloadInfo, info),
-    }));
+  changeLocation = () => {
+    const dir = remote.dialog.showOpenDialog({
+      properties: ['openDirectory'],
+    });
+
+    this.setState({
+      customDirectory: dir,
+    });
   }
 
-  currentScene() {
-    const Current = steps[this.state.current].content;
-
+  defaultLocation() {
     return (
-      <Current
-        navigate={this.navigate}
-        downloadInfo={this.state.downloadInfo}
-        setDownloadInfo={this.setDownloadInfo}
+      <Input
+        disabled
+        value={this.props.config.downloaddir}
       />
+    );
+  }
+
+  customLocation() {
+    return (
+      <div>
+        <Input
+          disabled
+          value={this.state.customDirectory}
+        />
+        <Button
+          onClick={this.changeLocation}
+          type="primary"
+        >
+          Change location
+        </Button>
+      </div>
     );
   }
 
   render() {
     return (
       <div className={styles.container}>
-        <Steps current={this.state.current}>
-          {steps.map(item => <Steps.Step key={item.title} title={item.title} />)}
-        </Steps>
+        <Row>
+          <Input
+            placeholder="Enter your URL here!"
+            ref={this.urlRef}
+          />
+        </Row>
 
-        <div className={styles.content}>
-          {this.currentScene()}
-        </div>
+        <Divider />
+
+        <Radio.Group value={this.state.radioValue} onChange={this.changeRadio}>
+          <Row>
+            <Radio value={1}>
+              Default Location
+              <br />
+              {this.state.radioValue === 1 && this.defaultLocation()}
+            </Radio>
+          </Row>
+          <Row>
+            <Radio value={2}>
+              Custom Location
+              <br />
+              {this.state.radioValue === 2 && this.customLocation()}
+            </Radio>
+          </Row>
+        </Radio.Group>
       </div>
     );
   }
 }
 
-export default AddUrl;
+export default connect(
+  state => ({
+    config: state.config,
+  }),
+)(AddUrl);
