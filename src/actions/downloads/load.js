@@ -1,9 +1,9 @@
 import types from 'Root/actions';
 import store from 'Root/store';
 
-export default (data) => {
+export default (downloads) => {
   store.dispatch({
-    type: types.tempData.ALTER,
-    data,
+    type: types.downloads.LOAD,
+    downloads,
   });
 };

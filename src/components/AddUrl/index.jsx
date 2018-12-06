@@ -98,6 +98,7 @@ class AddUrl extends Component {
         <br />
         <Button
           type="primary"
+          onClick={this.download}
         >
           Download
         </Button>
