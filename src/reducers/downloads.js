@@ -6,6 +6,13 @@ export default (state = [], action) => {
       return action.downloads;
     }
 
+    case types.downloads.ADD: {
+      return [
+        ...state,
+        action.download,
+      ];
+    }
+
     default: {
       return state;
     }

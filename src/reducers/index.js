@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import config from './config';
-import tempData from './tempData';
+import downloads from './downloads';
 
 export default combineReducers({
   config,
-  tempData,
+  downloads,
 });

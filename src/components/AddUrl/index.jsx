@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import propType from 'prop-types';
 import { remote } from 'electron';
 
+import addDownload from 'Root/actions/downloads/add';
 import styles from './index.less';
 
 class AddUrl extends Component {
@@ -39,6 +40,15 @@ class AddUrl extends Component {
       customDirectory: dir,
     });
   }
+
+  download = () => {
+    console.log(this.urlRef.current.input.value);
+    if (this.radioValue === 1) {
+      // addDownload(this.urlRef.)
+    }
+    // addDownload(this.)
+  }
+
 
   defaultLocation() {
     return (
