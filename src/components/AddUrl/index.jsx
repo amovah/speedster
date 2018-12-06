@@ -94,6 +94,13 @@ class AddUrl extends Component {
             </Radio>
           </Row>
         </Radio.Group>
+
+        <br />
+        <Button
+          type="primary"
+        >
+          Download
+        </Button>
       </div>
     );
   }
