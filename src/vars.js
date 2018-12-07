@@ -1,1 +1,3 @@
-export const PAUSE = 'PAUSE';
+export default {
+  PAUSE: 'PAUSE',
+};

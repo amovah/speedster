@@ -42,9 +42,11 @@ class AddUrl extends Component {
   }
 
   download = () => {
-    console.log(this.urlRef.current.input.value);
-    if (this.radioValue === 1) {
-      // addDownload(this.urlRef.)
+    if (this.state.radioValue === 1) {
+      addDownload({
+        url: this.urlRef.current.input.value,
+        outputDir: this.props.config.downloaddir,
+      });
     }
     // addDownload(this.)
   }

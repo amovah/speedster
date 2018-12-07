@@ -4,10 +4,9 @@ import uid from 'uuid/v4';
 import vars from 'Root/vars';
 import store from 'Root/store';
 
-export default (url, saveLocation) => {
+export default (downloadInfo) => {
   const download = {
-    url,
-    saveLocation,
+    ...downloadInfo,
     id: uid(),
     status: vars.PAUSE,
   };
@@ -19,4 +18,6 @@ export default (url, saveLocation) => {
     type: types.downloads.ADD,
     download,
   });
+
+  return download.id;
 };
