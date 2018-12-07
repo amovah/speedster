@@ -1,3 +1,5 @@
 export default {
-  PAUSE: 'PAUSE',
+  PAUSE: 'Pause',
+  DOWNLOADING: 'Downloading',
+  Completed: 'Completed',
 };

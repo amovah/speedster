@@ -45,7 +45,7 @@ class AddUrl extends Component {
     if (this.state.radioValue === 1) {
       addDownload({
         url: this.urlRef.current.input.value,
-        outputDir: this.props.config.downloaddir,
+        dir: this.props.config.downloaddir,
       });
     }
     // addDownload(this.)

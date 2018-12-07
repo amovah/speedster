@@ -11,7 +11,6 @@ export default (downloadInfo) => {
     status: vars.PAUSE,
   };
 
-
   db.get('downloads').push(download).write();
 
   store.dispatch({
