@@ -1,0 +1,44 @@
+{
+  "main": "build/electron.js",
+  "scripts": {
+    "dev:build": "NODE_ENV=development ./node_modules/.bin/gulp dev",
+    "prod:build": "NODE_ENV=production ./node_modules/.bin/gulp prod",
+    "start": "NODE_ENV=development ./node_modules/electron/dist/electron .",
+    "prod": "NODE_ENV=production ./node_modules/electron/dist/electron .",
+    "build": "./node_modules/.bin/electron-builder --config builder.config.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "autoprefixer": "^9.4.7",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.0",
+    "del": "^3.0.0",
+    "electron": "^4.0.2",
+    "electron-builder": "^20.38.5",
+    "eslint": "^5.12.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.0",
+    "eslint-plugin-react": "^7.12.4",
+    "gulp": "^4.0.0",
+    "gulp-cli": "^2.0.1",
+    "gulp-eslint": "^5.0.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "prop-types": "^15.6.2",
+    "uglifyjs-webpack-plugin": "^2.1.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.29.0",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "dependencies": {
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-redux": "^6.0.0",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1"
+  }
+}
