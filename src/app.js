@@ -24,5 +24,7 @@ import Speedster from './Speedster';
     return;
   }
 
-  history.push('/');
+  if (process.env.NODE_ENV !== 'development') {
+    history.push('/');
+  }
 })();
