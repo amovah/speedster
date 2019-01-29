@@ -1,5 +1,11 @@
 {
+  "name": "speedster",
   "main": "build/electron.js",
+  "version": "0.0.1",
+  "description": "aria2 graphical ui, powered by electron, react.",
+  "repository": "git@github.com:amovah/speedster.git",
+  "author": "Ali Movahedi <ali_movahedi@aol.com>",
+  "license": "MIT",
   "scripts": {
     "dev:build": "NODE_ENV=development ./node_modules/.bin/gulp dev",
     "prod:build": "NODE_ENV=production ./node_modules/.bin/gulp prod",
