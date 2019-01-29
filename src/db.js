@@ -8,7 +8,7 @@ const adapter = new FileSync(resolve(__dirname, 'database.json'));
 const db = lowdb(adapter);
 
 db.defaults({
-  config: {
+  setting: {
     port: 6812,
     url: 'http://localhost:6812/jsonrpc',
     downloaddir: resolve(homedir(), 'Downloads', 'Speedster'),

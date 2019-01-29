@@ -29,7 +29,9 @@ module.exports = {
             "@babel/preset-env",
             "@babel/preset-react"
           ],
-          plugins: [],
+          plugins: [
+            '@babel/plugin-proposal-optional-chaining',
+          ],
         }
       }, {
         test: /\.(css|less)$/,
@@ -48,8 +50,12 @@ module.exports = {
                 return [autoprefixer];
               }
             }
+          }, {
+            loader: 'less-loader',
+            options: {
+              javascriptEnabled: true,
+            },
           },
-          'less-loader'
         ]
       }, {
         test: /\.(png|jpg|jpeg|gif|woff|woff2|ttf|eot|svg)$/,
@@ -66,7 +72,11 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   target: 'electron-renderer',
-  externals: [nodeExternals()],
+  externals: [
+    nodeExternals({
+      whitelist: ['antd/dist/antd.less'],
+    }),
+  ],
   node: {
     __dirname: false,
   },
