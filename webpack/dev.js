@@ -11,9 +11,6 @@ module.exports = Object.assign({}, common, {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',
     }),
-    new MiniCssExtractPlugin({
-      filename: 'bundle.css',
-    }),
   ],
   devtool: 'source-map',
 })

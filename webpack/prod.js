@@ -27,7 +27,7 @@ module.exports = Object.assign({}, common, {
       cache: true,
     }),
     new MiniCssExtractPlugin({
-      filename: 'bundle.css',
+      filename: '[name].css',
     }),
   ]
 });
