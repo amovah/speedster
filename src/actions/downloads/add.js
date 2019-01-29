@@ -3,6 +3,7 @@ import db from 'Root/db';
 import uid from 'uuid/v4';
 import vars from 'Root/vars';
 import store from 'Root/store';
+import fetch from 'Root/helpers/fetch';
 
 export default (downloadInfo) => {
   const download = {
