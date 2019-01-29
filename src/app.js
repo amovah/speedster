@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 import db from 'Root/db';
 import loadSetting from 'Root/actions/setting/load';
 import loadDownloads from 'Root/actions/downloads/load';
+import history from 'Root/history';
 import startAria2 from './helpers/startAria2';
 import Speedster from './Speedster';
 
@@ -19,6 +20,9 @@ import Speedster from './Speedster';
     loadSetting(db.get('setting').value());
     loadDownloads(db.get('downloads').value());
   } catch (e) {
-    console.log('errormide,', e);
+    history.push('/failed');
+    return;
   }
+
+  history.push('/');
 })();
