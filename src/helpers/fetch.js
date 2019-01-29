@@ -6,6 +6,12 @@ export default async (json) => {
   try {
     const { url } = db.get('setting').value();
 
+    console.log(json, JSON.stringify({
+      jsonrpc: '2.0',
+      id: generate(),
+      ...json,
+    }));
+
     const res = await global.fetch(url, {
       headers: {
         Accept: 'application/json',
@@ -24,7 +30,6 @@ export default async (json) => {
       data: await res.json(),
     };
   } catch (e) {
-    console.log('errr ine', e);
     return 0;
   }
 };
