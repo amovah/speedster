@@ -3,6 +3,7 @@ import {
   Layout,
   Menu,
 } from 'antd';
+import history from 'Root/history';
 
 const {
   Header,
@@ -13,7 +14,7 @@ const {
 } = Menu;
 
 const click = (e) => {
-  console.log(e);
+  history.push(e.key);
 };
 
 export default () => (
@@ -25,7 +26,7 @@ export default () => (
       onClick={click}
     >
       <SubMenu key="downloads" title="Downloads">
-        <Item key="add-url">
+        <Item key="/add-url">
           Add URL
         </Item>
       </SubMenu>
