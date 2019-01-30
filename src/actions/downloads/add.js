@@ -3,7 +3,7 @@ import db from 'Root/db';
 import uid from 'uuid/v4';
 import store from 'Root/store';
 import fetch from 'Root/helpers/fetch';
-import history from 'Root/history';
+import changePage from 'Root/helpers/changePage';
 
 export default async (downloadInfo) => {
   const setting = store.getState().setting;
@@ -44,5 +44,5 @@ export default async (downloadInfo) => {
     download: toSave,
   });
 
-  history.push(`/download/${download.id}`);
+  changePage(`/download/${download.id}`);
 };
