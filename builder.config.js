@@ -8,7 +8,7 @@ module.exports = {
     target: 'deb',
     desktop: 'speedster.desktop',
     executableName: 'speedster',
-    depends: ['arai2'],
+    depends: ['aria2'],
     category: 'Utility',
   },
 };
