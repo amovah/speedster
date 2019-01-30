@@ -50,6 +50,7 @@
     "antd": "^3.13.0",
     "babel-polyfill": "^6.26.0",
     "fs-extra": "^7.0.1",
+    "humanize-duration": "^3.17.0",
     "lowdb": "^1.0.0",
     "pretty-bytes": "^5.1.0",
     "react": "^16.7.0",

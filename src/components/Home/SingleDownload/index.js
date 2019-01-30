@@ -8,6 +8,7 @@ import {
 } from 'antd';
 import { connect } from 'react-redux';
 import pretty from 'pretty-bytes';
+import humanizeDuration from 'humanize-duration';
 import pause from 'Root/actions/downloads/pause';
 import resume from 'Root/actions/downloads/resume';
 import styles from './index.less';
@@ -22,7 +23,7 @@ class AddUrl extends PureComponent {
         <Progress
           strokeColor="gray"
           type="circle"
-          percent={parseInt(((100 * downloaded) / total).toFixed(0), 10)}
+          percent={Math.floor((100 * downloaded) / total)}
         />
       );
     }
@@ -30,7 +31,7 @@ class AddUrl extends PureComponent {
     return (
       <Progress
         type="circle"
-        percent={parseInt(((100 * downloaded) / total).toFixed(0), 10)}
+        percent={Math.floor((100 * downloaded) / total)}
       />
     );
   }
@@ -61,16 +62,29 @@ class AddUrl extends PureComponent {
     return null;
   }
 
+  status = () => {
+    if (this.props.download.downloadStatus === 'downloading') {
+      return 'Downloading..';
+    }
+
+    if (this.props.download.downloadStatus === 'pause') {
+      return 'Pause';
+    }
+
+    return 'Completed';
+  }
+
   render() {
     const total = parseInt(this.props.download.totalLength, 10);
     const downloaded = parseInt(this.props.download.completedLength, 10);
+    const speed = parseInt(this.props.download.downloadSpeed, 10);
 
     return (
       <Card>
         <Row>
           <Col span={18}>
             <p>
-              Status: {this.props.download.downloadStatus}
+              Status: {this.status()}
             </p>
             <p>
               File Size: {pretty(total)}
@@ -79,7 +93,10 @@ class AddUrl extends PureComponent {
               Downloaded: {pretty(downloaded)}
             </p>
             <p>
-              Download Speed: {pretty(parseInt(this.props.download.downloadSpeed, 10))}
+              Download Speed: {pretty(speed)}
+            </p>
+            <p>
+              Estimate Time: {humanizeDuration(Math.floor((total - downloaded) / speed) * 1000)}
             </p>
           </Col>
           <Col span={6}>
