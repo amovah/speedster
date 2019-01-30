@@ -37,11 +37,25 @@ class AddUrl extends PureComponent {
 
   toggleDownload = () => {
     if (this.props.download.downloadStatus === 'pause') {
-      return <Button icon="play-circle" type="primary" onClick={() => resume(this.props.download.id)} />;
+      return (
+        <Button
+          icon="play-circle"
+          type="primary"
+          shape="circle"
+          onClick={() => resume(this.props.download.id)}
+        />
+      );
     }
 
     if (this.props.download.downloadStatus === 'downloading') {
-      return <Button icon="pause" type="primary" onClick={() => pause(this.props.download.id)} />;
+      return (
+        <Button
+          icon="pause"
+          type="primary"
+          shape="circle"
+          onClick={() => pause(this.props.download.id)}
+        />
+      );
     }
 
     return null;
