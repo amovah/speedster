@@ -3,7 +3,7 @@ import {
   Layout,
   Menu,
 } from 'antd';
-import history from 'Root/history';
+import changeActiveMenu from 'Root/actions/activeMenu/change';
 
 const {
   Header,
@@ -14,7 +14,7 @@ const {
 } = Menu;
 
 const click = (e) => {
-  history.push(e.key);
+  changeActiveMenu(e.key);
 };
 
 export default () => (
