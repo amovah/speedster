@@ -45,6 +45,7 @@ class AddUrl extends PureComponent {
           key="resume"
           icon="caret-right"
           type="primary"
+          shape="circle"
           onClick={() => resume(this.props.download.id)}
         />,
       );
@@ -56,21 +57,21 @@ class AddUrl extends PureComponent {
           key="pause"
           icon="pause"
           type="primary"
+          shape="circle"
           onClick={() => pause(this.props.download.id)}
         />,
       );
     }
 
-    if (this.props.downloadStatus !== 'completed') {
-      buttons.push(
-        <Button
-          key="stop"
-          icon="close"
-          type="danger"
-          onClick={() => remove(this.props.download.id)}
-        />,
-      );
-    }
+    buttons.push(
+      <Button
+        key="stop"
+        icon="close"
+        type="danger"
+        shape="circle"
+        onClick={() => remove(this.props.download.id)}
+      />,
+    );
 
     return buttons;
   }

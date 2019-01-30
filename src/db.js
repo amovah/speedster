@@ -17,7 +17,7 @@ db.defaults({
   categories: [
     {
       id: uid(),
-      name: 'Compressed',
+      name: 'Compresseds',
       extensions: [
         '.gz',
         '.rar',
@@ -26,7 +26,7 @@ db.defaults({
     },
     {
       id: uid(),
-      name: 'Music',
+      name: 'Musics',
       extensions: [
         '.mp3',
       ],

@@ -37,12 +37,13 @@ const Sidebar = props => (
         )}
       >
         <Menu.Item key="/all">All Downloads</Menu.Item>
-        <Menu.Item key="2">Completed Downloads</Menu.Item>
-        <Menu.Item key="3">Incomplete Downloads</Menu.Item>
-        <Menu.Item key="4">Compressed</Menu.Item>
-        <Menu.Item key="5">Pictures</Menu.Item>
-        <Menu.Item key="6">Musics</Menu.Item>
-        <Menu.Item key="7">Videos</Menu.Item>
+        <Menu.Item key="/completeds">Completed Downloads</Menu.Item>
+        <Menu.Item key="/incompletes">Incomplete Downloads</Menu.Item>
+        <Menu.Item key="/category/compresseds">Compresseds</Menu.Item>
+        <Menu.Item key="/category/pictures">Pictures</Menu.Item>
+        <Menu.Item key="/category/musics">Musics</Menu.Item>
+        <Menu.Item key="/category/videos">Videos</Menu.Item>
+        <Menu.Item key="/category/others">Others</Menu.Item>
       </SubMenu>
 
     </Menu>
