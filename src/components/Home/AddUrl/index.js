@@ -4,6 +4,7 @@ import {
   Row,
   Divider,
   Button,
+  Card,
 } from 'antd';
 import { connect } from 'react-redux';
 import addDownload from 'Root/actions/downloads/add';
@@ -28,7 +29,7 @@ class AddUrl extends Component {
 
   render() {
     return (
-      <div className={styles.container}>
+      <Card>
         <Row>
           <Input
             placeholder="Enter your URL here!"
@@ -45,13 +46,13 @@ class AddUrl extends Component {
         >
           Download
         </Button>
-      </div>
+      </Card>
     );
   }
 }
 
 export default connect(
   state => ({
-    config: state.setting,
+    setting: state.setting,
   }),
 )(AddUrl);
