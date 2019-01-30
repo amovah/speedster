@@ -11,6 +11,7 @@ import pretty from 'pretty-bytes';
 import humanizeDuration from 'humanize-duration';
 import pause from 'Root/actions/downloads/pause';
 import resume from 'Root/actions/downloads/resume';
+import remove from 'Root/actions/downloads/remove';
 import styles from './index.less';
 
 class AddUrl extends PureComponent {
@@ -66,6 +67,7 @@ class AddUrl extends PureComponent {
           key="stop"
           icon="close"
           type="danger"
+          onClick={() => remove(this.props.download.id)}
         />,
       );
     }

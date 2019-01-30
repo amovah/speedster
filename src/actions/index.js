@@ -8,6 +8,7 @@ export default {
     UPDATE: 'downloads/UPDATE',
     PAUSE: 'downloads/PAUSE',
     RESUME: 'downloads/RESUME',
+    REMOVE: 'downloads/REMOVE',
   },
   activeMenu: {
     CHANGE: 'activeMenu/CHANGE',
