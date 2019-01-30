@@ -18,6 +18,11 @@ export default class extends PureComponent {
         ),
       },
       {
+        title: 'Category',
+        key: 'category',
+        dataIndex: 'category',
+      },
+      {
         title: 'Status',
         key: 'status',
         dataIndex: 'status',
@@ -33,12 +38,23 @@ export default class extends PureComponent {
           return 'Completed';
         },
       },
+      {
+        title: 'Percent',
+        key: 'percent',
+        dataIndex: 'percent',
+        render: text => `${text}%`,
+      },
     ];
 
     const data = this.props.downloads.map(i => ({
       key: i.id,
       name: i.name,
       status: i.downloadStatus,
+      category: i.category,
+      percent: Math.floor(
+        (100 * parseInt(i.completedLength, 10))
+        / parseInt(i.totalLength, 10),
+      ),
     }));
 
     return (

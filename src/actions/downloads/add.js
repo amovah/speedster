@@ -61,7 +61,7 @@ export default async (downloadInfo) => {
     }
   }
   if (!toSave.category) {
-    toSave.category = 'other';
+    toSave.category = 'Other';
   }
 
   store.dispatch({
