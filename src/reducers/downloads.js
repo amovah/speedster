@@ -63,7 +63,7 @@ export default (state = [], action) => {
         ...state.slice(0, index),
         {
           ...state[index],
-          downloadStatus: 'complete',
+          downloadStatus: 'completed',
         },
         ...state.slice(index + 1),
       ];
