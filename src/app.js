@@ -10,11 +10,6 @@ import statusUpdater from './helpers/statusUpdater';
 import Speedster from './Speedster';
 
 (async () => {
-  render(
-    <Speedster />,
-    global.document.getElementById('root'),
-  );
-
   try {
     await startAria2();
 
@@ -26,6 +21,11 @@ import Speedster from './Speedster';
     history.push('/failed');
     return;
   }
+
+  render(
+    <Speedster />,
+    global.document.getElementById('root'),
+  );
 
   if (process.env.NODE_ENV !== 'development') {
     history.push('/all');

@@ -51,6 +51,7 @@
     "babel-polyfill": "^6.26.0",
     "fs-extra": "^7.0.1",
     "lowdb": "^1.0.0",
+    "pretty-bytes": "^5.1.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",

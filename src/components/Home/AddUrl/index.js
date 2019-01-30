@@ -8,7 +8,6 @@ import {
 } from 'antd';
 import { connect } from 'react-redux';
 import addDownload from 'Root/actions/downloads/add';
-import styles from './index.less';
 
 class AddUrl extends Component {
   state = {
