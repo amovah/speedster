@@ -5,7 +5,7 @@ import {
   Icon,
 } from 'antd';
 import { connect } from 'react-redux';
-import changeActiveMenu from 'Root/actions/activeMenu/change';
+import changePage from 'Root/actions/changePage';
 
 const {
   Sider,
@@ -15,7 +15,7 @@ const {
 } = Menu;
 
 const click = (e) => {
-  changeActiveMenu(e.key);
+  changePage(e.key);
 };
 
 const Sidebar = props => (

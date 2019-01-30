@@ -4,7 +4,7 @@ import {
   Menu,
 } from 'antd';
 import { connect } from 'react-redux';
-import changeActiveMenu from 'Root/actions/activeMenu/change';
+import changePage from 'Root/actions/changePage';
 
 const {
   Header,
@@ -15,7 +15,7 @@ const {
 } = Menu;
 
 const click = (e) => {
-  changeActiveMenu(e.key);
+  changePage(e.key);
 };
 
 const Head = props => (
