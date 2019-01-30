@@ -1,5 +1,6 @@
 import store from 'Root/store';
 import fetch from 'Root/helpers/fetch';
+import update from 'Root/actions/downloads/update';
 
 export default () => {
   const job = async () => {
@@ -15,7 +16,7 @@ export default () => {
         ],
       });
 
-      console.log(res);
+      update(download.id, res.data.result);
 
       resolve();
     }));
