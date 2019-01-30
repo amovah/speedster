@@ -12,12 +12,23 @@ import addDownload from 'Root/actions/downloads/add';
 class AddUrl extends Component {
   state = {
     url: null,
+    loading: false,
   }
 
-  download = () => {
-    addDownload({
+  download = async () => {
+    this.setState({
+      loading: true,
+    });
+
+    const res = await addDownload({
       url: this.state.url,
     });
+
+    if (!res) {
+      this.setState({
+        loading: false,
+      });
+    }
   }
 
   inputOnChange = name => (e) => {
@@ -42,6 +53,7 @@ class AddUrl extends Component {
           type="primary"
           onClick={this.download}
           icon="download"
+          loading={this.state.loading}
         >
           Download
         </Button>

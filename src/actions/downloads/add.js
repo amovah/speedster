@@ -7,6 +7,7 @@ import db from 'Root/db';
 import store from 'Root/store';
 import fetch from 'Root/helpers/fetch';
 import changePage from 'Root/helpers/changePage';
+import getDetails from 'Root/helpers/getDetails';
 
 export default async (downloadInfo) => {
   const setting = store.getState().setting;
@@ -42,10 +43,16 @@ export default async (downloadInfo) => {
 
   if (res.data.error) {
     message.error('Bad URL');
-    return;
+    return false;
   }
 
-  const toSave = { ...download, ...res.data.result };
+  const details = await getDetails(download.gid);
+  const toSave = {
+    ...download,
+    ...res.data.result,
+    name: details.files[0].path.split('/').slice(-1)[0],
+  };
+
 
   db.get('downloads').push(toSave).write();
 
@@ -55,4 +62,6 @@ export default async (downloadInfo) => {
   });
 
   changePage(`/download/${download.id}`);
+
+  return true;
 };

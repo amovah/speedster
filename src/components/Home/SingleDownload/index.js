@@ -93,7 +93,7 @@ class AddUrl extends PureComponent {
     const speed = parseInt(this.props.download.downloadSpeed, 10);
 
     return (
-      <Card>
+      <Card title={this.props.download.name}>
         <Row>
           <Col span={18}>
             <p>
