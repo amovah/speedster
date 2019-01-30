@@ -2,9 +2,10 @@ import lowdb from 'lowdb';
 import FileSync from 'lowdb/adapters/FileSync';
 import { resolve } from 'path';
 import { homedir } from 'os';
+import { remote } from 'electron';
 import uid from 'uuid/v4';
 
-const adapter = new FileSync(resolve(__dirname, 'database.json'));
+const adapter = new FileSync(resolve(remote.app.getPath('appData'), 'speedster.db.json'));
 const db = lowdb(adapter);
 
 db.defaults({
