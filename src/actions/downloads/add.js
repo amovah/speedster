@@ -28,7 +28,7 @@ export default async (downloadInfo) => {
         dir: setting.downloaddir,
         'max-connection-per-server': '16',
         continue: 'true',
-        // 'max-download-limit': process.env.NODE_ENV === 'development' ? '10KB' : null,
+        'max-download-limit': process.env.NODE_ENV === 'development' ? '10KB' : null,
       },
     ],
   });
@@ -64,12 +64,12 @@ export default async (downloadInfo) => {
     toSave.category = 'other';
   }
 
-  db.get('downloads').push(toSave).write();
-
   store.dispatch({
     type: types.downloads.ADD,
     download: toSave,
   });
+
+  db.get('downloads').push(toSave).write();
 
   changePage(`/download/${download.id}`);
 
