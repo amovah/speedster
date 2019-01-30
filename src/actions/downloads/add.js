@@ -28,7 +28,7 @@ export default async (downloadInfo) => {
         dir: setting.downloaddir,
         'max-connection-per-server': '16',
         continue: 'true',
-        'max-download-limit': process.env.NODE_ENV === 'development' ? '10KB' : null,
+        // 'max-download-limit': process.env.NODE_ENV === 'development' ? '10KB' : null,
       },
     ],
   });
