@@ -25,6 +25,18 @@ export default (state = [], action) => {
       ];
     }
 
+    case types.downloads.PAUSE: {
+      const index = state.findIndex(item => item.id === action.id);
+      return [
+        ...state.slice(0, index),
+        {
+          ...state[index],
+          downloadStatus: 'pause',
+        },
+        ...state.slice(index + 1),
+      ];
+    }
+
     default: {
       return state;
     }

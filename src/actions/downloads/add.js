@@ -3,6 +3,7 @@ import db from 'Root/db';
 import uid from 'uuid/v4';
 import store from 'Root/store';
 import fetch from 'Root/helpers/fetch';
+import history from 'Root/history';
 
 export default async (downloadInfo) => {
   const setting = store.getState().setting;
@@ -42,4 +43,6 @@ export default async (downloadInfo) => {
     type: types.downloads.ADD,
     download: toSave,
   });
+
+  history.push(`/download/${download.id}`);
 };

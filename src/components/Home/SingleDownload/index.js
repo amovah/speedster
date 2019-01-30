@@ -8,6 +8,7 @@ import {
 } from 'antd';
 import { connect } from 'react-redux';
 import pretty from 'pretty-bytes';
+import pause from 'Root/actions/downloads/pause';
 import styles from './index.less';
 
 class AddUrl extends PureComponent {
@@ -16,10 +17,21 @@ class AddUrl extends PureComponent {
     const downloaded = parseInt(this.props.download.completedLength, 10);
 
     if (this.props.download.downloadStatus === 'pause') {
-      return <Progress strokeColor="gray" type="circle" percent={(100 * downloaded) / total} />;
+      return (
+        <Progress
+          strokeColor="gray"
+          type="circle"
+          percent={parseInt(((100 * downloaded) / total).toFixed(0), 10)}
+        />
+      );
     }
 
-    return <Progress type="circle" percent={(100 * downloaded) / total} />;
+    return (
+      <Progress
+        type="circle"
+        percent={parseInt(((100 * downloaded) / total).toFixed(0), 10)}
+      />
+    );
   }
 
   toggleDownload = () => {
@@ -28,7 +40,7 @@ class AddUrl extends PureComponent {
     }
 
     if (this.props.download.downloadStatus === 'downloading') {
-      return <Button icon="pause" type="primary" />;
+      return <Button icon="pause" type="primary" onClick={() => pause(this.props.download.id)} />;
     }
 
     return null;
