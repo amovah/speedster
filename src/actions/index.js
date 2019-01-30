@@ -7,6 +7,7 @@ export default {
     LOAD: 'downloads/LOAD',
     UPDATE: 'downloads/UPDATE',
     PAUSE: 'downloads/PAUSE',
+    RESUME: 'downloads/RESUME',
   },
   activeMenu: {
     CHANGE: 'activeMenu/CHANGE',

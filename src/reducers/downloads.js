@@ -37,6 +37,18 @@ export default (state = [], action) => {
       ];
     }
 
+    case types.downloads.RESUME: {
+      const index = state.findIndex(item => item.id === action.id);
+      return [
+        ...state.slice(0, index),
+        {
+          ...state[index],
+          downloadStatus: 'downloading',
+        },
+        ...state.slice(index + 1),
+      ];
+    }
+
     default: {
       return state;
     }

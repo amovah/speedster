@@ -9,6 +9,7 @@ import {
 import { connect } from 'react-redux';
 import pretty from 'pretty-bytes';
 import pause from 'Root/actions/downloads/pause';
+import resume from 'Root/actions/downloads/resume';
 import styles from './index.less';
 
 class AddUrl extends PureComponent {
@@ -36,7 +37,7 @@ class AddUrl extends PureComponent {
 
   toggleDownload = () => {
     if (this.props.download.downloadStatus === 'pause') {
-      return <Button icon="play-circle" type="primary" />;
+      return <Button icon="play-circle" type="primary" onClick={() => resume(this.props.download.id)} />;
     }
 
     if (this.props.download.downloadStatus === 'downloading') {
