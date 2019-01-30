@@ -37,29 +37,40 @@ class AddUrl extends PureComponent {
   }
 
   toggleDownload = () => {
+    const buttons = [];
     if (this.props.download.downloadStatus === 'pause') {
-      return (
+      buttons.push(
         <Button
-          icon="play-circle"
+          key="resume"
+          icon="caret-right"
           type="primary"
-          shape="circle"
           onClick={() => resume(this.props.download.id)}
-        />
+        />,
       );
     }
 
     if (this.props.download.downloadStatus === 'downloading') {
-      return (
+      buttons.push(
         <Button
+          key="pause"
           icon="pause"
           type="primary"
-          shape="circle"
           onClick={() => pause(this.props.download.id)}
-        />
+        />,
       );
     }
 
-    return null;
+    if (this.props.downloadStatus !== 'completed') {
+      buttons.push(
+        <Button
+          key="stop"
+          icon="close"
+          type="danger"
+        />,
+      );
+    }
+
+    return buttons;
   }
 
   status = () => {
@@ -102,7 +113,9 @@ class AddUrl extends PureComponent {
           <Col span={6}>
             <div className={styles.rightBar}>
               {this.progressBar()}
-              {this.toggleDownload()}
+              <Button.Group>
+                {this.toggleDownload()}
+              </Button.Group>
             </div>
           </Col>
         </Row>
