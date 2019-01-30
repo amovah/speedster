@@ -1,20 +1,26 @@
 import store from 'Root/store';
 import fetch from 'Root/helpers/fetch';
 
-export default (downloadId) => {
-  const download = store.getState().downloads.find(
-    item => item.id === downloadId,
-  );
-
+export default () => {
   const job = async () => {
-    const rest = await fetch({
-      method: 'aria2.tellStatus',
-      params: [
-        download.gid,
-      ],
-    });
+    const downloads = store.getState().downloads.filter(
+      item => item.downloadStatus === 'downloading',
+    );
 
-    console.log(rest);
+    const actions = downloads.map(download => new Promise(async (resolve) => {
+      const res = await fetch({
+        method: 'aria2.tellStatus',
+        params: [
+          download.gid,
+        ],
+      });
+
+      console.log(res);
+
+      resolve();
+    }));
+
+    await Promise.all(actions);
 
     setTimeout(job, 350);
   };

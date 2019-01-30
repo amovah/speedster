@@ -6,12 +6,6 @@ export default async (json) => {
   try {
     const { url } = db.get('setting').value();
 
-    console.log(json, JSON.stringify({
-      jsonrpc: '2.0',
-      id: generate(),
-      ...json,
-    }));
-
     const res = await global.fetch(url, {
       headers: {
         Accept: 'application/json',

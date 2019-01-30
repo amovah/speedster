@@ -34,12 +34,12 @@ export default async (downloadInfo) => {
     ],
   });
 
-  console.log({ ...download, ...res.data.result });
+  const toSave = { ...download, ...res.data.result };
 
-  // db.get('downloads').push(download).write();
+  db.get('downloads').push(toSave).write();
 
   store.dispatch({
     type: types.downloads.ADD,
-    download,
+    download: toSave,
   });
 };

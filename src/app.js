@@ -6,6 +6,7 @@ import loadSetting from 'Root/actions/setting/load';
 import loadDownloads from 'Root/actions/downloads/load';
 import history from 'Root/history';
 import startAria2 from './helpers/startAria2';
+import statusUpdater from './helpers/statusUpdater';
 import Speedster from './Speedster';
 
 (async () => {
@@ -16,6 +17,8 @@ import Speedster from './Speedster';
 
   try {
     await startAria2();
+
+    statusUpdater();
 
     loadSetting(db.get('setting').value());
     loadDownloads(db.get('downloads').value());
