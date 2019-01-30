@@ -4,7 +4,7 @@ import {
   Menu,
 } from 'antd';
 import { connect } from 'react-redux';
-import changePage from 'Root/actions/changePage';
+import changePage from 'Root/helpers/changePage';
 
 const {
   Header,
