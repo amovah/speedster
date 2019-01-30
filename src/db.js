@@ -19,7 +19,7 @@ db.defaults({
       id: uid(),
       name: 'Compressed',
       extensions: [
-        '.tar.gz',
+        '.gz',
         '.rar',
         '.zip',
       ],

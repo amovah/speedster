@@ -3,6 +3,7 @@ import uid from 'uuid/v4';
 import {
   message,
 } from 'antd';
+import { extname } from 'path';
 import db from 'Root/db';
 import store from 'Root/store';
 import fetch from 'Root/helpers/fetch';
@@ -53,6 +54,15 @@ export default async (downloadInfo) => {
     name: details.files[0].path.split('/').slice(-1)[0],
   };
 
+  const categories = db.get('categories').values();
+  for (const category of categories) {
+    if (category.extensions.includes(extname(toSave.name))) {
+      toSave.category = category.name;
+    }
+  }
+  if (!toSave.category) {
+    toSave.category = 'other';
+  }
 
   db.get('downloads').push(toSave).write();
 
