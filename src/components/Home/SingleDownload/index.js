@@ -4,9 +4,11 @@ import {
   Progress,
   Row,
   Col,
+  Button,
 } from 'antd';
 import { connect } from 'react-redux';
 import pretty from 'pretty-bytes';
+import styles from './index.less';
 
 class AddUrl extends PureComponent {
   progressBar = () => {
@@ -18,6 +20,18 @@ class AddUrl extends PureComponent {
     }
 
     return <Progress type="circle" percent={(100 * downloaded) / total} />;
+  }
+
+  toggleDownload = () => {
+    if (this.props.download.downloadStatus === 'pause') {
+      return <Button icon="play-circle" type="primary" />;
+    }
+
+    if (this.props.download.downloadStatus === 'downloading') {
+      return <Button icon="pause" type="primary" />;
+    }
+
+    return null;
   }
 
   render() {
@@ -42,7 +56,10 @@ class AddUrl extends PureComponent {
             </p>
           </Col>
           <Col span={6}>
-            {this.progressBar()}
+            <div className={styles.rightBar}>
+              {this.progressBar()}
+              {this.toggleDownload()}
+            </div>
           </Col>
         </Row>
       </Card>
