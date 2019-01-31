@@ -9,7 +9,7 @@ import {
   message,
 } from 'antd';
 import { connect } from 'react-redux';
-import { remote } from 'electron';
+import { remote, clipboard } from 'electron';
 import { resolve, extname } from 'path';
 import addDownload from 'Root/actions/downloads/add';
 import gatherInfo from 'Root/helpers/gatherInfo';
@@ -24,6 +24,21 @@ class AddUrl extends Component {
     category: null,
     name: null,
     isDisable: true,
+  }
+
+  urlRef = React.createRef();
+
+  componentDidMount() {
+    const text = clipboard.readText();
+    if (text) {
+      this.urlRef.current.state.value = text;
+      this.onChangeURL({
+        persist() {},
+        target: {
+          value: text,
+        },
+      });
+    }
   }
 
   download = async () => {
@@ -191,6 +206,7 @@ class AddUrl extends Component {
             <Input
               placeholder="Enter your URL here!"
               onChange={this.onChangeURL}
+              ref={this.urlRef}
             />
           </Col>
           <Col span={1} />
