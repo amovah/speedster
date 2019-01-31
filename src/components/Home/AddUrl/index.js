@@ -90,7 +90,7 @@ class AddUrl extends Component {
     if (!e.target.value) {
       this.setState({
         isDisable: true,
-        loading: false,
+        loading: true,
       });
       return;
     }
