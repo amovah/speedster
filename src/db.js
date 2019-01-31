@@ -53,6 +53,11 @@ db.defaults({
         '.mp4',
       ],
     },
+    {
+      id: uid(),
+      name: 'Others',
+      extensions: [],
+    },
   ],
   downloads: [
   ],
