@@ -1,6 +1,3 @@
-import {
-  message,
-} from 'antd';
 import types from 'Root/actions';
 import store from 'Root/store';
 import db from 'Root/db';
@@ -12,7 +9,6 @@ export default async (id) => {
   });
 
   const toSave = store.getState().downloads.find(i => i.id === id);
-  message.success(`${toSave.name} is completed.`);
 
   db.get('downloads')
     .find({ id })
