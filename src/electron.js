@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, Menu } from 'electron';
 import { resolve } from 'path';
 import { env } from 'process';
 
@@ -18,7 +18,7 @@ function createWindow() {
   }
 
   win.on('closed', () => {
-    win = null;
+    // win = null;
   });
 }
 
@@ -35,3 +35,5 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+Menu.setApplicationMenu(Menu.buildFromTemplate([]));
