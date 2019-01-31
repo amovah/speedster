@@ -130,7 +130,7 @@ class AddUrl extends Component {
     let category;
     for (const cate of categories) {
       if (cate.extensions.includes(extname(name))) {
-        category = category.name;
+        category = cate.name;
       }
     }
     if (!category) {
