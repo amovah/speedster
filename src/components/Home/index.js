@@ -4,6 +4,9 @@ import AppFrame from './AppFrame';
 import AddUrl from './AddUrl';
 import SingleDownload from './SingleDownload';
 import AllDownloads from './AllDownloads';
+import Completeds from './Completeds';
+import Incompletes from './Incompletes';
+import Category from './Category';
 
 export default () => (
   <AppFrame>
@@ -11,6 +14,9 @@ export default () => (
       <Route exact path="/add-url" component={AddUrl} />
       <Route exact path="/download/:id" component={SingleDownload} />
       <Route exact path="/all" component={AllDownloads} />
+      <Route exact path="/completeds" component={Completeds} />
+      <Route exact path="/incompletes" component={Incompletes} />
+      <Route exact path="/category/:category" component={Category} />
     </Switch>
   </AppFrame>
 );

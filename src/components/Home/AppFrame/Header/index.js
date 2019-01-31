@@ -41,7 +41,7 @@ const Head = props => (
         </Item>
       </SubMenu>
       <Item key="shutdown">
-        Shutdown
+        Shutdown Speedster
       </Item>
     </Menu>
   </Header>
