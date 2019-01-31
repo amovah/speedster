@@ -9,13 +9,15 @@ import store from 'Root/store';
 import fetch from 'Root/helpers/fetch';
 import changePage from 'Root/helpers/changePage';
 import getDetails from 'Root/helpers/getDetails';
+import gatherInfo from 'Root/helpers/gatherInfo';
 
 export default async (downloadInfo) => {
   const setting = store.getState().setting;
   const download = {
-    ...downloadInfo,
     id: uid(),
     downloadStatus: 'downloading',
+    name: downloadInfo.name,
+    outputDir: downloadInfo.outputDir,
   };
 
   const downloadId = await fetch({
@@ -25,44 +27,21 @@ export default async (downloadInfo) => {
         downloadInfo.url,
       ],
       {
-        dir: setting.downloaddir,
+        dir: setting.tempdir,
         'max-connection-per-server': '16',
         continue: 'true',
-        'max-download-limit': process.env.NODE_ENV === 'development' ? '10KB' : null,
+        'max-download-limit': downloadInfo.maxSpeed,
       },
     ],
   });
 
   download.gid = downloadId.data.result;
 
-  const res = await fetch({
-    method: 'aria2.tellStatus',
-    params: [
-      download.gid,
-    ],
-  });
-
-  if (res.data.error) {
-    message.error('Bad URL');
-    return false;
-  }
-
   const details = await getDetails(download.gid);
   const toSave = {
     ...download,
-    ...res.data.result,
-    name: details.files[0].path.split('/').slice(-1)[0],
+    ...details,
   };
-
-  const categories = db.get('categories').values();
-  for (const category of categories) {
-    if (category.extensions.includes(extname(toSave.name))) {
-      toSave.category = category.name;
-    }
-  }
-  if (!toSave.category) {
-    toSave.category = 'Other';
-  }
 
   store.dispatch({
     type: types.downloads.ADD,
