@@ -1,7 +1,7 @@
 {
   "name": "speedster",
   "main": "build/electron.js",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "aria2 graphical ui, powered by electron, react.",
   "repository": "git@github.com:amovah/speedster.git",
   "author": "Ali Movahedi <ali_movahedi@aol.com>",

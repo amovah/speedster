@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Encoding=UTF-8
-Name=Speedster
-Comment=A sample application
-Exec=speedster
-Icon=application.png
-Terminal=true
