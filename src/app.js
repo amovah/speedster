@@ -10,6 +10,12 @@ import history from 'Root/history';
 import startAria2 from './helpers/startAria2';
 import statusUpdater from './helpers/statusUpdater';
 import Speedster from './Speedster';
+import Init from './components/Init';
+
+render(
+  <Init />,
+  global.document.getElementById('root'),
+);
 
 (async () => {
   try {
