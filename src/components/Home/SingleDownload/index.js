@@ -9,6 +9,7 @@ import {
 import { connect } from 'react-redux';
 import pretty from 'pretty-bytes';
 import humanizeDuration from 'humanize-duration';
+import { resolve } from 'path';
 import pause from 'Root/actions/downloads/pause';
 import resume from 'Root/actions/downloads/resume';
 import remove from 'Root/actions/downloads/remove';
@@ -110,7 +111,10 @@ class AddUrl extends PureComponent {
               Download Speed: {pretty(speed)}
             </p>
             <p>
-              Estimate Time: {humanizeDuration(Math.floor((total - downloaded) / speed) * 1000)}
+              Estimate Time: {humanizeDuration(Math.floor(((total - downloaded) / speed) * 1000))}
+            </p>
+            <p>
+              Output Directory: {resolve(this.props.download.outputDir, this.props.download.name)}
             </p>
           </Col>
           <Col span={6}>
