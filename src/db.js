@@ -31,6 +31,27 @@ db.defaults({
         '.mp3',
       ],
     },
+    {
+      id: uid(),
+      name: 'Pictures',
+      extensions: [
+        '.jpg',
+      ],
+    },
+    {
+      id: uid(),
+      name: 'Documents',
+      extensions: [
+        '.pdf',
+      ],
+    },
+    {
+      id: uid(),
+      name: 'Videos',
+      extensions: [
+        '.mp4',
+      ],
+    },
   ],
   downloads: [
   ],
