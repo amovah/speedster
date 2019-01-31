@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {
   Input,
   Row,
@@ -6,7 +6,6 @@ import {
   Button,
   Card,
   Col,
-  Skeleton,
   message,
 } from 'antd';
 import { connect } from 'react-redux';
@@ -138,27 +137,11 @@ class AddUrl extends Component {
     });
   }
 
-  render() {
-    return (
-      <Card>
-        <Row>
-          <Col span={18}>
-            <Input
-              placeholder="Enter your URL here!"
-              onChange={this.onChangeURL}
-            />
-          </Col>
-          <Col span={1} />
-          <Col span={5}>
-            {this.downloadButton()}
-          </Col>
-        </Row>
-
-        <Divider />
-
-        <Skeleton
-          loading={this.state.loading}
-        >
+  showOptions = () => {
+    if (!this.state.loading) {
+      return (
+        <Fragment>
+          <Divider />
           <Row>
             <Col span={10}>
               <p>
@@ -193,7 +176,29 @@ class AddUrl extends Component {
               </Row>
             </Col>
           </Row>
-        </Skeleton>
+        </Fragment>
+      );
+    }
+
+    return null;
+  }
+
+  render() {
+    return (
+      <Card>
+        <Row>
+          <Col span={18}>
+            <Input
+              placeholder="Enter your URL here!"
+              onChange={this.onChangeURL}
+            />
+          </Col>
+          <Col span={1} />
+          <Col span={5}>
+            {this.downloadButton()}
+          </Col>
+        </Row>
+        {this.showOptions()}
       </Card>
     );
   }
