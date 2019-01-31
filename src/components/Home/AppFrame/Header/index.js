@@ -5,6 +5,7 @@ import {
 } from 'antd';
 import { connect } from 'react-redux';
 import changePage from 'Root/helpers/changePage';
+import shutdown from 'Root/helpers/shutdown';
 
 const {
   Header,
@@ -15,7 +16,14 @@ const {
 } = Menu;
 
 const click = (e) => {
-  changePage(e.key);
+  if (!['shutdown'].includes(e.key)) {
+    changePage(e.key);
+    return;
+  }
+
+  if (e.key === 'shutdown') {
+    shutdown();
+  }
 };
 
 const Head = props => (
@@ -32,6 +40,9 @@ const Head = props => (
           Add URL
         </Item>
       </SubMenu>
+      <Item key="shutdown">
+        Shutdown Application
+      </Item>
     </Menu>
   </Header>
 );
