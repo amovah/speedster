@@ -13,5 +13,7 @@ export default async () => {
     method: 'aria2.shutdown',
   });
 
-  remote.app.quit();
+  if (process.env.NODE_ENV !== 'development') {
+    remote.app.quit();
+  }
 };
