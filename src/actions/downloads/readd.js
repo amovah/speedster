@@ -1,32 +1,26 @@
-import uid from 'uuid/v4';
 import {
   message,
 } from 'antd';
-import types from 'Root/actions';
 import db from 'Root/db';
 import store from 'Root/store';
 import fetch from 'Root/helpers/fetch';
-import changePage from 'Root/helpers/changePage';
 import getDetails from 'Root/helpers/getDetails';
+import update from './update';
 
-export default async (downloadInfo) => {
-  const download = {
-    id: uid(),
-    downloadStatus: 'downloading',
-    ...downloadInfo,
-  };
+export default async (id) => {
+  const download = store.getState().downloads.find(i => i.id === id);
 
   const downloadId = await fetch({
     method: 'aria2.addUri',
     params: [
       [
-        downloadInfo.url,
+        download.url,
       ],
       {
-        dir: downloadInfo.outputDir,
+        dir: download.outputDir,
         'max-connection-per-server': '16',
         continue: 'true',
-        'max-download-limit': downloadInfo.maxSpeed,
+        'max-download-limit': download.maxSpeed,
       },
     ],
   });
@@ -42,14 +36,16 @@ export default async (downloadInfo) => {
   const toSave = {
     ...download,
     ...details,
+    downloadStatus: 'downloading',
   };
 
-  store.dispatch({
-    type: types.downloads.ADD,
-    download: toSave,
-  });
+  update(
+    id,
+    toSave,
+  );
 
-  db.get('downloads').push(toSave).write();
-
-  changePage(`/download/${download.id}`);
+  db.get('downloads')
+    .find({ id })
+    .assign(toSave)
+    .write();
 };
