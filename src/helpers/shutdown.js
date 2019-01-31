@@ -13,5 +13,5 @@ export default async () => {
     method: 'aria2.shutdown',
   });
 
-  // remote.app.quit();
+  remote.app.quit();
 };
