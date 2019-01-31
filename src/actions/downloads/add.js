@@ -13,6 +13,7 @@ export default async (downloadInfo) => {
     name: downloadInfo.name,
     outputDir: downloadInfo.outputDir,
     category: downloadInfo.category,
+    url: downloadInfo.url,
   };
 
   const downloadId = await fetch({
