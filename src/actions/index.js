@@ -10,6 +10,7 @@ export default {
     RESUME: 'downloads/RESUME',
     REMOVE: 'downloads/REMOVE',
     COMPLETE: 'downloads/COMPLETE',
+    SUSPEND: 'downloads/SUSPEND',
   },
   activeMenu: {
     CHANGE: 'activeMenu/CHANGE',

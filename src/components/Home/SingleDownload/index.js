@@ -82,11 +82,14 @@ class AddUrl extends PureComponent {
       return 'Downloading..';
     }
 
-    if (this.props.download.downloadStatus === 'pause') {
+    if (
+      this.props.download.downloadStatus === 'pause'
+      || this.props.download.downloadStatus === 'suspend'
+    ) {
       return 'Pause';
     }
 
-    return 'Completed';
+    return 'Complete';
   }
 
   render() {

@@ -31,7 +31,7 @@ export default class extends PureComponent {
             return 'Downloading..';
           }
 
-          if (text === 'pause') {
+          if (text === 'pause' || text === 'suspend') {
             return 'Pause';
           }
 
