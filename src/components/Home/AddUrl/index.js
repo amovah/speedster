@@ -11,6 +11,7 @@ import {
 import { connect } from 'react-redux';
 import { remote, clipboard } from 'electron';
 import { resolve, extname } from 'path';
+import pretty from 'pretty-bytes';
 import addDownload from 'Root/actions/downloads/add';
 import gatherInfo from 'Root/helpers/gatherInfo';
 import db from 'Root/db';
@@ -24,6 +25,7 @@ class AddUrl extends Component {
     category: null,
     name: null,
     isDisable: true,
+    details: null,
   }
 
   urlRef = React.createRef();
@@ -122,10 +124,18 @@ class AddUrl extends Component {
     const res = await gatherInfo(e.target.value);
     if (res === 'error') {
       message.error('Bad URL');
+      this.setState({
+        isDisable: true,
+        loading: true,
+      });
       return;
     }
     if (res === 'cant') {
       message.error('Speedster cannot download the URL');
+      this.setState({
+        isDisable: true,
+        loading: true,
+      });
       return;
     }
 
@@ -148,6 +158,7 @@ class AddUrl extends Component {
       category,
       outputDir: resolve(this.props.setting.downloaddir, category),
       name,
+      details: res,
     });
   }
 
@@ -162,7 +173,33 @@ class AddUrl extends Component {
       return (
         <Fragment>
           <Divider />
+          <h3>
+            File Details:
+          </h3>
           <Row>
+            <Col span={7}>
+              <p>
+                Name: {this.state.name}
+              </p>
+            </Col>
+            <Col span={1} />
+            <Col span={7}>
+              <p>
+                File Size: {pretty(parseInt(this.state.details.totalLength, 10))}
+              </p>
+            </Col>
+            <Col span={1} />
+            <Col span={7}>
+              <p>
+                Category: {this.state.category}
+              </p>
+            </Col>
+          </Row>
+          <Divider />
+          <Row>
+            <h3>
+              Advanced Options:
+            </h3>
             <Col span={10}>
               <p>
                 Max Speed:
