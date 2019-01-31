@@ -111,7 +111,7 @@ class AddUrl extends PureComponent {
               Download Speed: {pretty(speed)}
             </p>
             <p>
-              Estimate Time: {humanizeDuration(Math.floor(((total - downloaded) / speed) * 1000))}
+              Estimate Time: {humanizeDuration(Math.floor((total - downloaded) / speed) * 1000)}
             </p>
             <p>
               Output Directory: {resolve(this.props.download.outputDir, this.props.download.name)}

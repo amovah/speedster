@@ -13,7 +13,6 @@ db.defaults({
     port: 6812,
     url: 'http://localhost:6812/jsonrpc',
     downloaddir: resolve(homedir(), 'Downloads', 'Speedster'),
-    tempdir: resolve(homedir(), 'Downloads', 'Speedster', '.temp'),
   },
   categories: [
     {

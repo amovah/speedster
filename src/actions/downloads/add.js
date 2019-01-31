@@ -7,7 +7,6 @@ import changePage from 'Root/helpers/changePage';
 import getDetails from 'Root/helpers/getDetails';
 
 export default async (downloadInfo) => {
-  const setting = store.getState().setting;
   const download = {
     id: uid(),
     downloadStatus: 'downloading',
@@ -22,7 +21,7 @@ export default async (downloadInfo) => {
         downloadInfo.url,
       ],
       {
-        dir: setting.tempdir,
+        dir: downloadInfo.outputDir,
         'max-connection-per-server': '16',
         continue: 'true',
         'max-download-limit': downloadInfo.maxSpeed,

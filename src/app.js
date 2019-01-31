@@ -17,7 +17,7 @@ import Speedster from './Speedster';
 
     const categories = db.get('categories').value();
     const setting = db.get('setting').value();
-    const ensures = [ensureDir(resolve(setting.downloaddir, '.temp'))];
+    const ensures = [];
     for (const category of categories) {
       ensures.push(ensureDir(resolve(setting.downloaddir, category.name)));
     }
