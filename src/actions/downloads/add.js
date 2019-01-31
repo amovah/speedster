@@ -1,15 +1,10 @@
 import types from 'Root/actions';
 import uid from 'uuid/v4';
-import {
-  message,
-} from 'antd';
-import { extname } from 'path';
 import db from 'Root/db';
 import store from 'Root/store';
 import fetch from 'Root/helpers/fetch';
 import changePage from 'Root/helpers/changePage';
 import getDetails from 'Root/helpers/getDetails';
-import gatherInfo from 'Root/helpers/gatherInfo';
 
 export default async (downloadInfo) => {
   const setting = store.getState().setting;
