@@ -20,7 +20,10 @@ class AddUrl extends PureComponent {
     const total = parseInt(this.props.download.totalLength, 10);
     const downloaded = parseInt(this.props.download.completedLength, 10);
 
-    if (this.props.download.downloadStatus === 'pause') {
+    if (
+      this.props.download.downloadStatus === 'pause'
+      || this.props.download.downloadStatus === 'suspend'
+    ) {
       return (
         <Progress
           strokeColor="gray"
@@ -40,7 +43,10 @@ class AddUrl extends PureComponent {
 
   toggleDownload = () => {
     const buttons = [];
-    if (this.props.download.downloadStatus === 'pause') {
+    if (
+      this.props.download.downloadStatus === 'pause'
+      || this.props.download.downloadStatus === 'suspend'
+    ) {
       buttons.push(
         <Button
           key="resume"
