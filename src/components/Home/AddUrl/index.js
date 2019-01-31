@@ -42,6 +42,11 @@ class AddUrl extends Component {
   }
 
   download = async () => {
+    this.setState({
+      isDisable: false,
+      loading: true,
+    });
+
     addDownload({
       url: this.state.url,
       name: this.state.name,
