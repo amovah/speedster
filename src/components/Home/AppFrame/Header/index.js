@@ -6,6 +6,7 @@ import {
 import { connect } from 'react-redux';
 import changePage from 'Root/helpers/changePage';
 import shutdown from 'Root/helpers/shutdown';
+import pauseAll from 'Root/actions/downloads/pauseAll';
 
 const {
   Header,
@@ -29,6 +30,11 @@ const click = (e) => {
   switch (e.key) {
     case 'shutdown': {
       shutdown();
+      break;
+    }
+
+    case 'pause-all': {
+      pauseAll();
       break;
     }
 
