@@ -98,6 +98,16 @@ class AddUrl extends PureComponent {
     return 'Complete';
   }
 
+  speed = () => {
+    const speed = parseInt(this.props.download.downloadSpeed, 10);
+
+    if (this.props.download.maxSpeed) {
+      return `${pretty(speed)} (limited by ${this.props.download.maxSpeed})`;
+    }
+
+    return pretty(speed);
+  }
+
   render() {
     const total = parseInt(this.props.download.totalLength, 10);
     const downloaded = parseInt(this.props.download.completedLength, 10);
@@ -117,7 +127,7 @@ class AddUrl extends PureComponent {
               Downloaded: {pretty(downloaded)}
             </p>
             <p>
-              Download Speed: {pretty(speed)}
+              Download Speed: {this.speed()}
             </p>
             <p>
               Estimate Time: {humanizeDuration(Math.floor((total - downloaded) / speed) * 1000)}
