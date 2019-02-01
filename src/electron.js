@@ -8,7 +8,9 @@ function createWindow() {
   win = new BrowserWindow({
     minWidth: 1000,
     minHeight: 600,
+    icon: resolve(__dirname, '../icons/256x256.png'),
     title: 'Speedster',
+    show: false,
   });
 
   win.loadURL(`file://${resolve(__dirname, 'index.html')}`);
@@ -19,6 +21,10 @@ function createWindow() {
 
   win.on('closed', () => {
     win = null;
+  });
+
+  win.once('ready-to-show', () => {
+    win.show();
   });
 }
 

@@ -1,0 +1,12 @@
+{
+  "src": "./dist/speedster-linux-x64",
+  "dest": "./dist/installers/",
+  "arch": "amd64",
+  "icon": "./icons/256x256.png",
+  "categories": [
+    "Utility"
+  ],
+  "options": {
+    "depends": "aria2"
+  }
+}
