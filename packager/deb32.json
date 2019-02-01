@@ -1,8 +1,8 @@
 {
   "name": "Speedster",
-  "src": "./dist/speedster-linux-x64",
+  "src": "./dist/speedster-linux-ia32",
   "dest": "./dist/installers/",
-  "arch": "amd64",
+  "arch": "i386",
   "icon": "./icons/256x256.png",
   "categories": [
     "Utility"

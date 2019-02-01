@@ -10,7 +10,13 @@
     "dev": "NODE_ENV=development ./node_modules/.bin/gulp dev",
     "prod": "NODE_ENV=production ./node_modules/.bin/gulp prod",
     "start": "NODE_ENV=development ./node_modules/electron/dist/electron .",
-    "start:prod": "NODE_ENV=production ./node_modules/electron/dist/electron ."
+    "start:prod": "NODE_ENV=production ./node_modules/electron/dist/electron .",
+    "build:linux64": "./node_modules/.bin/electron-packager ./ speedster --platfrom=linux --arch=x64 --icon=icons/256x256.png --out dist --overwrite",
+    "build:linux32": "./node_modules/.bin/electron-packager ./ speedster --platfrom=linux --arch=ia32 --icon=icons/256x256.png --out dist --overwrite",
+    "deb:64": "./node_modules/.bin/electron-installer-debian --config ./packager/deb64.json",
+    "deb:32": "./node_modules/.bin/electron-installer-debian --config ./packager/deb32.json",
+    "prerelease": "npm run build:linux64; npm run deb:64",
+    "release": "npm run build:linux64; npm run build:linux32; npm run deb:64; npm run deb:32"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
