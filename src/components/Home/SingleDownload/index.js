@@ -1,10 +1,12 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import {
   Card,
   Progress,
   Row,
   Col,
   Button,
+  Collapse,
+  Input,
 } from 'antd';
 import { connect } from 'react-redux';
 import pretty from 'pretty-bytes';
@@ -15,7 +17,13 @@ import resume from 'Root/actions/downloads/resume';
 import remove from 'Root/actions/downloads/remove';
 import styles from './index.less';
 
-class AddUrl extends PureComponent {
+const Panel = Collapse.Panel;
+
+class AddUrl extends Component {
+  state = {
+    maxSpeed: null,
+  }
+
   progressBar = () => {
     const total = parseInt(this.props.download.totalLength, 10);
     const downloaded = parseInt(this.props.download.completedLength, 10);
@@ -108,6 +116,12 @@ class AddUrl extends PureComponent {
     return pretty(speed);
   }
 
+  onChangeSpeed = (e) => {
+    this.setState({
+      maxSpeed: e.target.value,
+    });
+  }
+
   render() {
     const total = parseInt(this.props.download.totalLength, 10);
     const downloaded = parseInt(this.props.download.completedLength, 10);
@@ -145,6 +159,36 @@ class AddUrl extends PureComponent {
             </div>
           </Col>
         </Row>
+        <Collapse
+          border={false}
+          style={{
+            border: 0,
+            backgroundColor: 'white',
+          }}
+        >
+          <Panel header="Advanced Options" key="1" style={{ border: 0 }}>
+            <Row>
+              <Col span={12}>
+                <p>
+                  Change Speed Limit:
+                </p>
+                <Row>
+                  <Col span={18}>
+                    <Input
+                      onChange={this.onChangeSpeed}
+                    />
+                  </Col>
+                  <Col span={1} />
+                  <Col span={5}>
+                    <Button>
+                      Change Speed
+                    </Button>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          </Panel>
+        </Collapse>
       </Card>
     );
   }
