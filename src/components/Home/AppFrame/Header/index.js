@@ -16,13 +16,25 @@ const {
 } = Menu;
 
 const click = (e) => {
-  if (!['shutdown'].includes(e.key)) {
+  if (
+    ![
+      'shutdown',
+      'pause-all',
+    ].includes(e.key)
+  ) {
     changePage(e.key);
     return;
   }
 
-  if (e.key === 'shutdown') {
-    shutdown();
+  switch (e.key) {
+    case 'shutdown': {
+      shutdown();
+      break;
+    }
+
+    default: {
+      changePage(e.key);
+    }
   }
 };
 
@@ -38,6 +50,9 @@ const Head = props => (
       <SubMenu key="downloads" title="Downloads">
         <Item key="/add-url">
           Add URL
+        </Item>
+        <Item key="pause-all">
+          Pause All
         </Item>
       </SubMenu>
       <Item key="shutdown">
