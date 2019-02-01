@@ -20,17 +20,13 @@ yarn prod; yarn prod:start
 
 if you wanna create executable file for linux:
 ```bash
-yarn build:linux64
-# if you are using 32 bit
-yarn build:linux32
+yarn build:linux
 ```
 
 then if you wanna build a deb file:
 
 ```bash
-yarn deb:64
-# 32 bit systems
-yarn deb:32
+yarn deb
 ```
 
 # Thanks giving
