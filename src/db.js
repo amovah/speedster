@@ -22,6 +22,12 @@ db.defaults({
         '.gz',
         '.rar',
         '.zip',
+        '.dmg',
+        '.tar',
+        '.jar',
+        '.tgz',
+        '.bz2',
+        '.zipx',
       ],
     },
     {
@@ -89,6 +95,13 @@ db.defaults({
       name: 'Documents',
       extensions: [
         '.pdf',
+        '.txt',
+        '.md',
+        '.doc',
+        '.html',
+        '.docx',
+        '.odt',
+        '.xml',
       ],
     },
     {
