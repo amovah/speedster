@@ -102,6 +102,8 @@ db.defaults({
         '.docx',
         '.odt',
         '.xml',
+        '.pptx',
+        '.ppsx',
       ],
     },
     {
