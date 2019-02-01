@@ -74,6 +74,14 @@ db.defaults({
       name: 'Pictures',
       extensions: [
         '.jpg',
+        '.jpeg',
+        '.png',
+        '.tiff',
+        '.bmp',
+        '.bpg',
+        '.img',
+        '.psd',
+        '.svg',
       ],
     },
     {
