@@ -36,7 +36,7 @@ yarn deb:32
 # Thanks giving
 
 * appreciate [Mahdi Najafi](https://github.com/Mtt6300) for his idea.
-* appreciate [Sogol Zargar](google.com) for creating a beautiful icon for the application.
+* appreciate [Sogol Zargar](mailto:sogolzargar70@gmail.com) for creating a beautiful icon for the application.
 
 # license
 MIT
