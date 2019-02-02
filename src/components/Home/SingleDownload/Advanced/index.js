@@ -5,6 +5,7 @@ import {
   Col,
   Input,
   Button,
+  InputNumber,
 } from 'antd';
 import changeDownload from 'Root/actions/downloads/change';
 
@@ -13,6 +14,7 @@ const Panel = Collapse.Panel;
 export default class extends Component {
   state = {
     maxSpeed: null,
+    maxConnection: this.props.download.maxConnection.toString(),
   }
 
   onChangeSpeed = (e) => {
@@ -30,6 +32,21 @@ export default class extends Component {
     );
   }
 
+  onChangeConnection = (number) => {
+    this.setState({
+      maxConnection: number.toString(),
+    });
+  }
+
+  changeConnection = () => {
+    changeDownload(
+      this.props.download,
+      {
+        maxConnection: this.state.maxConnection,
+      },
+    );
+  }
+
   render() {
     return (
       <Collapse
@@ -41,7 +58,7 @@ export default class extends Component {
       >
         <Panel header="Advanced Options" key="1" style={{ border: 0 }}>
           <Row>
-            <Col span={12}>
+            <Col span={14}>
               <p>
                 Speed Limit:
               </p>
@@ -57,7 +74,31 @@ export default class extends Component {
                   <Button
                     onClick={this.changeSpeed}
                   >
-                    Change Limit
+                    Change
+                  </Button>
+                </Col>
+              </Row>
+            </Col>
+            <Col span={2} />
+            <Col span={6}>
+              <p>
+                Connections:
+              </p>
+              <Row>
+                <Col span={18}>
+                  <InputNumber
+                    min={1}
+                    max={16}
+                    defaultValue={parseInt(this.props.download.maxConnection, 10)}
+                    onChange={this.onChangeConnection}
+                  />
+                </Col>
+                <Col span={1} />
+                <Col span={5}>
+                  <Button
+                    onClick={this.changeConnection}
+                  >
+                    Change
                   </Button>
                 </Col>
               </Row>
