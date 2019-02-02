@@ -22,10 +22,10 @@ class AddUrl extends Component {
     url: null,
     maxSpeed: null,
     outputDir: this.props.setting.downloaddir,
-    loading: true,
+    loading: false,
     category: null,
     name: null,
-    isDisable: true,
+    loaded: false,
     maxConnection: '16',
     details: null,
   }
@@ -46,11 +46,6 @@ class AddUrl extends Component {
   }
 
   download = async () => {
-    this.setState({
-      isDisable: false,
-      loading: true,
-    });
-
     addDownload({
       url: this.state.url,
       name: this.state.name,
@@ -62,7 +57,7 @@ class AddUrl extends Component {
   }
 
   downloadButton = () => {
-    if (this.state.isDisable) {
+    if (!this.state.loaded && !this.state.loading) {
       return (
         <Button
           type="primary"
@@ -112,15 +107,20 @@ class AddUrl extends Component {
 
   onChangeURL = async (e) => {
     e.persist();
+
+    this.setState({
+      loaded: false,
+    });
+
     if (!e.target.value) {
       this.setState({
-        isDisable: true,
-        loading: true,
+        loaded: false,
+        loading: false,
       });
       return;
     }
+
     this.setState({
-      isDisable: false,
       loading: true,
     });
 
@@ -128,16 +128,14 @@ class AddUrl extends Component {
     if (res === 'error') {
       message.error('Bad URL');
       this.setState({
-        isDisable: true,
-        loading: true,
+        loading: false,
       });
       return;
     }
     if (res === 'cant') {
       message.error('Speedster cannot download the URL');
       this.setState({
-        isDisable: true,
-        loading: true,
+        loading: false,
       });
       return;
     }
@@ -158,6 +156,7 @@ class AddUrl extends Component {
     this.setState({
       url: e.target.value,
       loading: false,
+      loaded: true,
       category,
       outputDir: resolve(this.props.setting.downloaddir, category),
       name,
@@ -178,7 +177,7 @@ class AddUrl extends Component {
   }
 
   showOptions = () => {
-    if (!this.state.loading) {
+    if (this.state.loaded && !this.state.loading) {
       return (
         <Fragment>
           <Divider />
@@ -273,6 +272,7 @@ class AddUrl extends Component {
               placeholder="Enter your URL here!"
               onChange={this.onChangeURL}
               ref={this.urlRef}
+              disabled={this.state.loading}
             />
           </Col>
           <Col span={1} />
