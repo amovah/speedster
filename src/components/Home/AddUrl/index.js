@@ -14,6 +14,7 @@ import { remote, clipboard } from 'electron';
 import { resolve, extname } from 'path';
 import pretty from 'pretty-bytes';
 import addDownload from 'Root/actions/downloads/add';
+import quietAdd from 'Root/actions/downloads/quietAdd';
 import gatherInfo from 'Root/helpers/gatherInfo';
 import db from 'Root/db';
 import styles from './index.less';
@@ -48,7 +49,7 @@ class AddUrl extends Component {
     }
   }
 
-  download = async () => {
+  download = () => {
     this.setState({
       toDownload: true,
     });
@@ -61,6 +62,17 @@ class AddUrl extends Component {
       outputDir: this.state.outputDir,
       maxConnection: this.state.maxConnection,
     });
+  }
+
+  quietDownload = () => {
+    quietAdd({
+      url: this.state.url,
+      name: this.state.name,
+      category: this.state.category,
+      maxSpeed: this.state.maxSpeed,
+      outputDir: this.state.outputDir,
+      maxConnection: this.state.maxConnection,
+    }, this.state.details);
   }
 
   recheck = () => {
@@ -208,7 +220,7 @@ class AddUrl extends Component {
               </Button>
               <Button
                 disabled={this.state.toDownload}
-                onClick={() => {}}
+                onClick={this.quietDownload}
               >
                 Download Later
               </Button>
