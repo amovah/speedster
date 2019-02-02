@@ -5,6 +5,7 @@ import {
   Row,
   Col,
   Button,
+  Popconfirm,
 } from 'antd';
 import { connect } from 'react-redux';
 import pretty from 'pretty-bytes';
@@ -72,13 +73,18 @@ class AddUrl extends Component {
     }
 
     buttons.push(
-      <Button
+      <Popconfirm
         key="stop"
-        icon="close"
-        type="danger"
-        shape="circle"
-        onClick={() => remove(this.props.download.id)}
-      />,
+        title="Are you sure?"
+        onConfirm={() => remove(this.props.download.id)}
+        placement="bottom"
+      >
+        <Button
+          icon="close"
+          type="danger"
+          shape="circle"
+        />
+      </Popconfirm>,
     );
 
     return buttons;
