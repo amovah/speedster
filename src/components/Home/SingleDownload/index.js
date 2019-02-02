@@ -5,8 +5,6 @@ import {
   Row,
   Col,
   Button,
-  Collapse,
-  Input,
 } from 'antd';
 import { connect } from 'react-redux';
 import pretty from 'pretty-bytes';
@@ -15,15 +13,10 @@ import { resolve } from 'path';
 import pause from 'Root/actions/downloads/pause';
 import resume from 'Root/actions/downloads/resume';
 import remove from 'Root/actions/downloads/remove';
+import Advanced from './Advanced';
 import styles from './index.less';
 
-const Panel = Collapse.Panel;
-
 class AddUrl extends Component {
-  state = {
-    maxSpeed: null,
-  }
-
   progressBar = () => {
     const total = parseInt(this.props.download.totalLength, 10);
     const downloaded = parseInt(this.props.download.completedLength, 10);
@@ -116,10 +109,12 @@ class AddUrl extends Component {
     return pretty(speed);
   }
 
-  onChangeSpeed = (e) => {
-    this.setState({
-      maxSpeed: e.target.value,
-    });
+  showAdvanced = () => {
+    if (this.props.downloadStatus !== 'completed') {
+      return <Advanced download={this.props.download} />;
+    }
+
+    return null;
   }
 
   render() {
@@ -159,36 +154,6 @@ class AddUrl extends Component {
             </div>
           </Col>
         </Row>
-        <Collapse
-          border={false}
-          style={{
-            border: 0,
-            backgroundColor: 'white',
-          }}
-        >
-          <Panel header="Advanced Options" key="1" style={{ border: 0 }}>
-            <Row>
-              <Col span={12}>
-                <p>
-                  Change Speed Limit:
-                </p>
-                <Row>
-                  <Col span={18}>
-                    <Input
-                      onChange={this.onChangeSpeed}
-                    />
-                  </Col>
-                  <Col span={1} />
-                  <Col span={5}>
-                    <Button>
-                      Change Speed
-                    </Button>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </Panel>
-        </Collapse>
       </Card>
     );
   }
