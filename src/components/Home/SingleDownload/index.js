@@ -130,6 +130,9 @@ class AddUrl extends Component {
               Status: {this.status()}
             </p>
             <p>
+              Download URL: {this.props.download.url}
+            </p>
+            <p>
               File Size: {pretty(total)}
             </p>
             <p>
