@@ -10,6 +10,7 @@ import changePage from 'Root/helpers/changePage';
 import getDetails from 'Root/helpers/getDetails';
 
 export default async (downloadInfo) => {
+  console.log(downloadInfo);
   const download = {
     id: uid(),
     downloadStatus: 'downloading',

@@ -110,7 +110,7 @@ class AddUrl extends Component {
   }
 
   showAdvanced = () => {
-    if (this.props.downloadStatus !== 'completed') {
+    if (this.props.download.downloadStatus !== 'completed') {
       return <Advanced download={this.props.download} />;
     }
 
@@ -142,7 +142,7 @@ class AddUrl extends Component {
               Estimate Time: {humanizeDuration(Math.floor((total - downloaded) / speed) * 1000)}
             </p>
             <p>
-              Connections: {this.props.maxConnection}
+              Connections: {this.props.download.maxConnection}
             </p>
             <p>
               Download URL: {this.props.download.url}
@@ -160,6 +160,7 @@ class AddUrl extends Component {
             </div>
           </Col>
         </Row>
+        {this.showAdvanced()}
       </Card>
     );
   }

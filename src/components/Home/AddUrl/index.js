@@ -7,6 +7,7 @@ import {
   Card,
   Col,
   message,
+  InputNumber,
 } from 'antd';
 import { connect } from 'react-redux';
 import { remote, clipboard } from 'electron';
@@ -25,6 +26,7 @@ class AddUrl extends Component {
     category: null,
     name: null,
     isDisable: true,
+    maxConnection: '16',
     details: null,
   }
 
@@ -55,6 +57,7 @@ class AddUrl extends Component {
       category: this.state.category,
       maxSpeed: this.state.maxSpeed,
       outputDir: this.state.outputDir,
+      maxConnection: this.state.maxConnection,
     });
   }
 
@@ -168,6 +171,12 @@ class AddUrl extends Component {
     });
   }
 
+  onChangeConnection = (connections) => {
+    this.setState({
+      maxConnection: connections.toString(),
+    });
+  }
+
   showOptions = () => {
     if (!this.state.loading) {
       return (
@@ -232,6 +241,21 @@ class AddUrl extends Component {
                 </Col>
               </Row>
             </Col>
+          </Row>
+          <br />
+          <Row>
+            <Col span={10}>
+              <p>
+                Connections:
+              </p>
+              <InputNumber
+                min={1}
+                max={16}
+                defaultValue={16}
+                onChange={this.onChangeConnection}
+              />
+            </Col>
+            <Col span={2} />
           </Row>
         </Fragment>
       );
