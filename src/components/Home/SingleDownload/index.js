@@ -6,12 +6,14 @@ import {
   Col,
   Button,
   Popconfirm,
+  message,
 } from 'antd';
 import { connect } from 'react-redux';
 import pretty from 'pretty-bytes';
 import humanizeDuration from 'humanize-duration';
 import { resolve } from 'path';
 import { exec } from 'child_process';
+import { clipboard } from 'electron';
 import pause from 'Root/actions/downloads/pause';
 import resume from 'Root/actions/downloads/resume';
 import remove from 'Root/actions/downloads/remove';
@@ -128,6 +130,11 @@ class AddUrl extends Component {
     exec(`xdg-open ${this.props.download.outputDir}`);
   }
 
+  copyToClipboard = () => {
+    clipboard.writeText(this.props.download.url);
+    message.success('URL copied to clipboard.');
+  }
+
   render() {
     const total = parseInt(this.props.download.totalLength, 10);
     const downloaded = parseInt(this.props.download.completedLength, 10);
@@ -156,7 +163,12 @@ class AddUrl extends Component {
               Connections: {this.props.download.maxConnection}
             </p>
             <p>
-              Download URL: {this.props.download.url}
+              Download URL:&nbsp;
+              <a
+                onClick={this.copyToClipboard}
+              >
+                {this.props.download.url}
+              </a>
             </p>
             <p>
               Output Directory: &nbsp;
