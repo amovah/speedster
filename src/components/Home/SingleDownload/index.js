@@ -130,9 +130,6 @@ class AddUrl extends Component {
               Status: {this.status()}
             </p>
             <p>
-              Download URL: {this.props.download.url}
-            </p>
-            <p>
               File Size: {pretty(total)}
             </p>
             <p>
@@ -143,6 +140,12 @@ class AddUrl extends Component {
             </p>
             <p>
               Estimate Time: {humanizeDuration(Math.floor((total - downloaded) / speed) * 1000)}
+            </p>
+            <p>
+              Connections: {this.props.maxConnection}
+            </p>
+            <p>
+              Download URL: {this.props.download.url}
             </p>
             <p>
               Output Directory: {resolve(this.props.download.outputDir, this.props.download.name)}
