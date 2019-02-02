@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Layout,
   Menu,
+  Popconfirm,
 } from 'antd';
 import { connect } from 'react-redux';
 import changePage from 'Root/helpers/changePage';
@@ -20,7 +21,6 @@ const {
 const click = (e) => {
   switch (e.key) {
     case 'shutdown': {
-      shutdown();
       break;
     }
 
@@ -61,7 +61,9 @@ const Head = props => (
         </Item>
       </SubMenu>
       <Item key="shutdown">
-        Shutdown Speedster
+        <Popconfirm title="Are you sure?" onConfirm={shutdown}>
+          Shutdown Speedster
+        </Popconfirm>
       </Item>
     </Menu>
   </Header>
