@@ -43,7 +43,7 @@ export default class extends Component {
           <Row>
             <Col span={12}>
               <p>
-                Change Speed Limit:
+                Speed Limit:
               </p>
               <Row>
                 <Col span={18}>
@@ -57,7 +57,7 @@ export default class extends Component {
                   <Button
                     onClick={this.changeSpeed}
                   >
-                    Change Speed
+                    Change Limit
                   </Button>
                 </Col>
               </Row>
