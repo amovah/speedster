@@ -16,6 +16,7 @@ import pretty from 'pretty-bytes';
 import addDownload from 'Root/actions/downloads/add';
 import gatherInfo from 'Root/helpers/gatherInfo';
 import db from 'Root/db';
+import styles from './index.less';
 
 class AddUrl extends Component {
   state = {
@@ -56,8 +57,18 @@ class AddUrl extends Component {
     });
   }
 
-  downloadButton = () => {
-    if (!this.state.loaded && !this.state.loading) {
+  checkButton = () => {
+    if (!this.state.loading && this.urlRef?.current?.input.value) {
+      return (
+        <Button
+          type="primary"
+        >
+          Recheck URL
+        </Button>
+      );
+    }
+
+    if (!this.urlRef?.current?.input.value) {
       return (
         <Button
           type="primary"
@@ -69,25 +80,13 @@ class AddUrl extends Component {
       );
     }
 
-    if (this.state.loading) {
-      return (
-        <Button
-          type="primary"
-          onClick={this.download}
-          icon="download"
-          loading
-        />
-      );
-    }
-
     return (
       <Button
         type="primary"
         onClick={this.download}
         icon="download"
-      >
-        Download
-      </Button>
+        loading
+      />
     );
   }
 
@@ -180,6 +179,14 @@ class AddUrl extends Component {
     if (this.state.loaded && !this.state.loading) {
       return (
         <Fragment>
+          <br />
+          <div className={styles.center}>
+            <Button.Group>
+              <Button>
+                Download
+              </Button>
+            </Button.Group>
+          </div>
           <Divider />
           <h3>
             File Details:
@@ -277,7 +284,7 @@ class AddUrl extends Component {
           </Col>
           <Col span={1} />
           <Col span={5}>
-            {this.downloadButton()}
+            {this.checkButton()}
           </Col>
         </Row>
         {this.showOptions()}
