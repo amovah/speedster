@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import pretty from 'pretty-bytes';
 import humanizeDuration from 'humanize-duration';
 import { resolve } from 'path';
+import { exec } from 'child_process';
 import pause from 'Root/actions/downloads/pause';
 import resume from 'Root/actions/downloads/resume';
 import remove from 'Root/actions/downloads/remove';
@@ -123,6 +124,10 @@ class AddUrl extends Component {
     return null;
   }
 
+  openDirectory = () => {
+    exec(`xdg-open ${this.props.download.outputDir}`);
+  }
+
   render() {
     const total = parseInt(this.props.download.totalLength, 10);
     const downloaded = parseInt(this.props.download.completedLength, 10);
@@ -154,7 +159,12 @@ class AddUrl extends Component {
               Download URL: {this.props.download.url}
             </p>
             <p>
-              Output Directory: {resolve(this.props.download.outputDir, this.props.download.name)}
+              Output Directory: &nbsp;
+              <a
+                onClick={this.openDirectory}
+              >
+                {resolve(this.props.download.outputDir, this.props.download.name)}
+              </a>
             </p>
           </Col>
           <Col span={6}>
