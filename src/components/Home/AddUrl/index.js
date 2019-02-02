@@ -63,11 +63,21 @@ class AddUrl extends Component {
     });
   }
 
+  recheck = () => {
+    this.onChangeURL({
+      persist() {},
+      target: {
+        value: this.urlRef.current.input.value,
+      },
+    });
+  }
+
   checkButton = () => {
     if (!this.state.loading && this.urlRef?.current?.input.value) {
       return (
         <Button
           type="primary"
+          onClick={this.recheck}
         >
           Recheck URL
         </Button>
