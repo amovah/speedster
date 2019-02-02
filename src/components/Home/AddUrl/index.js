@@ -182,8 +182,22 @@ class AddUrl extends Component {
           <br />
           <div className={styles.center}>
             <Button.Group>
-              <Button>
+              <Button
+                type="primary"
+                icon="download"
+                loading={this.state.toDownload}
+              >
                 Download
+              </Button>
+              <Button
+                loading={this.state.toDownload}
+              >
+                Download Later
+              </Button>
+              <Button
+                loading={this.state.toDownload}
+              >
+                Add To Queue
               </Button>
             </Button.Group>
           </div>
