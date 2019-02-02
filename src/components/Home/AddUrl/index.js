@@ -29,6 +29,7 @@ class AddUrl extends Component {
     loaded: false,
     maxConnection: '16',
     details: null,
+    toDownload: false,
   }
 
   urlRef = React.createRef();
@@ -37,6 +38,7 @@ class AddUrl extends Component {
     const text = clipboard.readText();
     if (text) {
       this.urlRef.current.state.value = text;
+      this.urlRef.current.input.value = text;
       this.onChangeURL({
         persist() {},
         target: {
@@ -47,6 +49,10 @@ class AddUrl extends Component {
   }
 
   download = async () => {
+    this.setState({
+      toDownload: true,
+    });
+
     addDownload({
       url: this.state.url,
       name: this.state.name,
@@ -186,16 +192,19 @@ class AddUrl extends Component {
                 type="primary"
                 icon="download"
                 loading={this.state.toDownload}
+                onClick={this.download}
               >
                 Download
               </Button>
               <Button
-                loading={this.state.toDownload}
+                disabled={this.state.toDownload}
+                onClick={() => {}}
               >
                 Download Later
               </Button>
               <Button
-                loading={this.state.toDownload}
+                disabled={this.state.toDownload}
+                onClick={() => {}}
               >
                 Add To Queue
               </Button>
