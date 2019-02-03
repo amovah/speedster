@@ -3,6 +3,7 @@ import {
   Table,
 } from 'antd';
 import changePage from 'Root/helpers/changePage';
+import addToQueue from 'Root/actions/downloads/addToQueue';
 
 export default class extends PureComponent {
   render() {
@@ -62,8 +63,8 @@ export default class extends PureComponent {
 
           return (
             <a
-              onClick={() => {}}
-              disabled={record.downloadStatus === 'completed'}
+              onClick={() => addToQueue(record.key)}
+              disabled={record.status === 'completed'}
             >
               Move to queue
             </a>
@@ -81,6 +82,7 @@ export default class extends PureComponent {
         (100 * parseInt(i.completedLength, 10))
         / parseInt(i.totalLength, 10),
       ),
+      queue: i.queue,
     }));
 
     return (
