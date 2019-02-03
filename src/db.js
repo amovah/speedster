@@ -16,7 +16,6 @@ db.defaults({
   downloads: [
   ],
   queue: {
-    list: [],
     status: false,
     startTime: '03:00:00',
     endTime: '06:00:00',
