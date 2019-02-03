@@ -6,6 +6,7 @@ import { resolve } from 'path';
 import db from 'Root/db';
 import loadSetting from 'Root/actions/setting/load';
 import loadDownloads from 'Root/actions/downloads/load';
+import loadQueue from 'Root/actions/queue/load';
 import history from 'Root/history';
 import categories from 'Root/categories';
 import startAria2 from './helpers/startAria2';
@@ -33,6 +34,7 @@ render(
 
     loadSetting(setting);
     loadDownloads(db.get('downloads').value());
+    loadQueue(db.get('queue').value());
   } catch (e) {
     history.push('/failed');
     return;
