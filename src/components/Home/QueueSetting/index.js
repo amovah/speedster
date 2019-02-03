@@ -5,9 +5,11 @@ import {
   Row,
   Col,
   TimePicker,
+  Button,
 } from 'antd';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import changeQueue from 'Root/actions/queue/change';
 import styles from './index.less';
 
 class Setting extends Component {
@@ -25,6 +27,13 @@ class Setting extends Component {
   onChangeEndTime = (time) => {
     this.setState({
       endTime: time.format('hh:mm:ss'),
+    });
+  }
+
+  save = () => {
+    changeQueue({
+      startTime: this.state.startTime || this.props.queue.startTime,
+      endTime: this.state.endTime || this.props.queue.endTime,
     });
   }
 
@@ -70,6 +79,15 @@ class Setting extends Component {
             />
           </Col>
         </Row>
+        <br />
+        <div className={styles.center}>
+          <Button
+            type="primary"
+            onClick={this.save}
+          >
+            Save
+          </Button>
+        </div>
       </Card>
     );
   }
