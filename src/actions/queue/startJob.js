@@ -1,6 +1,5 @@
 import store from 'Root/store';
 import moment from 'moment';
-import change from './change';
 
 let startTimeout;
 
@@ -28,7 +27,4 @@ export const start = () => {
 
 export const stop = () => {
   clearTimeout(startTimeout);
-  change({
-    status: false,
-  });
 };
