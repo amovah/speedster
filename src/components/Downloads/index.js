@@ -44,6 +44,32 @@ export default class extends PureComponent {
         dataIndex: 'percent',
         render: text => `${text}%`,
       },
+      {
+        title: 'Actions',
+        key: 'actions',
+        dataIndex: 'actions',
+        render: (text, record) => {
+          if (record.queue) {
+            return (
+              <a
+                onClick={() => {}}
+                disabled={record.downloadStatus === 'completed'}
+              >
+                Remove from queue
+              </a>
+            );
+          }
+
+          return (
+            <a
+              onClick={() => {}}
+              disabled={record.downloadStatus === 'completed'}
+            >
+              Move to queue
+            </a>
+          );
+        },
+      },
     ];
 
     const data = this.props.downloads.map(i => ({
