@@ -4,6 +4,7 @@ import {
 } from 'antd';
 import changePage from 'Root/helpers/changePage';
 import addToQueue from 'Root/actions/downloads/addToQueue';
+import removeFromQueue from 'Root/actions/downloads/removeFromQueue';
 
 export default class extends PureComponent {
   render() {
@@ -53,7 +54,7 @@ export default class extends PureComponent {
           if (record.queue) {
             return (
               <a
-                onClick={() => {}}
+                onClick={() => removeFromQueue(record.key)}
                 disabled={record.downloadStatus === 'completed'}
               >
                 Remove from queue
