@@ -10,6 +10,7 @@ import {
 import { connect } from 'react-redux';
 import moment from 'moment';
 import changeQueue from 'Root/actions/queue/change';
+import startQueue from 'Root/actions/queue/start';
 import styles from './index.less';
 
 class Setting extends Component {
@@ -37,6 +38,12 @@ class Setting extends Component {
     });
   }
 
+  togglePower = (status) => {
+    if (status) {
+      startQueue();
+    }
+  }
+
   render() {
     return (
       <Card
@@ -48,6 +55,7 @@ class Setting extends Component {
             <span>
               Power &nbsp;
               <Switch
+                onChange={this.togglePower}
                 defaultChecked={this.props.queue.status}
               />
             </span>
