@@ -8,7 +8,7 @@ export default (state = {}, action) => {
 
     case types.queue.CHANGE: {
       return {
-        list: [...state.list],
+        ...state,
         ...action.toChange,
       };
     }

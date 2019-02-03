@@ -8,7 +8,9 @@ export default (toChange) => {
     toChange,
   });
 
+  const queue = store.getState().queue;
+
   db.get('queue')
-    .assign(toChange)
+    .assign(queue)
     .write();
 };
