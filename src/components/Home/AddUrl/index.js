@@ -16,7 +16,7 @@ import pretty from 'pretty-bytes';
 import addDownload from 'Root/actions/downloads/add';
 import quietAdd from 'Root/actions/downloads/quietAdd';
 import gatherInfo from 'Root/helpers/gatherInfo';
-import db from 'Root/db';
+import categories from 'Root/categories';
 import styles from './index.less';
 
 class AddUrl extends Component {
@@ -169,7 +169,6 @@ class AddUrl extends Component {
 
     const name = res.files[0].path.split('/').slice(-1)[0];
 
-    const categories = db.get('categories').values();
     let category;
     for (const cate of categories) {
       if (cate.extensions.includes(extname(name))) {

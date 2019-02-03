@@ -7,6 +7,7 @@ import db from 'Root/db';
 import loadSetting from 'Root/actions/setting/load';
 import loadDownloads from 'Root/actions/downloads/load';
 import history from 'Root/history';
+import categories from 'Root/categories';
 import startAria2 from './helpers/startAria2';
 import statusUpdater from './helpers/statusUpdater';
 import Speedster from './Speedster';
@@ -21,7 +22,6 @@ render(
   try {
     await startAria2();
 
-    const categories = db.get('categories').value();
     const setting = db.get('setting').value();
     const ensures = [];
     for (const category of categories) {
