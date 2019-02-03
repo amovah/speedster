@@ -57,6 +57,7 @@
     "fs-extra": "^7.0.1",
     "humanize-duration": "^3.17.0",
     "lowdb": "^1.0.0",
+    "moment": "^2.24.0",
     "pretty-bytes": "^5.1.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
