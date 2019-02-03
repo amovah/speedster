@@ -2,6 +2,7 @@ import store from 'Root/store';
 import fetch from 'Root/helpers/fetch';
 import update from 'Root/actions/downloads/update';
 import complete from 'Root/actions/downloads/complete';
+import resume from 'Root/actions/queue/resume';
 
 export default () => {
   const job = async () => {
@@ -20,6 +21,7 @@ export default () => {
       update(download.id, res.data.result);
       if (res.data.result.totalLength === res.data.result.completedLength) {
         complete(download.id);
+        resume();
       }
 
       resolve();
