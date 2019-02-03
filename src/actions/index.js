@@ -17,5 +17,6 @@ export default {
   },
   queue: {
     LOAD: 'queue/LOAD',
+    CHANGE: 'queue/CHANGE',
   },
 };

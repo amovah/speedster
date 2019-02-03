@@ -6,6 +6,13 @@ export default (state = {}, action) => {
       return action.queue;
     }
 
+    case types.queue.CHANGE: {
+      return {
+        list: [...state.list],
+        ...action.toChange,
+      };
+    }
+
     default: {
       return state;
     }
