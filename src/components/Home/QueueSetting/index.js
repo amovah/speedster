@@ -11,8 +11,21 @@ import moment from 'moment';
 import styles from './index.less';
 
 class Setting extends Component {
-  onChangeStartTime = (e) => {
-    console.log(e);
+  state = {
+    startTime: null,
+    endTime: null,
+  }
+
+  onChangeStartTime = (time) => {
+    this.setState({
+      startTime: time.format('hh:mm:ss'),
+    });
+  }
+
+  onChangeEndTime = (time) => {
+    this.setState({
+      endTime: time.format('hh:mm:ss'),
+    });
   }
 
   render() {
@@ -51,7 +64,7 @@ class Setting extends Component {
             </span>
             <TimePicker
               allowClear={false}
-              onChange={this.onChangeStartTime}
+              onChange={this.onChangeEndTime}
               placeholder="End Time"
               defaultValue={moment(this.props.queue.endTime, 'hh:mm:ss')}
             />
