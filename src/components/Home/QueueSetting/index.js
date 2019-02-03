@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import changeQueue from 'Root/actions/queue/change';
 import startQueue from 'Root/actions/queue/start';
+import stopQueue from 'Root/actions/queue/stop';
 import styles from './index.less';
 
 class Setting extends Component {
@@ -41,6 +42,8 @@ class Setting extends Component {
   togglePower = (status) => {
     if (status) {
       startQueue();
+    } else {
+      stopQueue();
     }
   }
 

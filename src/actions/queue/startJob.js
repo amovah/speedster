@@ -6,7 +6,9 @@ let startTimeout;
 
 const startJob = () => {
   const time = moment(store.getState().queue.startTime, 'hh:mm:ss');
-  console.log(time);
+  const now = moment();
+
+  console.log(now.diff(time));
 
   startTimeout = setTimeout(() => {
     console.log('started');
@@ -25,4 +27,7 @@ export const start = () => {
 
 export const stop = () => {
   clearTimeout(startTimeout);
+  change({
+    status: false,
+  });
 };
