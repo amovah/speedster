@@ -1,5 +1,7 @@
 import store from 'Root/store';
 import moment from 'moment';
+import change from './change';
+import resume from './resume';
 
 let startTimeout;
 
@@ -14,7 +16,12 @@ const startJob = () => {
   }
 
   startTimeout = setTimeout(() => {
-    console.log('started');
+    change({
+      isDownloading: true,
+    });
+    resume();
+
+    startJob();
   }, diff);
 };
 
