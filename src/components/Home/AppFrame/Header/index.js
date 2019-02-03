@@ -60,6 +60,11 @@ const Head = props => (
           Resume All
         </Item>
       </SubMenu>
+      <SubMenu title="Queue" key="queue">
+        <Item key="/queue-setting">
+          Setting
+        </Item>
+      </SubMenu>
       <Item key="shutdown">
         <Popconfirm title="Are you sure?" onConfirm={shutdown}>
           Shutdown Speedster

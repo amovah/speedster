@@ -15,6 +15,10 @@ db.defaults({
   },
   downloads: [
   ],
+  queue: {
+    list: [],
+    status: false,
+  },
 }).write();
 
 db.read();
