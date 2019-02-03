@@ -61,8 +61,8 @@ const Head = props => (
         </Item>
       </SubMenu>
       <SubMenu title="Queue" key="queue">
-        <Item key="/queue-setting">
-          Setting
+        <Item key="/schedule">
+          Schedule
         </Item>
       </SubMenu>
       <Item key="shutdown">

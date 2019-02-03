@@ -7,7 +7,7 @@ import AllDownloads from './AllDownloads';
 import Completeds from './Completeds';
 import Incompletes from './Incompletes';
 import Category from './Category';
-import QueueSetting from './QueueSetting';
+import Schedule from './Schedule';
 
 export default () => (
   <AppFrame>
@@ -18,7 +18,7 @@ export default () => (
       <Route exact path="/completeds" component={Completeds} />
       <Route exact path="/incompletes" component={Incompletes} />
       <Route exact path="/category/:category" component={Category} />
-      <Route exact path="/queue-setting" component={QueueSetting} />
+      <Route exact path="/schedule" component={Schedule} />
     </Switch>
   </AppFrame>
 );
