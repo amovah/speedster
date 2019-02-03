@@ -22,13 +22,13 @@ class Setting extends Component {
 
   onChangeStartTime = (time) => {
     this.setState({
-      startTime: time.format('hh:mm:ss'),
+      startTime: `${time.hour()}:${time.minute()}:${time.second()}`,
     });
   }
 
   onChangeEndTime = (time) => {
     this.setState({
-      endTime: time.format('hh:mm:ss'),
+      endTime: `${time.hour()}:${time.minute()}:${time.second()}`,
     });
   }
 

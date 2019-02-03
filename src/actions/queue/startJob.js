@@ -8,14 +8,18 @@ const startJob = () => {
   const time = moment(store.getState().queue.startTime, 'hh:mm:ss');
   const now = moment();
 
-  const nowNumber = now.hour() * 60 * 60 * 1000 + now.minute() * 60 * 1000 + now.second() * 1000;
-  const timeNumber = time.hour() * 60 * 60 * 1000 + time.minute() * 60 * 1000 + time.second() * 1000;
+  let diff = (time.hour() * 60 * 60 * 1000 + time.minute() * 60 * 1000 + time.second() * 1000)
+  - (now.hour() * 60 * 60 * 1000 + now.minute() * 60 * 1000 + now.second() * 1000);
 
-  console.log(timeNumber, nowNumber);
+  if (diff < 0) {
+    diff = diff + 24 * 60 * 60 * 1000;
+  }
+
+  console.log(diff);
 
   startTimeout = setTimeout(() => {
     console.log('started');
-  }, 2000);
+  }, diff);
 };
 
 export const start = () => {
