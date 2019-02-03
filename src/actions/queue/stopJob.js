@@ -1,5 +1,7 @@
 import store from 'Root/store';
 import moment from 'moment';
+import change from './change';
+import pause from './pause';
 
 let stopTimeout;
 
@@ -13,10 +15,13 @@ const stopJob = () => {
     diff = diff + 24 * 60 * 60 * 1000;
   }
 
-  console.log(diff);
-
   stopTimeout = setTimeout(() => {
-    console.log('stoped');
+    change({
+      isDownloading: false,
+    });
+    pause();
+
+    stopJob();
   }, diff);
 };
 
