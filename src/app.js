@@ -9,6 +9,8 @@ import loadDownloads from 'Root/actions/downloads/load';
 import loadQueue from 'Root/actions/queue/load';
 import history from 'Root/history';
 import categories from 'Root/categories';
+import startQueue from 'Root/actions/queue/start';
+import stopQueue from 'Root/actions/queue/stop';
 import startAria2 from './helpers/startAria2';
 import statusUpdater from './helpers/statusUpdater';
 import Speedster from './Speedster';
@@ -34,7 +36,13 @@ render(
 
     loadSetting(setting);
     loadDownloads(db.get('downloads').value());
-    loadQueue(db.get('queue').value());
+    const queue = db.get('queue').value();
+    loadQueue(queue);
+
+    if (queue.status) {
+      stopQueue();
+      startQueue();
+    }
   } catch (e) {
     history.push('/failed');
     return;

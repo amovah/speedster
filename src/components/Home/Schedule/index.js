@@ -9,7 +9,7 @@ import {
 } from 'antd';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import changeQueue from 'Root/actions/queue/change';
+import changeTime from 'Root/actions/queue/changeTime';
 import startQueue from 'Root/actions/queue/start';
 import stopQueue from 'Root/actions/queue/stop';
 import styles from './index.less';
@@ -33,7 +33,7 @@ class Setting extends Component {
   }
 
   save = () => {
-    changeQueue({
+    changeTime({
       startTime: this.state.startTime || this.props.queue.startTime,
       endTime: this.state.endTime || this.props.queue.endTime,
     });
