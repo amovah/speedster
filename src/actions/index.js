@@ -15,4 +15,7 @@ export default {
   activeMenu: {
     CHANGE: 'activeMenu/CHANGE',
   },
+  queue: {
+    LOAD: 'queue/LOAD',
+  },
 };
