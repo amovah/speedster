@@ -183,7 +183,7 @@ class AddUrl extends Component {
 
     let category;
     for (const cate of categories) {
-      if (cate.extensions.includes(extname(name))) {
+      if (cate.extensions.includes(extname(name).toLowerCase())) {
         category = cate.name;
       }
     }
