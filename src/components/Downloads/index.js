@@ -111,6 +111,14 @@ export default class extends Component {
     );
   }
 
+  removeOne = (id) => {
+    this.setState(prev => ({
+      selectedRowKeys: prev.selectedRowKeys.filter(i => i !== id),
+    }));
+
+    removeDownload(id, false);
+  }
+
   render() {
     const columns = [
       {
@@ -210,7 +218,7 @@ export default class extends Component {
             <Popconfirm
               key="remove"
               title="Are you sure?"
-              onConfirm={() => removeDownload(record.key, false)}
+              onConfirm={() => this.removeOne(record.key)}
               okText="Yes"
             >
               <a
