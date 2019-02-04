@@ -11,6 +11,7 @@ import history from 'Root/history';
 import categories from 'Root/categories';
 import startQueue from 'Root/actions/queue/start';
 import stopQueue from 'Root/actions/queue/stop';
+import changeQueue from 'Root/actions/queue/change';
 import startAria2 from './helpers/startAria2';
 import statusUpdater from './helpers/statusUpdater';
 import Speedster from './Speedster';
@@ -32,17 +33,20 @@ render(
     }
     await Promise.all(ensures);
 
-    statusUpdater();
-
     loadSetting(setting);
     loadDownloads(db.get('downloads').value());
     const queue = db.get('queue').value();
     loadQueue(queue);
 
+    changeQueue({
+      isDownloading: false,
+    });
     if (queue.status) {
       stopQueue();
       startQueue();
     }
+
+    statusUpdater();
   } catch (e) {
     history.push('/failed');
     return;
