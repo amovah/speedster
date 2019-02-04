@@ -18,7 +18,9 @@ export default async (id) => {
       ],
       {
         dir: download.outputDir,
-        'max-connection-per-server': '16',
+        out: download.name,
+        'max-connection-per-server': download.maxConnection || '16',
+        split: download.maxConnection || '16',
         continue: 'true',
         'max-download-limit': download.maxSpeed,
       },

@@ -24,7 +24,9 @@ export default async (downloadInfo) => {
       ],
       {
         dir: downloadInfo.outputDir,
+        out: downloadInfo.name,
         'max-connection-per-server': downloadInfo.maxConnection || '16',
+        split: downloadInfo.maxConnection,
         continue: 'true',
         'max-download-limit': downloadInfo.maxSpeed,
       },
