@@ -107,6 +107,10 @@ class AddUrl extends Component {
       return 'Pause';
     }
 
+    if (this.props.download.downloadStatus === 'failed') {
+      return 'Failed';
+    }
+
     return 'Complete';
   }
 
