@@ -44,6 +44,10 @@ export default class extends PureComponent {
             return 'Pause';
           }
 
+          if (text === 'failed') {
+            return 'Failed';
+          }
+
           return 'Completed';
         },
       },
