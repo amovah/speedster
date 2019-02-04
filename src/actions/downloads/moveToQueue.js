@@ -1,3 +1,4 @@
+import resume from 'Root/actions/queue/resume';
 import db from 'Root/db';
 import store from 'Root/store';
 import update from './update';
@@ -12,4 +13,6 @@ export default async (id) => {
     .find({ id })
     .assign(download)
     .write();
+
+  resume();
 };
