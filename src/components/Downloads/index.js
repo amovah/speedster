@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {
   Table,
   Button,
   Divider,
   Popconfirm,
+  Card,
 } from 'antd';
 import changePage from 'Root/helpers/changePage';
 import moveToQueue from 'Root/actions/downloads/moveToQueue';
@@ -28,25 +29,82 @@ export default class extends Component {
     }
   }
 
-  removeOption = () => {
-    const hasSelected = this.state.selectedRowKeys.length > 0;
-    if (hasSelected) {
-      return (
-        <div className={styles.removeButton}>
-          <span style={{ marginRight: 6 }}>
-            {hasSelected ? `Selected ${this.state.selectedRowKeys.length} items` : ''}
-          </span>
-          <Button
-            type="danger"
-            onClick={this.removeSelected}
-          >
-            Remove
-          </Button>
-        </div>
-      );
+  resumeSelected = () => {
+    for (const id of this.state.selectedRowKeys) {
+      resumeDownload(id);
     }
+  }
 
-    return null;
+  pauseSelected = () => {
+    for (const id of this.state.selectedRowKeys) {
+      pauseDownload(id);
+    }
+  }
+
+  moveToQueueSelected = () => {
+    for (const id of this.state.selectedRowKeys) {
+      moveToQueue(id);
+    }
+  }
+
+  removeFromQueueSelected = () => {
+    for (const id of this.state.selectedRowKeys) {
+      removeFromQueue(id);
+    }
+  }
+
+  additionalAction = () => {
+    const hasSelected = this.state.selectedRowKeys.length > 0;
+
+    return (
+      <Card>
+        <div className={styles.center}>
+          <p>
+            Selected {this.state.selectedRowKeys.length} items
+          </p>
+        </div>
+        <div className={styles.center}>
+          <Button.Group>
+            <Popconfirm
+              title="Are you sure?"
+              okText="Yes"
+              onConfirm={this.removeSelected}
+            >
+              <Button
+                type="danger"
+                disabled={!hasSelected}
+              >
+                Remove
+              </Button>
+            </Popconfirm>
+            <Button
+              disabled={!hasSelected}
+              onClick={this.pauseSelected}
+            >
+              Pause
+            </Button>
+            <Button
+              disabled={!hasSelected}
+              onClick={this.resumeSelected}
+            >
+              Resume
+            </Button>
+            <Button
+              disabled={!hasSelected}
+              onClick={this.moveToQueueSelected}
+            >
+              Move To Queue
+            </Button>
+            <Button
+              disabled={!hasSelected}
+              onClick={this.removeFromQueueSelected}
+            >
+              Remove From Queue
+            </Button>
+          </Button.Group>
+        </div>
+      </Card>
+    );
   }
 
   render() {
@@ -204,8 +262,9 @@ export default class extends Component {
     };
 
     return (
-      <div>
-        {/* {this.removeOption()} */}
+      <Fragment>
+        {this.additionalAction()}
+        <br />
         <Table
           dataSource={data}
           columns={columns}
@@ -216,7 +275,7 @@ export default class extends Component {
           }}
           size="small"
         />
-      </div>
+      </Fragment>
     );
   }
 }

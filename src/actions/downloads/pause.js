@@ -5,6 +5,9 @@ import db from 'Root/db';
 
 export default async (id) => {
   const download = store.getState().downloads.find(i => i.id === id);
+  if (download.downloadStatus === 'completed') {
+    return;
+  }
 
   await fetch({
     method: 'aria2.pause',

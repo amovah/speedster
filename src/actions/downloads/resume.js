@@ -4,8 +4,16 @@ import fetch from 'Root/helpers/fetch';
 import db from 'Root/db';
 import reAdd from './reAdd';
 
-export default async (id) => {
+export default async (id, forceResume = true) => {
   const download = store.getState().downloads.find(i => i.id === id);
+
+  if (download.downloadStatus === 'completed') {
+    return;
+  }
+
+  if (download.downloadStatus === 'failed' && !forceResume) {
+    return;
+  }
 
   if (download.downloadStatus === 'suspend' || download.downloadStatus === 'failed') {
     reAdd(id);
