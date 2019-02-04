@@ -8,6 +8,7 @@ import Completeds from './Completeds';
 import Incompletes from './Incompletes';
 import Category from './Category';
 import Schedule from './Schedule';
+import Queue from './Queue';
 
 export default () => (
   <AppFrame>
@@ -19,6 +20,7 @@ export default () => (
       <Route exact path="/incompletes" component={Incompletes} />
       <Route exact path="/category/:category" component={Category} />
       <Route exact path="/schedule" component={Schedule} />
+      <Route exact path="/queue/:type" component={Queue} />
     </Switch>
   </AppFrame>
 );
