@@ -17,6 +17,8 @@ import { clipboard } from 'electron';
 import pause from 'Root/actions/downloads/pause';
 import resume from 'Root/actions/downloads/resume';
 import remove from 'Root/actions/downloads/remove';
+import moveToQueue from 'Root/actions/downloads/moveToQueue';
+import removeFromQueue from 'Root/actions/downloads/removeFromQueue';
 import Advanced from './Advanced';
 import styles from './index.less';
 
@@ -135,6 +137,26 @@ class AddUrl extends Component {
     message.success('URL copied to clipboard.');
   }
 
+  queueManagement = () => {
+    if (this.props.download.queue) {
+      return (
+        <Button
+          onClick={() => removeFromQueue(this.props.download.id)}
+        >
+          Remove From Queue
+        </Button>
+      );
+    }
+
+    return (
+      <Button
+        onClick={() => moveToQueue(this.props.download.id)}
+      >
+        Move To Queue
+      </Button>
+    );
+  }
+
   render() {
     const total = parseInt(this.props.download.totalLength, 10);
     const downloaded = parseInt(this.props.download.completedLength, 10);
@@ -185,6 +207,8 @@ class AddUrl extends Component {
               <Button.Group>
                 {this.toggleDownload()}
               </Button.Group>
+              <br />
+              {this.queueManagement()}
             </div>
           </Col>
         </Row>
