@@ -1,12 +1,29 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import {
   Table,
+  Button,
 } from 'antd';
 import changePage from 'Root/helpers/changePage';
 import moveToQueue from 'Root/actions/downloads/moveToQueue';
 import removeFromQueue from 'Root/actions/downloads/removeFromQueue';
+import removeDownload from 'Root/actions/downloads/remove';
+import styles from './index.less';
 
-export default class extends PureComponent {
+export default class extends Component {
+  state = {
+    selectedRowKeys: [],
+  }
+
+  onSelectChange = (selectedRowKeys) => {
+    this.setState({ selectedRowKeys });
+  }
+
+  removeSelected = () => {
+    for (const id of this.state.selectedRowKeys) {
+      removeDownload(id);
+    }
+  }
+
   render() {
     const columns = [
       {
@@ -97,16 +114,38 @@ export default class extends PureComponent {
       queue: i.queue,
     }));
 
+    const rowSelection = {
+      selectedRowKeys: this.state.selectedRowKeys,
+      onChange: this.onSelectChange,
+    };
+
+    const hasSelected = this.state.selectedRowKeys.length > 0;
+
     return (
-      <Table
-        dataSource={data}
-        columns={columns}
-        pagination={false}
-        style={{
-          backgroundColor: 'white',
-        }}
-        size="small"
-      />
+      <div>
+        <div className={styles.removeButton}>
+          <span style={{ marginRight: 6 }}>
+            {hasSelected ? `Selected ${this.state.selectedRowKeys.length} items` : ''}
+          </span>
+          <Button
+            type="danger"
+            disabled={!hasSelected}
+            onClick={this.removeSelected}
+          >
+            Remove
+          </Button>
+        </div>
+        <Table
+          dataSource={data}
+          columns={columns}
+          pagination={false}
+          rowSelection={rowSelection}
+          style={{
+            backgroundColor: 'white',
+          }}
+          size="small"
+        />
+      </div>
     );
   }
 }
