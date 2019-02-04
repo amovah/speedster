@@ -3,6 +3,7 @@ import {
   Table,
   Button,
   Divider,
+  Popconfirm,
 } from 'antd';
 import changePage from 'Root/helpers/changePage';
 import moveToQueue from 'Root/actions/downloads/moveToQueue';
@@ -144,13 +145,18 @@ export default class extends Component {
           }
 
           buttons.push(
-            <a
-              onClick={() => removeDownload(record.key)}
+            <Popconfirm
               key="remove"
-              style={{ color: 'red' }}
+              title="Are you sure?"
+              onConfirm={() => removeDownload(record.key)}
+              okText="Yes"
             >
-              Remove
-            </a>,
+              <a
+                style={{ color: 'red' }}
+              >
+                Remove
+              </a>
+            </Popconfirm>,
           );
 
           if (record.queue && record.status !== 'completed') {

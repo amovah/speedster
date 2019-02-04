@@ -84,7 +84,11 @@ const Head = props => (
         </Item>
       </SubMenu>
       <Item key="shutdown">
-        <Popconfirm title="Are you sure?" onConfirm={shutdown}>
+        <Popconfirm
+          title="Are you sure?"
+          onConfirm={shutdown}
+          okText="Yes"
+        >
           Shutdown Speedster
         </Popconfirm>
       </Item>

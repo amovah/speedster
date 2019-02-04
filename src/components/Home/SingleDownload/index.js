@@ -94,6 +94,7 @@ class AddUrl extends Component {
       <Popconfirm
         key="stop"
         title="Are you sure?"
+        okText="Yes"
         onConfirm={() => remove(this.props.download.id)}
         placement="bottom"
       >
