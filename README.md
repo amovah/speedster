@@ -34,5 +34,14 @@ yarn deb
 * appreciate [Mahdi Najafi](https://github.com/Mtt6300) for his idea.
 * appreciate [Sogol Zargar](mailto:sogolzargar70@gmail.com) for creating a beautiful icon for the application.
 
+# Donate
+
+I really appreciate that if you donate me and keep me up on this application.
+
+* Bitcoin: `1FG8ga2M54WZ1JJFqdhntHp3Gr2wCf6xft`
+* Ether: `0x33d0b9aD12703555f40f95AB439B43295CBCd685`
+* Bitcoin Cash: `qzwxu6w85lf7egv55zy4sfgfslwmcuk8tu6xmvakm8`
+* Stellar: `GALGOLSZEQTBECAM6YUI34RRF2YTGLYCOX7B4U2ADOETAIZB2EGZA4RN`
+
 # LICENSE
 MIT
