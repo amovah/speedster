@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Layout,
   Menu,
-  Icon,
 } from 'antd';
 import { connect } from 'react-redux';
 import changePage from 'Root/helpers/changePage';
@@ -31,7 +30,6 @@ const Sidebar = props => (
         key="downloads"
         title={(
           <span>
-            <Icon type="download" />
             Downloads
           </span>
         )}
@@ -46,6 +44,18 @@ const Sidebar = props => (
         <Menu.Item key="/category/others">Others</Menu.Item>
       </SubMenu>
 
+      <SubMenu
+        key="queue"
+        title={(
+          <span>
+            Queue
+          </span>
+        )}
+      >
+        <Menu.Item key="/queue/all">All Downloads</Menu.Item>
+        <Menu.Item key="/queue/completeds">Completed Downloads</Menu.Item>
+        <Menu.Item key="/queue/incompletes">Incomplete Downloads</Menu.Item>
+      </SubMenu>
     </Menu>
   </Sider>
 );
