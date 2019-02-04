@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import {
   Table,
   Button,
+  Divider,
 } from 'antd';
 import changePage from 'Root/helpers/changePage';
 import moveToQueue from 'Root/actions/downloads/moveToQueue';
 import removeFromQueue from 'Root/actions/downloads/removeFromQueue';
 import removeDownload from 'Root/actions/downloads/remove';
+import resumeDownload from 'Root/actions/downloads/resume';
+import pauseDownload from 'Root/actions/downloads/pause';
 import styles from './index.less';
 
 export default class extends Component {
@@ -22,6 +25,27 @@ export default class extends Component {
     for (const id of this.state.selectedRowKeys) {
       removeDownload(id);
     }
+  }
+
+  removeOption = () => {
+    const hasSelected = this.state.selectedRowKeys.length > 0;
+    if (hasSelected) {
+      return (
+        <div className={styles.removeButton}>
+          <span style={{ marginRight: 6 }}>
+            {hasSelected ? `Selected ${this.state.selectedRowKeys.length} items` : ''}
+          </span>
+          <Button
+            type="danger"
+            onClick={this.removeSelected}
+          >
+            Remove
+          </Button>
+        </div>
+      );
+    }
+
+    return null;
   }
 
   render() {
@@ -79,25 +103,79 @@ export default class extends Component {
         key: 'actions',
         dataIndex: 'actions',
         render: (text, record) => {
-          if (record.queue) {
-            return (
+          const buttons = [];
+
+          if (['pause', 'suspend'].includes(record.status)) {
+            buttons.push(
               <a
-                onClick={() => removeFromQueue(record.key)}
+                onClick={() => resumeDownload(record.key)}
                 disabled={record.downloadStatus === 'completed'}
+                key="resume"
               >
-                Remove From Queue
-              </a>
+                Resume
+              </a>,
+            );
+          } else if (record.status === 'failed') {
+            buttons.push(
+              <a
+                onClick={() => resumeDownload(record.key)}
+                disabled={record.downloadStatus === 'completed'}
+                key="retry"
+              >
+                Retry
+              </a>,
+            );
+          } else if (record.status === 'downloading') {
+            buttons.push(
+              <a
+                onClick={() => pauseDownload(record.key)}
+                disabled={record.downloadStatus === 'completed'}
+                key="pause"
+              >
+                Pause
+              </a>,
             );
           }
 
-          return (
+          if (record.status !== 'completed') {
+            buttons.push(
+              <Divider type="vertical" key="2" />,
+            );
+          }
+
+          buttons.push(
             <a
-              onClick={() => moveToQueue(record.key)}
-              disabled={record.status === 'completed'}
+              onClick={() => removeDownload(record.key)}
+              key="remove"
+              style={{ color: 'red' }}
             >
-              Move To Queue
-            </a>
+              Remove
+            </a>,
           );
+
+          if (record.queue && record.status !== 'completed') {
+            buttons.push(
+              <br key="1" />,
+              <a
+                onClick={() => removeFromQueue(record.key)}
+                key="removeFromQueue"
+              >
+                Remove From Queue
+              </a>,
+            );
+          } else if (!record.queue && record.status !== 'completed') {
+            buttons.push(
+              <br key="1" />,
+              <a
+                onClick={() => moveToQueue(record.key)}
+                key="moveToQueue"
+              >
+                Move To Queue
+              </a>,
+            );
+          }
+
+          return buttons;
         },
       },
     ];
@@ -119,22 +197,9 @@ export default class extends Component {
       onChange: this.onSelectChange,
     };
 
-    const hasSelected = this.state.selectedRowKeys.length > 0;
-
     return (
       <div>
-        <div className={styles.removeButton}>
-          <span style={{ marginRight: 6 }}>
-            {hasSelected ? `Selected ${this.state.selectedRowKeys.length} items` : ''}
-          </span>
-          <Button
-            type="danger"
-            disabled={!hasSelected}
-            onClick={this.removeSelected}
-          >
-            Remove
-          </Button>
-        </div>
+        {/* {this.removeOption()} */}
         <Table
           dataSource={data}
           columns={columns}
