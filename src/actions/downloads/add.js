@@ -39,6 +39,11 @@ export default async (downloadInfo) => {
   download.gid = downloadId.data.result;
 
   const details = await getDetails(download.gid);
+  if (!details) {
+    message.error('Cannot download the file.');
+    return;
+  }
+
   const toSave = {
     ...download,
     ...details,
