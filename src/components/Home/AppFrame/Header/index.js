@@ -77,10 +77,10 @@ const Head = props => (
           Schedule
         </Item>
         <Item key="resume-queue">
-          Start Downloading Queue
+          Download Queue
         </Item>
         <Item key="pause-queue">
-          Pause Downloading Queue
+          Pause Queue
         </Item>
       </SubMenu>
       <Item key="shutdown">
