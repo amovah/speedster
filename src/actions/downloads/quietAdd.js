@@ -21,4 +21,6 @@ export default async (downloadInfo, details) => {
   db.get('downloads').push(download).write();
 
   changePage(`/download/${download.id}`);
+
+  return download.id;
 };

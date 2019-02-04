@@ -1,15 +1,7 @@
-import db from 'Root/db';
-import store from 'Root/store';
-import update from './update';
+import quietAdd from './quietAdd';
+import moveToQueue from './moveToQueue';
 
-export default async (id) => {
-  update(id, {
-    queue: true,
-  });
-
-  const download = store.getState().downloads.find(i => i.id === id);
-  db.get('downloads')
-    .find({ id })
-    .assign(download)
-    .write();
+export default async (downloadInfo, details) => {
+  const id = await quietAdd(downloadInfo, details);
+  moveToQueue(id);
 };

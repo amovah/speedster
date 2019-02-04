@@ -15,6 +15,7 @@ import { resolve, extname } from 'path';
 import pretty from 'pretty-bytes';
 import addDownload from 'Root/actions/downloads/add';
 import quietAdd from 'Root/actions/downloads/quietAdd';
+import addToQueue from 'Root/actions/downloads/addToQueue';
 import gatherInfo from 'Root/helpers/gatherInfo';
 import categories from 'Root/categories';
 import styles from './index.less';
@@ -66,6 +67,17 @@ class AddUrl extends Component {
 
   quietDownload = () => {
     quietAdd({
+      url: this.state.url,
+      name: this.state.name,
+      category: this.state.category,
+      maxSpeed: this.state.maxSpeed,
+      outputDir: this.state.outputDir,
+      maxConnection: this.state.maxConnection,
+    }, this.state.details);
+  }
+
+  addDownloadToQueue = () => {
+    addToQueue({
       url: this.state.url,
       name: this.state.name,
       category: this.state.category,
@@ -225,7 +237,7 @@ class AddUrl extends Component {
               </Button>
               <Button
                 disabled={this.state.toDownload}
-                onClick={() => {}}
+                onClick={this.addDownloadToQueue}
               >
                 Add To Queue
               </Button>

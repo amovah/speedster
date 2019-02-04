@@ -3,7 +3,7 @@ import {
   Table,
 } from 'antd';
 import changePage from 'Root/helpers/changePage';
-import addToQueue from 'Root/actions/downloads/addToQueue';
+import moveToQueue from 'Root/actions/downloads/moveToQueue';
 import removeFromQueue from 'Root/actions/downloads/removeFromQueue';
 
 export default class extends PureComponent {
@@ -64,7 +64,7 @@ export default class extends PureComponent {
 
           return (
             <a
-              onClick={() => addToQueue(record.key)}
+              onClick={() => moveToQueue(record.key)}
               disabled={record.status === 'completed'}
             >
               Move to queue
