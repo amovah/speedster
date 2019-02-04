@@ -17,6 +17,7 @@ import { clipboard } from 'electron';
 import pause from 'Root/actions/downloads/pause';
 import resume from 'Root/actions/downloads/resume';
 import remove from 'Root/actions/downloads/remove';
+import reAdd from 'Root/actions/downloads/reAdd';
 import moveToQueue from 'Root/actions/downloads/moveToQueue';
 import removeFromQueue from 'Root/actions/downloads/removeFromQueue';
 import Advanced from './Advanced';
@@ -73,6 +74,18 @@ class AddUrl extends Component {
           type="primary"
           shape="circle"
           onClick={() => pause(this.props.download.id)}
+        />,
+      );
+    }
+
+    if (this.props.download.downloadStatus === 'failed') {
+      buttons.push(
+        <Button
+          key="redo"
+          icon="redo"
+          type="primary"
+          shape="circle"
+          onClick={() => reAdd(this.props.download.id)}
         />,
       );
     }
