@@ -254,7 +254,7 @@ class AddUrl extends Component {
           </h3>
           <Row>
             <Col span={7}>
-              <p>
+              <p className={styles.break}>
                 Name: {this.state.name}
               </p>
             </Col>

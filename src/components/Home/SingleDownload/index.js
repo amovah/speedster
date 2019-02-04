@@ -204,6 +204,7 @@ class AddUrl extends Component {
             <p>
               Download URL:&nbsp;
               <a
+                className={styles.break}
                 onClick={this.copyToClipboard}
               >
                 {this.props.download.url}
@@ -212,6 +213,7 @@ class AddUrl extends Component {
             <p>
               Output Directory: &nbsp;
               <a
+                className={styles.break}
                 onClick={this.openDirectory}
               >
                 {resolve(this.props.download.outputDir, this.props.download.name)}
