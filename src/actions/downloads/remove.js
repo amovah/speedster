@@ -4,7 +4,7 @@ import fetch from 'Root/helpers/fetch';
 import db from 'Root/db';
 import changePage from 'Root/helpers/changePage';
 
-export default async (id) => {
+export default async (id, move = true) => {
   const download = store.getState().downloads.find(i => i.id === id);
 
   await fetch({
@@ -14,7 +14,9 @@ export default async (id) => {
     ],
   });
 
-  changePage('/all');
+  if (move) {
+    changePage('/all');
+  }
 
   store.dispatch({
     type: types.downloads.REMOVE,

@@ -210,7 +210,7 @@ export default class extends Component {
             <Popconfirm
               key="remove"
               title="Are you sure?"
-              onConfirm={() => removeDownload(record.key)}
+              onConfirm={() => removeDownload(record.key, false)}
               okText="Yes"
             >
               <a
