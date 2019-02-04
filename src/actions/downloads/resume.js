@@ -2,13 +2,13 @@ import types from 'Root/actions';
 import store from 'Root/store';
 import fetch from 'Root/helpers/fetch';
 import db from 'Root/db';
-import readd from './readd';
+import reAdd from './reAdd';
 
 export default async (id) => {
   const download = store.getState().downloads.find(i => i.id === id);
 
-  if (download.downloadStatus === 'suspend') {
-    readd(id);
+  if (download.downloadStatus === 'suspend' || download.downloadStatus === 'failed') {
+    reAdd(id);
   } else {
     await fetch({
       method: 'aria2.unpause',
