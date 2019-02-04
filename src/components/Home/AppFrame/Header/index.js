@@ -9,6 +9,8 @@ import changePage from 'Root/helpers/changePage';
 import shutdown from 'Root/helpers/shutdown';
 import pauseAll from 'Root/actions/downloads/pauseAll';
 import resumeAll from 'Root/actions/downloads/resumeAll';
+import resumeQueue from 'Root/actions/queue/resume';
+import pauseQueue from 'Root/actions/queue/pause';
 
 const {
   Header,
@@ -31,6 +33,16 @@ const click = (e) => {
 
     case 'resume-all': {
       resumeAll();
+      break;
+    }
+
+    case 'pause-queue': {
+      pauseQueue();
+      break;
+    }
+
+    case 'resume-queue': {
+      resumeQueue();
       break;
     }
 
@@ -63,6 +75,12 @@ const Head = props => (
       <SubMenu title="Queue" key="queue">
         <Item key="/schedule">
           Schedule
+        </Item>
+        <Item key="resume-queue">
+          Resume
+        </Item>
+        <Item key="pause-queue">
+          Pause
         </Item>
       </SubMenu>
       <Item key="shutdown">
