@@ -88,6 +88,11 @@ class AddUrl extends Component {
   }
 
   recheck = () => {
+    this.setState({
+      loading: false,
+      loaded: false,
+      toDownload: false,
+    });
     this.onChangeURL({
       persist() {},
       target: {
