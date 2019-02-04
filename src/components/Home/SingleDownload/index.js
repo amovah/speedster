@@ -156,6 +156,10 @@ class AddUrl extends Component {
   }
 
   queueManagement = () => {
+    if (this.props.download.downloadStatus === 'completed') {
+      return null;
+    }
+
     if (this.props.download.queue) {
       return (
         <Button
