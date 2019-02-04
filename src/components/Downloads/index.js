@@ -13,11 +13,18 @@ export default class extends PureComponent {
         title: 'Name',
         key: 'name',
         dataIndex: 'name',
-        render: (text, record) => (
-          <a onClick={() => changePage(`/download/${record.key}`)}>
-            {text}
-          </a>
-        ),
+        render: (text, record) => {
+          let name = text;
+          if (text.length > 40) {
+            name = `${name.slice(0, 40)}...`;
+          }
+
+          return (
+            <a onClick={() => changePage(`/download/${record.key}`)}>
+              {name}
+            </a>
+          );
+        },
       },
       {
         title: 'Category',
