@@ -57,7 +57,7 @@ export default class extends PureComponent {
                 onClick={() => removeFromQueue(record.key)}
                 disabled={record.downloadStatus === 'completed'}
               >
-                Remove from queue
+                Remove From Queue
               </a>
             );
           }
@@ -67,7 +67,7 @@ export default class extends PureComponent {
               onClick={() => moveToQueue(record.key)}
               disabled={record.status === 'completed'}
             >
-              Move to queue
+              Move To Queue
             </a>
           );
         },
