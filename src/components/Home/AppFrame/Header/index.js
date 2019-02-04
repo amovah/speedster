@@ -9,8 +9,8 @@ import changePage from 'Root/helpers/changePage';
 import shutdown from 'Root/helpers/shutdown';
 import pauseAll from 'Root/actions/downloads/pauseAll';
 import resumeAll from 'Root/actions/downloads/resumeAll';
-import resumeQueue from 'Root/actions/queue/resume';
-import pauseQueue from 'Root/actions/queue/pause';
+import resumeQueue from 'Root/actions/queue/resumeList';
+import pauseQueue from 'Root/actions/queue/pauseList';
 
 const {
   Header,
@@ -77,10 +77,10 @@ const Head = props => (
           Schedule
         </Item>
         <Item key="resume-queue">
-          Resume
+          Start Downloading Queue
         </Item>
         <Item key="pause-queue">
-          Pause
+          Pause Downloading Queue
         </Item>
       </SubMenu>
       <Item key="shutdown">
