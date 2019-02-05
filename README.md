@@ -2,9 +2,13 @@
 
 A graphical UI for aria2, powered by Electron, React, Ant Design.
 
+# Prerequisite
+
+* [aria2](https://aria2.github.io/)
+
 # How to use?
 
-You can download from [release](https://github.com/amovah/speedster/releases) page. for now I only publish for linux.
+You can download from [release](https://github.com/amovah/speedster/releases) page.
 
 # Build from source
 
@@ -21,6 +25,11 @@ yarn prod; yarn prod:start
 if you wanna create executable file for linux:
 ```bash
 yarn build:linux
+```
+
+for macos
+```bash
+yarn build:macos
 ```
 
 then if you wanna build a deb file:
