@@ -25,8 +25,12 @@ export default class extends Component {
 
   removeSelected = () => {
     for (const id of this.state.selectedRowKeys) {
-      this.removeOne(id);
+      removeDownload(id);
     }
+
+    this.setState({
+      selectedRowKeys: [],
+    });
   }
 
   resumeSelected = () => {
