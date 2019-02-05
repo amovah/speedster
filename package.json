@@ -15,6 +15,7 @@
     "build:linux": "./node_modules/.bin/electron-packager ./ speedster --platform=linux --arch=x64 --icon=icons/256x256.png --out=dist --overwrite",
     "build:macos": "./node_modules/.bin/electron-packager ./ speedster --platform=darwin --arch=x64 --icon=icons/256x256.png --out=dist --overwrite",
     "deb": "./node_modules/.bin/electron-installer-debian --config ./packager/deb.json",
+    "macos": "./node_modules/.bin/electron-installer-dmg ./dist/speedster-darwin-x64/speedster.app speedster --icon=icons/256x256x.icns --out=dist/installers/ --overwrite",
     "release": "npm run build:linux; npm run deb"
   },
   "devDependencies": {
