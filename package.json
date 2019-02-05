@@ -14,7 +14,6 @@
     "prod:start": "NODE_ENV=production ./node_modules/electron/dist/electron .",
     "build:linux": "./node_modules/.bin/electron-packager ./ speedster --platfrom=linux --arch=x64 --icon=icons/256x256.png --out dist --overwrite",
     "deb": "./node_modules/.bin/electron-installer-debian --config ./packager/deb.json",
-    "prerelease": "npm run build:linux; npm run deb",
     "release": "npm run build:linux; npm run deb"
   },
   "devDependencies": {
