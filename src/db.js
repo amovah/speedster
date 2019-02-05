@@ -29,9 +29,9 @@ db.defaults(defaults).write();
 
 db.read();
 
-const setting = db.get('setting').value();
-if (setting.version !== version) {
-  db.setState(defaults).write();
-}
+// const setting = db.get('setting').value();
+// if (setting.version !== version) {
+//   db.setState(defaults).write();
+// }
 
 export default db;
