@@ -50,7 +50,6 @@ I really appreciate that if you donate me and keep me up on this way.
 # Thanks giving
 
 * appreciate [Mahdi Najafi](https://github.com/Mtt6300) for his idea.
-* appreciate [Sogol Zargar](mailto:sogolzargar70@gmail.com) for creating a beautiful icon for the application.
 
 # LICENSE
 MIT
