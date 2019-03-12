@@ -53,7 +53,7 @@ const click = (e) => {
 };
 
 const Head = props => (
-  <Header>
+  <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
     <Menu
       theme="dark"
       mode="horizontal"

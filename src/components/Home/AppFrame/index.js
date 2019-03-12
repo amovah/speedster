@@ -17,7 +17,7 @@ const AppFrame = ({
 }) => (
   <Layout>
     <Header />
-    <Layout>
+    <Layout style={{ marginTop: 64 }}>
       <Sidebar />
       <Content className={styles.content}>
         {children}
