@@ -5,7 +5,7 @@ import styles from './index.less';
 export default () => (
   <div className={styles.root}>
     <h1>
-      Starting Ariac2 RPC Mode...
+      Initializing ...
     </h1>
     <Spin
       size="large"
