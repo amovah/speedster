@@ -3,7 +3,6 @@ import React from 'react';
 import { render } from 'react-dom';
 import { ensureDir } from 'fs-extra';
 import { resolve } from 'path';
-import { load as loadDB } from 'Root/db';
 import history from 'Root/history';
 import categories from 'Root/categories';
 import startQueue from 'Root/actions/queue/start';
@@ -22,7 +21,6 @@ render(
 (async () => {
   try {
     // await startAria2();
-    await loadDB();
 
   //   const setting = db.get('setting').value();
   //   const ensures = [];

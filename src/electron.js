@@ -1,6 +1,8 @@
+import 'babel-polyfill';
 import { app, BrowserWindow, Menu } from 'electron';
 import { resolve } from 'path';
 import { env } from 'process';
+import { load as loadDB } from 'Root/db';
 
 let win;
 
@@ -29,7 +31,11 @@ function createWindow() {
   });
 }
 
-app.on('ready', createWindow);
+app.on('ready', async () => {
+  await loadDB();
+
+  createWindow();
+});
 
 app.on('activate', () => {
   if (win === null) {

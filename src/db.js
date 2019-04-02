@@ -1,13 +1,14 @@
 import { resolve } from 'path';
 import { homedir } from 'os';
-import { remote } from 'electron';
+import electron from 'electron';
 import { readJson } from 'fs-extra';
 import loadSetting from 'Root/actions/setting/load';
 import loadDownloads from 'Root/actions/downloads/load';
 import loadQueue from 'Root/actions/queue/load';
 import { version } from '../package.json';
 
-const dbPath = resolve(remote.app.getPath('appData'), 'speedster.db.json');
+const app = electron.remote?.app || electron.app;
+const dbPath = resolve(app.getPath('appData'), 'speedster.db.json');
 
 const defaults = {
   setting: {
