@@ -1,12 +1,13 @@
-import lowdb from 'lowdb';
-import FileSync from 'lowdb/adapters/FileSync';
 import { resolve } from 'path';
 import { homedir } from 'os';
 import { remote } from 'electron';
+import { readJson } from 'fs-extra';
+import loadSetting from 'Root/actions/setting/load';
+import loadDownloads from 'Root/actions/downloads/load';
+import loadQueue from 'Root/actions/queue/load';
 import { version } from '../package.json';
 
-const adapter = new FileSync(resolve(remote.app.getPath('appData'), 'speedster.db.json'));
-const db = lowdb(adapter);
+const dbPath = resolve(remote.app.getPath('appData'), 'speedster.db.json');
 
 const defaults = {
   setting: {
@@ -25,13 +26,19 @@ const defaults = {
   },
 };
 
-db.defaults(defaults).write();
+export async function load() {
+  const db = await readJson(dbPath);
 
-db.read();
-
-const setting = db.get('setting').value();
-if (setting.version !== version) {
-  db.setState(defaults).write();
+  loadSetting(db.setting);
+  loadDownloads(db.downloads);
+  loadQueue(db.queue);
 }
 
-export default db;
+export async function sync() {
+  console.log('yea');
+}
+
+// const setting = db.get('setting').value();
+// if (setting.version !== version) {
+//   db.setState(defaults).write();
+// }

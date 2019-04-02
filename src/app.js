@@ -3,10 +3,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { ensureDir } from 'fs-extra';
 import { resolve } from 'path';
-import db from 'Root/db';
-import loadSetting from 'Root/actions/setting/load';
-import loadDownloads from 'Root/actions/downloads/load';
-import loadQueue from 'Root/actions/queue/load';
+import { load as loadDB } from 'Root/db';
 import history from 'Root/history';
 import categories from 'Root/categories';
 import startQueue from 'Root/actions/queue/start';
@@ -24,38 +21,39 @@ render(
 
 (async () => {
   try {
-    await startAria2();
+    // await startAria2();
+    await loadDB();
 
-    const setting = db.get('setting').value();
-    const ensures = [];
-    for (const category of categories) {
-      ensures.push(ensureDir(resolve(setting.downloaddir, category.name)));
-    }
-    await Promise.all(ensures);
-
-    loadSetting(setting);
-    loadDownloads(db.get('downloads').value());
-    const queue = db.get('queue').value();
-    loadQueue(queue);
-
-    changeQueue({
-      isDownloading: false,
-    });
-    if (queue.status) {
-      stopQueue();
-      startQueue();
-    }
-
-    statusUpdater();
+  //   const setting = db.get('setting').value();
+  //   const ensures = [];
+  //   for (const category of categories) {
+  //     ensures.push(ensureDir(resolve(setting.downloaddir, category.name)));
+  //   }
+  //   await Promise.all(ensures);
+  //
+  //   loadSetting(setting);
+  //   loadDownloads(db.get('downloads').value());
+  //   const queue = db.get('queue').value();
+  //   loadQueue(queue);
+  //
+  //   changeQueue({
+  //     isDownloading: false,
+  //   });
+  //   if (queue.status) {
+  //     stopQueue();
+  //     startQueue();
+  //   }
+  //
+  //   statusUpdater();
   } catch (e) {
     history.push('/failed');
     return;
   }
-
-  render(
-    <Speedster />,
-    global.document.getElementById('root'),
-  );
+  //
+  // render(
+  //   <Speedster />,
+  //   global.document.getElementById('root'),
+  // );
 
   if (process.env.NODE_ENV !== 'development') {
     history.push('/all');
