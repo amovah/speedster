@@ -1,7 +1,7 @@
 import { resolve } from 'path';
 import { homedir } from 'os';
 import electron from 'electron';
-import { readJson } from 'fs-extra';
+import { readJson, pathExists, outputJson } from 'fs-extra';
 import loadSetting from 'Root/actions/setting/load';
 import loadDownloads from 'Root/actions/downloads/load';
 import loadQueue from 'Root/actions/queue/load';
@@ -27,7 +27,16 @@ const defaults = {
   },
 };
 
+async function ensureDB() {
+  const exist = await pathExists(dbPath);
+  if (!exist) {
+    await outputJson(dbPath, defaults);
+  }
+}
+
 export async function load() {
+  await ensureDB();
+
   const db = await readJson(dbPath);
 
   loadSetting(db.setting);
