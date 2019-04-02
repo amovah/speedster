@@ -10,7 +10,7 @@ const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: {
-    electron: resolve(__dirname, '..', 'src/electron.js'),
+    electron: resolve(__dirname, '..', 'src/electron/index.js'),
     app: resolve(__dirname, '..', 'src/app.js'),
   },
   output: {
