@@ -2,7 +2,7 @@ import 'babel-polyfill';
 import { app, BrowserWindow, Menu } from 'electron';
 import { resolve } from 'path';
 import { env } from 'process';
-import { load as loadDB } from 'Root/db';
+import init from './init';
 
 // if (env.NODE_ENV === 'development') {
 //   require('electron-reload')(resolve(__dirname, '..')); // eslint-disable-line
@@ -36,7 +36,7 @@ function createWindow() {
 }
 
 app.on('ready', async () => {
-  await loadDB();
+  await init();
 
   createWindow();
 });
