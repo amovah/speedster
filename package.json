@@ -7,17 +7,17 @@
   "author": "Ali Movahedi <ali_movahedi@aol.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "NODE_ENV=development ./node_modules/.bin/gulp dev",
-    "prod": "NODE_ENV=production ./node_modules/.bin/gulp prod",
+    "build:dev": "NODE_ENV=development ./node_modules/.bin/gulp dev",
+    "build:prod": "NODE_ENV=production ./node_modules/.bin/gulp prod",
     "start": "NODE_ENV=development ./node_modules/electron/dist/electron .",
-    "dev:start": "NODE_ENV=development ./node_modules/electron/dist/electron .",
-    "prod:start": "NODE_ENV=production ./node_modules/electron/dist/electron .",
+    "start:dev": "NODE_ENV=development ./node_modules/electron/dist/electron .",
+    "start:prod": "NODE_ENV=production ./node_modules/electron/dist/electron .",
     "build:linux": "./node_modules/.bin/electron-packager ./ speedster --platform=linux --arch=x64 --icon=icons/256x256.png --out=dist --overwrite",
     "build:macos": "./node_modules/.bin/electron-packager ./ speedster --platform=darwin --arch=x64 --icon=icons/256x256.png --out=dist --overwrite",
     "deb": "./node_modules/.bin/electron-installer-debian --config ./packager/deb.json",
     "macos": "./node_modules/.bin/electron-installer-dmg ./dist/speedster-darwin-x64/speedster.app speedster --icon=icons/256x256x.icns --out=dist/installers/ --overwrite",
     "release": "npm run build:linux; npm run deb",
-    "prerelease": "npm run prod"
+    "prerelease": "npm run build:prod"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -34,6 +34,7 @@
     "electron-installer-debian": "^1.1.0",
     "electron-installer-dmg": "^2.0.0",
     "electron-packager": "^13.0.1",
+    "electron-reload": "^1.4.0",
     "eslint": "^5.12.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
