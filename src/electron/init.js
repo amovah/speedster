@@ -16,6 +16,4 @@ export default async () => {
   await Promise.all(ensures);
 
   await startAria2();
-
-  console.log(a + 1);
 };
