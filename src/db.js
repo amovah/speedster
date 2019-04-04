@@ -15,7 +15,6 @@ const defaults = {
     port: 6812,
     url: 'http://localhost:6812/jsonrpc',
     downloadDir: resolve(homedir(), 'Downloads', 'Speedster'),
-    version,
   },
   downloads: [
   ],
@@ -25,19 +24,28 @@ const defaults = {
     endTime: '06:00:00',
     isDownloading: false,
   },
+  version,
 };
 
 async function ensureDB() {
   const exist = await pathExists(dbPath);
   if (!exist) {
     await outputJson(dbPath, defaults);
+    return defaults;
   }
+
+  const db = await readJson(dbPath);
+
+  if (db.version !== version) {
+    await outputJson(dbPath, defaults);
+    return defaults;
+  }
+
+  return db;
 }
 
 export async function load() {
-  await ensureDB();
-
-  const db = await readJson(dbPath);
+  const db = await ensureDB();
 
   loadSetting(db.setting);
   loadDownloads(db.downloads);
