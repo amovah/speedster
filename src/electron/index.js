@@ -15,7 +15,6 @@ import init from './init';
 // }
 
 let win;
-
 function createWindow() {
   win = new BrowserWindow({
     minWidth: 1000,
@@ -41,32 +40,47 @@ function createWindow() {
   });
 }
 
-app.on('ready', async () => {
-  try {
-    await init();
+const gotTheLock = app.requestSingleInstanceLock();
 
-    createWindow();
-  } catch (e) {
-    dialog.showErrorBox(
-      'Error while initializing speedster',
-      e.toString(),
-    );
-    await shutdown();
-    app.quit();
-  }
-});
+if (!gotTheLock) {
+  app.quit();
+} else {
+  app.on('second-instance', () => {
+    // Someone tried to run a second instance, we should focus our window.
+    if (win) {
+      if (win.isMinimized()) {
+        win.restore();
+      }
+      win.focus();
+    }
+  });
 
-app.on('activate', () => {
-  if (win === null) {
-    createWindow();
-  }
-});
+  app.on('ready', async () => {
+    try {
+      await init();
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
-});
+      createWindow();
+    } catch (e) {
+      dialog.showErrorBox(
+        'Error while initializing speedster',
+        e.toString(),
+      );
+      await shutdown();
+      app.quit();
+    }
+  });
 
+  app.on('activate', () => {
+    if (win === null) {
+      createWindow();
+    }
+  });
 
-Menu.setApplicationMenu(Menu.buildFromTemplate([]));
+  app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+      app.quit();
+    }
+  });
+
+  Menu.setApplicationMenu(Menu.buildFromTemplate([]));
+}
