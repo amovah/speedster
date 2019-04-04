@@ -22,18 +22,6 @@ render(
   try {
     // await startAria2();
 
-  //   const setting = db.get('setting').value();
-  //   const ensures = [];
-  //   for (const category of categories) {
-  //     ensures.push(ensureDir(resolve(setting.downloaddir, category.name)));
-  //   }
-  //   await Promise.all(ensures);
-  //
-  //   loadSetting(setting);
-  //   loadDownloads(db.get('downloads').value());
-  //   const queue = db.get('queue').value();
-  //   loadQueue(queue);
-  //
   //   changeQueue({
   //     isDownloading: false,
   //   });

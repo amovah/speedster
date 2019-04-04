@@ -14,7 +14,7 @@ const defaults = {
   setting: {
     port: 6812,
     url: 'http://localhost:6812/jsonrpc',
-    downloaddir: resolve(homedir(), 'Downloads', 'Speedster'),
+    downloadDir: resolve(homedir(), 'Downloads', 'Speedster'),
     version,
   },
   downloads: [
