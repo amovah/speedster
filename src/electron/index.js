@@ -10,9 +10,9 @@ import { env } from 'process';
 import shutdown from 'Root/helpers/shutdown';
 import init from './init';
 
-// if (env.NODE_ENV === 'development') {
-//   require('electron-reload')(resolve(__dirname, '..')); // eslint-disable-line
-// }
+if (env.NODE_ENV === 'development') {
+  require('electron-reload')(resolve(__dirname, '..')); // eslint-disable-line
+}
 
 let win;
 function createWindow() {
