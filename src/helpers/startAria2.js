@@ -1,26 +1,15 @@
 import { spawn } from 'child_process';
-
-import db from 'Root/db';
-import fetch from 'Root/helpers/fetch';
+import store from 'Root/store';
 
 export default () => new Promise(async (resolve, reject) => {
-  const res = await fetch({
-    method: 'aria2.getGlobalOption',
-  });
-
-  if (res?.res?.status === 200) {
-    resolve();
-    return;
-  }
-
-  const { port } = db.get('setting').value();
-
   const aria2 = spawn(
     'aria2c',
-    ['--enable-rpc', `--rpc-listen-port=${port}`, '--rpc-listen-all', '--no-conf'],
-    {
-      shell: false,
-    },
+    [
+      '--enable-rpc',
+      `--rpc-listen-port=${store.getState().setting.port}`,
+      '--rpc-listen-all',
+      '--no-conf',
+    ],
   );
 
   aria2.stdout.on('data', (data) => {

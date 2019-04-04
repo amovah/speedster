@@ -1,12 +1,10 @@
 import { generate } from 'shortid';
-
-import db from 'Root/db';
+import request from 'request-promise-native';
+import store from 'Root/store';
 
 export default async (json) => {
   try {
-    const { url } = db.get('setting').value();
-
-    const res = await global.fetch(url, {
+    const res = await request.post(store.getState().setting.url, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -16,13 +14,9 @@ export default async (json) => {
         id: generate(),
         ...json,
       }),
-      method: 'POST',
     });
 
-    return {
-      res,
-      data: await res.json(),
-    };
+    return res;
   } catch (e) {
     return 0;
   }

@@ -8,7 +8,6 @@ import categories from 'Root/categories';
 import startQueue from 'Root/actions/queue/start';
 import stopQueue from 'Root/actions/queue/stop';
 import changeQueue from 'Root/actions/queue/change';
-import startAria2 from './helpers/startAria2';
 import statusUpdater from './helpers/statusUpdater';
 import Speedster from './Speedster';
 import Init from './components/Init';
@@ -20,8 +19,6 @@ render(
 
 (async () => {
   try {
-    // await startAria2();
-
   //   changeQueue({
   //     isDownloading: false,
   //   });

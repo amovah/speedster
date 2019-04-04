@@ -1,7 +1,13 @@
 import 'babel-polyfill';
-import { app, BrowserWindow, Menu } from 'electron';
+import {
+  app,
+  BrowserWindow,
+  Menu,
+  dialog,
+} from 'electron';
 import { resolve } from 'path';
 import { env } from 'process';
+import shutdown from 'Root/helpers/shutdown';
 import init from './init';
 
 // if (env.NODE_ENV === 'development') {
@@ -36,9 +42,18 @@ function createWindow() {
 }
 
 app.on('ready', async () => {
-  await init();
+  try {
+    await init();
 
-  createWindow();
+    createWindow();
+  } catch (e) {
+    dialog.showErrorBox(
+      'Error while initializing speedster',
+      e.toString(),
+    );
+    await shutdown();
+    app.quit();
+  }
 });
 
 app.on('activate', () => {

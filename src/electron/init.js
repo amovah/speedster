@@ -3,6 +3,7 @@ import { ensureDir } from 'fs-extra';
 import store from 'Root/store';
 import { load as loadDB } from 'Root/db';
 import categories from 'Root/categories';
+import startAria2 from 'Root/helpers/startAria2';
 
 export default async () => {
   await loadDB();
@@ -13,4 +14,8 @@ export default async () => {
     ensures.push(ensureDir(resolve(downloadDir, category.name)));
   }
   await Promise.all(ensures);
+
+  await startAria2();
+
+  console.log(a + 1);
 };
