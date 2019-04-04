@@ -5,7 +5,6 @@ import { readJson, pathExists, outputJson } from 'fs-extra';
 import loadSetting from 'Root/actions/setting/load';
 import loadDownloads from 'Root/actions/downloads/load';
 import loadQueue from 'Root/actions/queue/load';
-import categories from 'Root/categories';
 import { version } from '../package.json';
 
 const app = electron.remote?.app || electron.app;
@@ -26,7 +25,6 @@ const defaults = {
     isDownloading: false,
   },
   version,
-  categories,
 };
 
 async function ensureDB() {
