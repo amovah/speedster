@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Downloads from 'Root/components/Downloads';
+import DownloadTable from 'Root/components/DownloadTable';
 
-const Queue = props => <Downloads downloads={props.downloads} />;
+const Queue = props => <DownloadTable downloads={props.downloads} />;
 
 const select = (state, props) => {
   switch (props.match.params.type) {

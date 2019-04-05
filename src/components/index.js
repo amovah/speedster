@@ -4,12 +4,16 @@ import Switch404 from 'Root/components/Switch404';
 import AddUrl from './AddUrl';
 import AppFrame from './AppFrame';
 import Downloads from './Downloads';
+import Schedule from './Schedule';
+import Queue from './Queue';
 
 export default () => (
   <AppFrame>
     <Switch404>
       <Route path="/add-url" component={AddUrl} />
       <Route path="/downloads/:category" component={Downloads} />
+      <Route path="/schedule" component={Schedule} />
+      <Route path="/queue/:type" component={Queue} />
     </Switch404>
   </AppFrame>
 );

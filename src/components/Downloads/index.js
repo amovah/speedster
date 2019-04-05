@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import DownloadTable from 'Root/components/DownloadTable';
 
-const Queue = props => <DownloadTable downloads={props.downloads} />;
+const Downloads = props => <DownloadTable downloads={props.downloads} />;
 
 const select = (state, props) => {
   if (props.match.params.category === 'completeds') {
@@ -42,4 +42,4 @@ const select = (state, props) => {
   };
 };
 
-export default connect(select)(Queue);
+export default connect(select)(Downloads);
