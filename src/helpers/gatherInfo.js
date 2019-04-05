@@ -15,6 +15,7 @@ export default async (url) => {
     ],
   });
 
+  console.log(gid);
   if (gid.data.error) {
     return 'error';
   }

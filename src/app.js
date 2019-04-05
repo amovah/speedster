@@ -24,7 +24,6 @@ import Speedster from './Speedster';
   //   history.push('/failed');
   //   return;
   // }
-  //
   render(
     <Speedster />,
     global.document.getElementById('root'),
