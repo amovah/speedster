@@ -5,7 +5,7 @@ import {
   Popconfirm,
 } from 'antd';
 import { connect } from 'react-redux';
-import changePage from 'Root/helpers/changePage';
+import history from 'Root/history';
 import shutdown from 'Root/helpers/shutdown';
 import pauseAll from 'Root/actions/downloads/pauseAll';
 import resumeAll from 'Root/actions/downloads/resumeAll';
@@ -47,7 +47,7 @@ const click = (e) => {
     }
 
     default: {
-      changePage(e.key);
+      history.push(e.key);
     }
   }
 };
