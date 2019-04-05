@@ -4,7 +4,7 @@ import {
   Menu,
 } from 'antd';
 import { connect } from 'react-redux';
-import changePage from 'Root/helpers/changePage';
+import history from 'Root/history';
 
 const {
   Sider,
@@ -14,7 +14,7 @@ const {
 } = Menu;
 
 const click = (e) => {
-  changePage(e.key);
+  history.push(e.key);
 };
 
 const Sidebar = props => (
@@ -34,14 +34,14 @@ const Sidebar = props => (
           </span>
         )}
       >
-        <Menu.Item key="/all">All Downloads</Menu.Item>
-        <Menu.Item key="/completeds">Completed Downloads</Menu.Item>
-        <Menu.Item key="/incompletes">Incomplete Downloads</Menu.Item>
-        <Menu.Item key="/category/compresseds">Compresseds</Menu.Item>
-        <Menu.Item key="/category/pictures">Pictures</Menu.Item>
-        <Menu.Item key="/category/musics">Musics</Menu.Item>
-        <Menu.Item key="/category/videos">Videos</Menu.Item>
-        <Menu.Item key="/category/others">Others</Menu.Item>
+        <Menu.Item key="/downloads/all">All Downloads</Menu.Item>
+        <Menu.Item key="/downloads/completeds">Completed Downloads</Menu.Item>
+        <Menu.Item key="/downloads/incompletes">Incomplete Downloads</Menu.Item>
+        <Menu.Item key="/downloads/compresseds">Compresseds</Menu.Item>
+        <Menu.Item key="/downloads/pictures">Pictures</Menu.Item>
+        <Menu.Item key="/downloads/musics">Musics</Menu.Item>
+        <Menu.Item key="/downloads/videos">Videos</Menu.Item>
+        <Menu.Item key="/downloads/others">Others</Menu.Item>
       </SubMenu>
 
       <SubMenu
