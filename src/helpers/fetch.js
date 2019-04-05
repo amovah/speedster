@@ -16,7 +16,7 @@ export default async (json) => {
       }),
     });
 
-    return res;
+    return JSON.parse(res);
   } catch (e) {
     console.log(e);
     return 0;

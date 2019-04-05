@@ -15,8 +15,7 @@ export default async (url) => {
     ],
   });
 
-  console.log(gid);
-  if (gid.data.error) {
+  if (!gid) {
     return 'error';
   }
 
@@ -26,12 +25,12 @@ export default async (url) => {
     const res = await fetch({
       method: 'aria2.tellStatus',
       params: [
-        gid.data.result,
+        gid.result,
       ],
     });
 
-    if (parseInt(res.data.result.completedLength, 10) > 0) {
-      return res.data.result;
+    if (res && parseInt(res.result.completedLength, 10) > 0) {
+      return res.result;
     }
 
     await sleep(500);

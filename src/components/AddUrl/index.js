@@ -201,7 +201,7 @@ class AddUrl extends Component {
       loading: false,
       loaded: true,
       category,
-      outputDir: resolve(this.props.setting.downloaddir, category),
+      outputDir: resolve(this.props.setting.downloadDir, category),
       name,
       details: res,
     });
