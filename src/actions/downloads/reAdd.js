@@ -1,7 +1,4 @@
-import {
-  message,
-} from 'antd';
-import db from 'Root/db';
+import { sync } from 'Root/db';
 import store from 'Root/store';
 import fetch from 'Root/helpers/fetch';
 import getDetails from 'Root/helpers/getDetails';
@@ -27,17 +24,15 @@ export default async (id) => {
     ],
   });
 
-  if (downloadId.data.error) {
-    message.error('Cannot download the file.');
-    return;
+  if (!downloadId) {
+    throw new Error('Cannot download the file');
   }
 
-  download.gid = downloadId.data.result;
+  download.gid = downloadId.result;
 
   const details = await getDetails(download.gid);
   if (!details) {
-    message.error('Cannot download the file.');
-    return;
+    throw new Error('Cannot download the file');
   }
 
   const toSave = {
@@ -51,8 +46,5 @@ export default async (id) => {
     toSave,
   );
 
-  db.get('downloads')
-    .find({ id })
-    .assign(toSave)
-    .write();
+  await sync();
 };
