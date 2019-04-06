@@ -19,16 +19,16 @@ export default () => {
         ],
       });
 
-      // if (res.result.status === 'error') {
-        // fail(download.id);
+      if (!res) {
+        fail(download.id);
         // resume();
-      // } else {
+      } else {
         update(download.id, res.result);
         // if (res.result.totalLength === res.result.completedLength) {
           // complete(download.id);
           // resume();
         // }
-      // }
+      }
 
       resolve();
     }));
