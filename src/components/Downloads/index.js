@@ -38,7 +38,7 @@ const select = (state, props) => {
   }
 
   return {
-    downloads: state.downloads.filter(i => i.queue),
+    downloads: state.downloads,
   };
 };
 
