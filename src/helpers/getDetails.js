@@ -14,7 +14,7 @@ export default async (gid) => {
     });
 
     if (parseInt(res.result.completedLength, 10) > 0) {
-      return res.data.result;
+      return res.result;
     }
 
     await sleep(500);
