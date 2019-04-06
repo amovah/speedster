@@ -3,11 +3,10 @@ import {
   message,
 } from 'antd';
 import types from 'Root/actions';
-import db from 'Root/db';
 import store from 'Root/store';
 import fetch from 'Root/helpers/fetch';
-import changePage from 'Root/helpers/changePage';
 import getDetails from 'Root/helpers/getDetails';
+import { sync } from 'Root/db';
 
 export default async (downloadInfo) => {
   const download = {
@@ -26,19 +25,19 @@ export default async (downloadInfo) => {
         dir: downloadInfo.outputDir,
         out: downloadInfo.name,
         'max-connection-per-server': downloadInfo.maxConnection || '16',
-        split: downloadInfo.maxConnection,
+        split: downloadInfo.maxConnection || '16',
         continue: 'true',
         'max-download-limit': downloadInfo.maxSpeed,
       },
     ],
   });
 
-  if (downloadId.data.error) {
+  if (!downloadId) {
     message.error('Cannot download the file.');
     return;
   }
 
-  download.gid = downloadId.data.result;
+  download.gid = downloadId.result;
 
   const details = await getDetails(download.gid);
   if (!details) {
@@ -55,8 +54,4 @@ export default async (downloadInfo) => {
     type: types.downloads.ADD,
     download: toSave,
   });
-
-  db.get('downloads').push(toSave).write();
-
-  changePage(`/download/${download.id}`);
 };

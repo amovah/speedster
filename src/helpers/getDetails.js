@@ -13,7 +13,7 @@ export default async (gid) => {
       ],
     });
 
-    if (parseInt(res.data.result.completedLength, 10) > 0) {
+    if (parseInt(res.result.completedLength, 10) > 0) {
       return res.data.result;
     }
 
