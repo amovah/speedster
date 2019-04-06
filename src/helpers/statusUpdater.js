@@ -20,7 +20,7 @@ export default () => {
       });
 
       if (!res) {
-        fail(download.id);
+        await fail(download.id);
         // resume();
       } else {
         update(download.id, res.result);
