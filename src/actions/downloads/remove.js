@@ -1,10 +1,9 @@
 import types from 'Root/actions';
 import store from 'Root/store';
 import fetch from 'Root/helpers/fetch';
-import db from 'Root/db';
-import changePage from 'Root/helpers/changePage';
+import { sync } from 'Root/db';
 
-export default async (id, move = true) => {
+export default async (id, allowToSync = true) => {
   const download = store.getState().downloads.find(i => i.id === id);
 
   await fetch({
@@ -14,16 +13,12 @@ export default async (id, move = true) => {
     ],
   });
 
-  if (move) {
-    changePage('/all');
-  }
-
   store.dispatch({
     type: types.downloads.REMOVE,
     id,
   });
 
-  db.get('downloads')
-    .remove({ id })
-    .write();
+  if (allowToSync) {
+    await sync();
+  }
 };
