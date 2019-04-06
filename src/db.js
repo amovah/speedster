@@ -60,6 +60,7 @@ export async function sync() {
     setting: state.setting,
     downloads: state.downloads,
     queue: state.queue,
+    version,
   });
 }
 
