@@ -5,6 +5,7 @@ import { readJson, pathExists, outputJson } from 'fs-extra';
 import loadSetting from 'Root/actions/setting/load';
 import loadDownloads from 'Root/actions/downloads/load';
 import loadQueue from 'Root/actions/queue/load';
+import store from 'Root/store';
 import { version } from '../package.json';
 
 const app = electron.remote?.app || electron.app;
@@ -53,7 +54,13 @@ export async function load() {
 }
 
 export async function sync() {
-  console.log('yea');
+  const state = store.getState();
+
+  await outputJson(dbPath, {
+    setting: state.setting,
+    downloads: state.downloads,
+    queue: state.queue,
+  });
 }
 
 // const setting = db.get('setting').value();

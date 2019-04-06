@@ -54,4 +54,6 @@ export default async (downloadInfo) => {
     type: types.downloads.ADD,
     download: toSave,
   });
+
+  await sync();
 };

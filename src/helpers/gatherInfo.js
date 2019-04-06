@@ -22,12 +22,14 @@ export default async (url) => {
   let count = 15;
 
   while (count > 0) {
+    console.log('jalebe', count);
     const res = await fetch({
       method: 'aria2.tellStatus',
       params: [
         gid.result,
       ],
     });
+    console.log('bargam', res);
 
     if (res && parseInt(res.result.completedLength, 10) > 0) {
       return res.result;
