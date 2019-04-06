@@ -24,7 +24,7 @@ class AddUrl extends Component {
   state = {
     url: null,
     maxSpeed: null,
-    outputDir: this.props.setting.downloaddir,
+    outputDir: this.props.setting.downloadDir,
     loading: false,
     category: null,
     name: null,
