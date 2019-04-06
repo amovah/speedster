@@ -182,8 +182,8 @@ class AddUrl extends Component {
 
   render() {
     if (!this.props.download) {
-      return <Redirect to="/downloads/all" />
-    };
+      return <Redirect to="/downloads/all" />;
+    }
 
     const total = parseInt(this.props.download.totalLength, 10);
     const downloaded = parseInt(this.props.download.completedLength, 10);
