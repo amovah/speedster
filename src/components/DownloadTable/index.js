@@ -6,7 +6,7 @@ import {
   Popconfirm,
   Card,
 } from 'antd';
-import changePage from 'Root/helpers/changePage';
+import { Link } from 'react-router-dom';
 import moveToQueue from 'Root/actions/downloads/moveToQueue';
 import removeFromQueue from 'Root/actions/downloads/removeFromQueue';
 import removeDownload from 'Root/actions/downloads/remove';
@@ -132,9 +132,9 @@ export default class extends Component {
           }
 
           return (
-            <a onClick={() => changePage(`/download/${record.key}`)}>
+            <Link to={`/download/${record.key}`}>
               {name}
-            </a>
+            </Link>
           );
         },
       },
