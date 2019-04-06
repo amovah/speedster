@@ -1,7 +1,4 @@
 import uid from 'uuid/v4';
-import {
-  message,
-} from 'antd';
 import types from 'Root/actions';
 import store from 'Root/store';
 import fetch from 'Root/helpers/fetch';
@@ -33,16 +30,14 @@ export default async (downloadInfo) => {
   });
 
   if (!downloadId) {
-    message.error('Cannot download the file.');
-    return;
+    throw new Error('Cannot download the file');
   }
 
   download.gid = downloadId.result;
 
   const details = await getDetails(download.gid);
   if (!details) {
-    message.error('Cannot download the file.');
-    return;
+    throw new Error('Cannot download the file');
   }
 
   const toSave = {
@@ -56,4 +51,6 @@ export default async (downloadInfo) => {
   });
 
   await sync();
+
+  return toSave.id;
 };

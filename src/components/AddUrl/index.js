@@ -18,6 +18,7 @@ import quietAdd from 'Root/actions/downloads/quietAdd';
 import addToQueue from 'Root/actions/downloads/addToQueue';
 import gatherInfo from 'Root/helpers/gatherInfo';
 import categories from 'Root/categories';
+import history from 'Root/history';
 import styles from './index.less';
 
 class AddUrl extends Component {
@@ -50,19 +51,25 @@ class AddUrl extends Component {
     }
   }
 
-  download = () => {
+  download = async () => {
     this.setState({
       toDownload: true,
     });
 
-    addDownload({
-      url: this.state.url,
-      name: this.state.name,
-      category: this.state.category,
-      maxSpeed: this.state.maxSpeed,
-      outputDir: this.state.outputDir,
-      maxConnection: this.state.maxConnection,
-    });
+    try {
+      const id = await addDownload({
+        url: this.state.url,
+        name: this.state.name,
+        category: this.state.category,
+        maxSpeed: this.state.maxSpeed,
+        outputDir: this.state.outputDir,
+        maxConnection: this.state.maxConnection,
+      });
+
+      history.push(`/download/${id}`);
+    } catch (e) {
+      message.error(e);
+    }
   }
 
   quietDownload = () => {
