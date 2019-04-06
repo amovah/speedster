@@ -1,7 +1,7 @@
 import types from 'Root/actions';
 import store from 'Root/store';
 import fetch from 'Root/helpers/fetch';
-import db from 'Root/db';
+import { sync } from 'Root/db';
 import reAdd from './reAdd';
 
 export default async (id, forceResume = true) => {
@@ -31,9 +31,5 @@ export default async (id, forceResume = true) => {
     });
   }
 
-  const toSave = store.getState().downloads.find(i => i.id === id);
-  db.get('downloads')
-    .find({ id })
-    .assign(toSave)
-    .write();
+  await sync();
 };
