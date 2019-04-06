@@ -21,7 +21,7 @@ export default async () => {
 
   const actions = [];
   for (const download of state.downloads) {
-    if (download.downloadStatus === 'downloading') {
+    if (['downloading', 'pause'].includes(download.downloadStatus)) {
       actions.push(suspend(download.id, false));
     }
   }
