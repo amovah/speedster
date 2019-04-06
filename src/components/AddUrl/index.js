@@ -168,9 +168,7 @@ class AddUrl extends Component {
       loading: true,
     });
 
-    console.log(e);
     const res = await gatherInfo(e.target.value);
-    console.log('bayad inja biad', res);
     if (res === 'error') {
       message.error('Bad URL');
       this.setState({
