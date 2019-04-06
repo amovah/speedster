@@ -14,6 +14,7 @@ import humanizeDuration from 'humanize-duration';
 import { resolve } from 'path';
 import { exec } from 'child_process';
 import { clipboard } from 'electron';
+import { Redirect } from 'react-router-dom';
 import pause from 'Root/actions/downloads/pause';
 import resume from 'Root/actions/downloads/resume';
 import remove from 'Root/actions/downloads/remove';
@@ -180,6 +181,10 @@ class AddUrl extends Component {
   }
 
   render() {
+    if (!this.props.download) {
+      return <Redirect to="/downloads/all" />
+    };
+
     const total = parseInt(this.props.download.totalLength, 10);
     const downloaded = parseInt(this.props.download.completedLength, 10);
     const speed = parseInt(this.props.download.downloadSpeed, 10);
