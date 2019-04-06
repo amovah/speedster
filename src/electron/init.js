@@ -4,6 +4,7 @@ import store from 'Root/store';
 import { load as loadDB } from 'Root/db';
 import categories from 'Root/categories';
 import startAria2 from 'Root/helpers/startAria2';
+import statusUpdater from 'Root/helpers/statusUpdater';
 
 export default async () => {
   await loadDB();
@@ -16,4 +17,5 @@ export default async () => {
   await Promise.all(ensures);
 
   await startAria2();
+  statusUpdater();
 };

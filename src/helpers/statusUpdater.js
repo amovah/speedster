@@ -19,16 +19,16 @@ export default () => {
         ],
       });
 
-      if (res.data.result.status === 'error') {
-        fail(download.id);
-        resume();
-      } else {
-        update(download.id, res.data.result);
-        if (res.data.result.totalLength === res.data.result.completedLength) {
-          complete(download.id);
-          resume();
-        }
-      }
+      // if (res.result.status === 'error') {
+        // fail(download.id);
+        // resume();
+      // } else {
+        update(download.id, res.result);
+        // if (res.result.totalLength === res.result.completedLength) {
+          // complete(download.id);
+          // resume();
+        // }
+      // }
 
       resolve();
     }));
