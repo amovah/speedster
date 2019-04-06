@@ -24,10 +24,10 @@ export default () => {
         // resume();
       } else {
         update(download.id, res.result);
-        // if (res.result.totalLength === res.result.completedLength) {
-          // complete(download.id);
+        if (res.result.totalLength === res.result.completedLength) {
+          await complete(download.id);
           // resume();
-        // }
+        }
       }
 
       resolve();
