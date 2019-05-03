@@ -1,6 +1,9 @@
+import { resolve, extname } from 'path';
+import store from 'Root/store';
+import categories from 'Root/categories';
 import fetch from './fetch';
 
-const sleep = time => new Promise(resolve => setTimeout(resolve, time));
+const sleep = time => new Promise(res => setTimeout(res, time));
 
 export default async (url) => {
   const gid = await fetch({
@@ -34,7 +37,27 @@ export default async (url) => {
     }
 
     if (res && parseInt(res.result.completedLength, 10) > 0) {
-      return res.result;
+      const modified = { ...res.result };
+
+      delete modified.completedLength;
+      delete modified.gid;
+
+      modified.name = modified.files[0].path.split('/').slice(-1)[0];
+
+      let category;
+      for (const cate of categories) {
+        if (cate.extensions.includes(extname(modified.name).toLowerCase())) {
+          category = cate.name;
+        }
+      }
+      if (!category) {
+        category = 'Others';
+      }
+      modified.category = category;
+
+      modified.outputDir = resolve(store.getState().setting.downloadDir, category);
+
+      return modified;
     }
 
     await sleep(500);
