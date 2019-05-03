@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 import setting from './setting';
 import downloads from './downloads';
 import activeMenu from './activeMenu';
@@ -9,4 +10,5 @@ export default combineReducers({
   downloads,
   activeMenu,
   queue,
+  form: formReducer,
 });
