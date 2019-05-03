@@ -22,7 +22,9 @@ function createWindow() {
     icon: resolve(__dirname, '../icons/256x256.png'),
     title: 'Speedster',
     show: false,
-    nodeIntegration: false,
+    webPreferences: {
+      nodeIntegration: true,
+    },
   });
 
   win.loadURL(`file://${resolve(__dirname, 'index.html')}`);
