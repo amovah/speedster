@@ -20,12 +20,12 @@ export default async (json) => {
 
       const parsed = await res.json();
       if (parsed.error) {
-        return 0;
+        return null;
       }
 
       return parsed;
     } catch (e) {
-      return 0;
+      return null;
     }
   }
 
@@ -44,6 +44,6 @@ export default async (json) => {
 
     return JSON.parse(res);
   } catch (e) {
-    return 0;
+    return null;
   }
 };
