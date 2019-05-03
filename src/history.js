@@ -1,7 +1,7 @@
-import createBrowserHistory from 'history/createHashHistory';
+import { createHashHistory } from 'history';
 import changeActiveMenu from 'Root/actions/activeMenu/change';
 
-const history = createBrowserHistory();
+const history = createHashHistory();
 
 history.listen((location) => {
   changeActiveMenu(location.pathname);

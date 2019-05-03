@@ -12,6 +12,7 @@ if (process.type === 'renderer') {
 
 if (process.env.NODE_ENV === 'development') {
   global.store = store;
+  global.reduxForm = require('redux-form'); // eslint-disable-line
 }
 
 export default store;

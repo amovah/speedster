@@ -2,19 +2,25 @@ import React, { Component } from 'react';
 import {
   Card,
 } from 'antd';
+import { reduxForm } from 'redux-form';
+import URLSection from './URLSection';
 
 class AddUrl extends Component {
-  componentDidMount() {
-
+  state = {
+    loading: false,
   }
 
   render() {
     return (
       <Card>
-        test
+        <URLSection />
       </Card>
     );
   }
 }
 
-export default AddUrl;
+const Wrapper = reduxForm({
+  form: 'addUrl',
+})(AddUrl);
+
+export default Wrapper;
