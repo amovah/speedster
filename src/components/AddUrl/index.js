@@ -7,13 +7,15 @@ import URLSection from './URLSection';
 
 class AddUrl extends Component {
   state = {
-    loading: false,
+    show: false,
   }
 
   render() {
     return (
       <Card>
-        <URLSection />
+        <URLSection changeState={this.setState.bind(this)} />
+        <br />
+        {this.state.show && 'a'}
       </Card>
     );
   }

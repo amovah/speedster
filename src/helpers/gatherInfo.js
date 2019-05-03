@@ -16,10 +16,10 @@ export default async (url) => {
   });
 
   if (!gid) {
-    return 'error';
+    return null;
   }
 
-  let count = 15;
+  let count = 10;
 
   while (count > 0) {
     const res = await fetch({
@@ -28,6 +28,11 @@ export default async (url) => {
         gid.result,
       ],
     });
+
+    if (res.result.errorCode === '3') {
+      return null;
+    }
+
     if (res && parseInt(res.result.completedLength, 10) > 0) {
       return res.result;
     }
@@ -36,5 +41,5 @@ export default async (url) => {
     count = count - 1;
   }
 
-  return 'cant';
+  return null;
 };
