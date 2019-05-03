@@ -5,7 +5,8 @@ import {
   Button,
   message,
 } from 'antd';
-import { Field } from 'redux-form';
+import { Field, change } from 'redux-form';
+import store from 'Root/store';
 import {
   Input,
 } from 'Root/shared';
@@ -46,6 +47,8 @@ export default class extends Component {
         stage: 'empty',
       });
     } else {
+      store.dispatch(change('addUrl', 'data', res));
+
       this.setState({
         stage: 'ready',
       });
