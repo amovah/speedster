@@ -5,8 +5,7 @@ import {
   Button,
   message,
 } from 'antd';
-import { Field, change } from 'redux-form';
-import store from 'Root/store';
+import { Field } from 'redux-form';
 import {
   Input,
 } from 'Root/shared';
@@ -23,6 +22,10 @@ export default class extends Component {
   }
 
   onUrlChange = (event, newValue) => {
+    this.props.changeState({
+      show: false,
+    });
+
     if (newValue === '') {
       this.setState({
         stage: 'empty',
@@ -36,10 +39,6 @@ export default class extends Component {
   }
 
   checkUrl = async (url) => {
-    this.props.changeState({
-      show: false,
-    });
-
     const res = await gatherInfo(url);
     if (!res) {
       message.error('Error! Speedster cannot download this file.');
@@ -47,8 +46,6 @@ export default class extends Component {
         stage: 'empty',
       });
     } else {
-      store.dispatch(change('addUrl', 'data', res));
-
       this.setState({
         stage: 'ready',
       });

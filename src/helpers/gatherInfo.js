@@ -1,4 +1,5 @@
 import { resolve, extname } from 'path';
+import { change } from 'redux-form';
 import store from 'Root/store';
 import categories from 'Root/categories';
 import fetch from './fetch';
@@ -56,6 +57,8 @@ export default async (url) => {
       modified.category = category;
 
       modified.outputDir = resolve(store.getState().setting.downloadDir, category);
+
+      store.dispatch(change('addUrl', 'data', modified));
 
       return modified;
     }
