@@ -10,6 +10,7 @@ import {
   Input,
 } from 'Root/shared';
 import gatherInfo from 'Root/helpers/gatherInfo';
+import store from 'Root/store';
 import styles from './index.less';
 
 export default class extends Component {
@@ -18,7 +19,10 @@ export default class extends Component {
   }
 
   componentDidMount() {
-
+    const url = store.getState().form.addUrl.values?.url;
+    if (url) {
+      this.checkUrl(url);
+    }
   }
 
   onUrlChange = (event, newValue) => {
