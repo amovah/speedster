@@ -59,6 +59,9 @@ export default async (url) => {
       modified.outputDir = resolve(store.getState().setting.downloadDir, category);
 
       store.dispatch(change('addUrl', 'data', modified));
+      store.dispatch(change('addUrl', 'maxConnection', 16));
+      store.dispatch(change('addUrl', 'outputDir', modified.outputDir));
+      store.dispatch(change('addUrl', 'maxSpeed', null));
 
       return modified;
     }

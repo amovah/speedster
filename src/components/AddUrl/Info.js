@@ -5,9 +5,10 @@ import {
   Row,
   Col,
 } from 'antd';
+import { formValueSelector } from 'redux-form';
 import styles from './index.less';
 
-const Details = ({ details }) => (
+const Details = ({ details = {} }) => (
   <Fragment>
     <h3>
       File Details:
@@ -21,7 +22,7 @@ const Details = ({ details }) => (
       <Col span={1} />
       <Col span={7}>
         <p>
-          File Size: {pretty(parseInt(details.totalLength, 10))}
+          File Size: {pretty(parseInt(details.totalLength || 0, 10))}
         </p>
       </Col>
       <Col span={1} />
@@ -36,6 +37,6 @@ const Details = ({ details }) => (
 
 export default connect(
   state => ({
-    details: state.form.addUrl.values.data,
+    details: formValueSelector('addUrl')(state, 'data'),
   }),
 )(Details);

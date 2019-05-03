@@ -6,6 +6,7 @@ import {
 import { reduxForm } from 'redux-form';
 import URLSection from './URLSection';
 import Info from './Info';
+import Advanced from './Advanced';
 
 class AddUrl extends Component {
   state = {
@@ -26,6 +27,8 @@ class AddUrl extends Component {
         <URLSection changeState={this.setState.bind(this)} />
         {this.blankLine()}
         {this.state.show && <Info />}
+        {this.blankLine()}
+        {this.state.show && <Advanced />}
       </Card>
     );
   }
