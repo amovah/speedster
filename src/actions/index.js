@@ -19,4 +19,7 @@ export default {
     LOAD: 'queue/LOAD',
     CHANGE: 'queue/CHANGE',
   },
+  forms: {
+    REGISTER: 'forms/REGISTER',
+  },
 };
