@@ -19,6 +19,7 @@ import gatherInfo from 'Root/helpers/gatherInfo';
 import store from 'Root/store';
 import download from 'Root/actions/downloads/download/single';
 import downloadLater from 'Root/actions/downloads/download/later';
+import downloadQueue from 'Root/actions/downloads/download/queue';
 import styles from './index.less';
 
 export default class extends Component {
@@ -129,15 +130,24 @@ export default class extends Component {
       toDownload: true,
     });
 
+    let id;
+
     if (method === 'download') {
-      const id = await download();
-      history.push(`/download/${id}`);
+      id = await download();
+      if (!id) {
+        return;
+      }
     }
 
     if (method === 'downloadLater') {
-      const id = await downloadLater();
-      history.push(`/download/${id}`);
+      id = await downloadLater();
     }
+
+    if (method === 'downloadQueue') {
+      id = await downloadQueue();
+    }
+
+    history.push(`/download/${id}`);
   }
 
   downloadOptions = () => {
@@ -162,7 +172,7 @@ export default class extends Component {
               </Button>
               <Button
                 disabled={this.state.toDownload}
-                onClick={this.addDownloadToQueue}
+                onClick={() => this.download('downloadQueue')}
               >
                 Add To Queue
               </Button>
