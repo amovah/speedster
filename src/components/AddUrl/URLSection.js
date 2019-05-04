@@ -5,7 +5,11 @@ import {
   Button,
   message,
 } from 'antd';
-import { Field, change } from 'redux-form';
+import {
+  Field,
+  change as changeForm,
+  reset as resetForm,
+} from 'redux-form';
 import { clipboard } from 'electron';
 import {
   Input,
@@ -30,9 +34,13 @@ export default class extends Component {
 
     const text = clipboard.readText();
     if (text) {
-      store.dispatch(change('addUrl', 'url', text));
+      store.dispatch(changeForm('addUrl', 'url', text));
       this.checkUrl(text);
     }
+  }
+
+  componentWillUnmount() {
+    store.dispatch(resetForm('addUrl'));
   }
 
   onUrlChange = (event, newValue) => {
