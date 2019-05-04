@@ -47,7 +47,7 @@ export default class extends Component {
     if (!res) {
       message.error('Error! Speedster cannot download this file.');
       this.setState({
-        stage: 'empty',
+        stage: 'checked',
       });
     } else {
       this.setState({
