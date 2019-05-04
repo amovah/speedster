@@ -60,12 +60,23 @@ export default class extends Component {
     }
   }
 
+  recheck = () => {
+    this.props.changeState({
+      show: false,
+    });
+
+    this.setState({
+      stage: 'checking',
+    });
+
+    this.checkUrl(store.getState().form.addUrl.values.url);
+  }
+
   checkButton = () => {
     if (this.state.stage === 'checking') {
       return (
         <Button
           type="primary"
-          onClick={this.download}
           icon="download"
           loading
         />
@@ -76,7 +87,6 @@ export default class extends Component {
       return (
         <Button
           type="primary"
-          onClick={this.download}
           disabled
         >
           Waiting for URL
