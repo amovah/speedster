@@ -1,7 +1,7 @@
 import uid from 'uuid/v4';
-import types from 'Root/actions';
 import { sync } from 'Root/db';
 import store from 'Root/store';
+import addDownload from '../add';
 
 export default async () => {
   const { data, ...rest } = store.getState().form.addUrl.values;
@@ -12,10 +12,7 @@ export default async () => {
     ...rest,
   };
 
-  store.dispatch({
-    type: types.downloads.ADD,
-    download,
-  });
+  addDownload(download);
 
   await sync();
 
