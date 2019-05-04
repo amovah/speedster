@@ -5,7 +5,8 @@ import {
   Button,
   message,
 } from 'antd';
-import { Field } from 'redux-form';
+import { Field, change } from 'redux-form';
+import { clipboard } from 'electron';
 import {
   Input,
 } from 'Root/shared';
@@ -24,6 +25,13 @@ export default class extends Component {
     const url = store.getState().form.addUrl.values?.url;
     if (url) {
       this.checkUrl(url);
+      return;
+    }
+
+    const text = clipboard.readText();
+    if (text) {
+      store.dispatch(change('addUrl', 'url', text));
+      this.checkUrl(text);
     }
   }
 
