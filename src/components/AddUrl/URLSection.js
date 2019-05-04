@@ -124,6 +124,10 @@ export default class extends Component {
   }
 
   download = async (method) => {
+    this.setState({
+      toDownload: true,
+    });
+
     if (method === 'download') {
       const id = await download();
       history.push(`/download/${id}`);
