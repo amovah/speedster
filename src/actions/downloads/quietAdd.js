@@ -1,16 +1,15 @@
 import uid from 'uuid/v4';
 import types from 'Root/actions';
-import db from 'Root/db';
+import { sync } from 'Root/db';
 import store from 'Root/store';
-import changePage from 'Root/helpers/changePage';
 
-export default async (downloadInfo, details) => {
+export default async () => {
+  const { data, ...rest } = store.getState().form.addUrl.values;
   const download = {
     id: uid(),
     downloadStatus: 'suspend',
-    ...downloadInfo,
-    ...details,
-    completedLength: '0',
+    ...data,
+    ...rest,
   };
 
   store.dispatch({
@@ -18,9 +17,7 @@ export default async (downloadInfo, details) => {
     download,
   });
 
-  db.get('downloads').push(download).write();
-
-  changePage(`/download/${download.id}`);
+  await sync();
 
   return download.id;
 };

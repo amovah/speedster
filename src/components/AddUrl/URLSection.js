@@ -18,6 +18,7 @@ import {
 import gatherInfo from 'Root/helpers/gatherInfo';
 import store from 'Root/store';
 import download from 'Root/actions/downloads/add';
+import downloadLater from 'Root/actions/downloads/quietAdd';
 import styles from './index.less';
 
 export default class extends Component {
@@ -132,6 +133,11 @@ export default class extends Component {
       const id = await download();
       history.push(`/download/${id}`);
     }
+
+    if (method === 'downloadLater') {
+      const id = await downloadLater();
+      history.push(`/download/${id}`);
+    }
   }
 
   downloadOptions = () => {
@@ -150,7 +156,7 @@ export default class extends Component {
               </Button>
               <Button
                 disabled={this.state.toDownload}
-                onClick={this.quietDownload}
+                onClick={() => this.download('downloadLater')}
               >
                 Download Later
               </Button>
