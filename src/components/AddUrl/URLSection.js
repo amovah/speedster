@@ -17,7 +17,7 @@ import {
 } from 'Root/shared';
 import gatherInfo from 'Root/helpers/gatherInfo';
 import store from 'Root/store';
-import download from 'Root/actions/downloads/add';
+import download from 'Root/actions/downloads/download/single';
 import downloadLater from 'Root/actions/downloads/quietAdd';
 import styles from './index.less';
 
