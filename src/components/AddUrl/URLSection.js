@@ -11,11 +11,13 @@ import {
 } from 'Root/shared';
 import gatherInfo from 'Root/helpers/gatherInfo';
 import store from 'Root/store';
+import download from 'Root/actions/downloads/add';
 import styles from './index.less';
 
 export default class extends Component {
   state = {
     stage: 'empty',
+    toDownload: false,
   }
 
   componentDidMount() {
@@ -104,6 +106,12 @@ export default class extends Component {
     );
   }
 
+  download = (method) => {
+    if (method === 'download') {
+      download();
+    }
+  }
+
   downloadOptions = () => {
     if (this.state.stage === 'ready') {
       return (
@@ -114,7 +122,7 @@ export default class extends Component {
                 type="primary"
                 icon="download"
                 loading={this.state.toDownload}
-                onClick={this.download}
+                onClick={() => this.download('download')}
               >
                 Download
               </Button>
