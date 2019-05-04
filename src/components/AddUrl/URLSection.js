@@ -11,6 +11,7 @@ import {
   reset as resetForm,
 } from 'redux-form';
 import { clipboard } from 'electron';
+import history from 'Root/history';
 import {
   Input,
 } from 'Root/shared';
@@ -122,9 +123,10 @@ export default class extends Component {
     );
   }
 
-  download = (method) => {
+  download = async (method) => {
     if (method === 'download') {
-      download();
+      const id = await download();
+      history.push(`/download/${id}`);
     }
   }
 
