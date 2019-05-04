@@ -40,7 +40,7 @@ export default async (url) => {
     if (res && parseInt(res.result.completedLength, 10) > 0) {
       const modified = { ...res.result };
 
-      delete modified.completedLength;
+      modified.completedLength = '0';
       delete modified.gid;
 
       modified.name = modified.files[0].path.split('/').slice(-1)[0];
