@@ -15,6 +15,4 @@ if (process.env.NODE_ENV === 'development') {
   global.reduxForm = require('redux-form'); // eslint-disable-line
 }
 
-// const unsubscribe = store.subscribe(() => console.log(store.getState()))
-
 export default store;
