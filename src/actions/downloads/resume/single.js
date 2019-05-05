@@ -4,16 +4,8 @@ import { sync } from 'Root/db';
 import reAdd from '../reAdd';
 import resume from './resume';
 
-export default async (id, forceResume = true) => {
+export default async (id) => {
   const download = store.getState().downloads.find(i => i.id === id);
-
-  if (download.downloadStatus === 'completed') {
-    return;
-  }
-
-  if (download.downloadStatus === 'failed' && !forceResume) {
-    return;
-  }
 
   if (download.downloadStatus === 'suspend' || download.downloadStatus === 'failed') {
     reAdd(id);
