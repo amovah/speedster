@@ -1,6 +1,6 @@
 import types from 'Root/actions';
 import store from 'Root/store';
-import db from 'Root/db';
+// import db from 'Root/db';
 
 export default (toChange) => {
   store.dispatch({
@@ -8,9 +8,9 @@ export default (toChange) => {
     toChange,
   });
 
-  const queue = store.getState().queue;
+  // const queue = store.getState().queue;
 
-  db.get('queue')
-    .assign(queue)
-    .write();
+  // db.get('queue')
+  //   .assign(queue)
+  //   .write();
 };

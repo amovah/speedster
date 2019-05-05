@@ -1,5 +1,5 @@
+import addToQueue from 'Root/actions/queue/add/single';
 import later from './later';
-import addToQueue from '../addToQueue/single';
 
 export default async () => {
   const id = await later();
