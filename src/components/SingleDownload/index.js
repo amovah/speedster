@@ -19,8 +19,8 @@ import pause from 'Root/actions/downloads/pause';
 import resume from 'Root/actions/downloads/resume';
 import remove from 'Root/actions/downloads/remove';
 import reAdd from 'Root/actions/downloads/reAdd';
-import addToQueue from 'Root/actions/downloads/addToQueue/single';
-import removeFromQueue from 'Root/actions/downloads/removeFromQueue/single';
+import addToQueue from 'Root/actions/queue/add/single';
+import removeFromQueue from 'Root/actions/queue/remove/single';
 import Advanced from './Advanced';
 import styles from './index.less';
 
