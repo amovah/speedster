@@ -19,8 +19,8 @@ import pause from 'Root/actions/downloads/pause';
 import resume from 'Root/actions/downloads/resume';
 import remove from 'Root/actions/downloads/remove';
 import reAdd from 'Root/actions/downloads/reAdd';
-import moveToQueue from 'Root/actions/downloads/moveToQueue';
-import removeFromQueue from 'Root/actions/downloads/removeFromQueue';
+import addToQueue from 'Root/actions/downloads/addToQueue/single';
+import removeFromQueue from 'Root/actions/downloads/removeFromQueue/single';
 import Advanced from './Advanced';
 import styles from './index.less';
 
@@ -173,7 +173,7 @@ class AddUrl extends Component {
 
     return (
       <Button
-        onClick={() => moveToQueue(this.props.download.id)}
+        onClick={() => addToQueue(this.props.download.id)}
       >
         Move To Queue
       </Button>
