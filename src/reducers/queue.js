@@ -1,6 +1,8 @@
 import types from 'Root/actions';
 
-export default (state = {}, action) => {
+export default (state = {
+  list: [],
+}, action) => {
   switch (action.type) {
     case types.queue.LOAD: {
       return action.queue;
