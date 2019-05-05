@@ -79,18 +79,6 @@ export default (state = [], action) => {
       ];
     }
 
-    case types.downloads.COMPLETE: {
-      const index = state.findIndex(item => item.id === action.id);
-      return [
-        ...state.slice(0, index),
-        {
-          ...state[index],
-          downloadStatus: 'completed',
-        },
-        ...state.slice(index + 1),
-      ];
-    }
-
     case types.downloads.SUSPEND: {
       const index = state.findIndex(item => item.id === action.id);
       return [
