@@ -37,6 +37,17 @@ export default (state = [], action) => {
       ];
     }
 
+    case types.downloads.PAUSE_ALL: {
+      return state.map((item) => {
+        const res = { ...item };
+        if (res.downloadStatus === 'downloading') {
+          res.downloadStatus = 'pause';
+        }
+
+        return res;
+      });
+    }
+
     case types.downloads.RESUME: {
       const index = state.findIndex(item => item.id === action.id);
       return [

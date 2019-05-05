@@ -7,7 +7,7 @@ import {
 import { connect } from 'react-redux';
 import history from 'Root/history';
 import shutdown from 'Root/helpers/shutdown';
-import pauseAll from 'Root/actions/downloads/pauseAll';
+import pauseAll from 'Root/actions/downloads/pause/pauseAll';
 import resumeAll from 'Root/actions/downloads/resumeAll';
 import resumeQueue from 'Root/actions/queue/resumeList';
 import pauseQueue from 'Root/actions/queue/pauseList';

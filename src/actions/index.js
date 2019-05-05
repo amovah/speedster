@@ -7,6 +7,7 @@ export default {
     LOAD: 'downloads/LOAD',
     UPDATE: 'downloads/UPDATE',
     PAUSE: 'downloads/PAUSE',
+    PAUSE_ALL: 'downloads/PAUSE_ALL',
     RESUME: 'downloads/RESUME',
     REMOVE: 'downloads/REMOVE',
     COMPLETE: 'downloads/COMPLETE',
