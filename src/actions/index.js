@@ -9,6 +9,7 @@ export default {
     PAUSE: 'downloads/PAUSE',
     PAUSE_ALL: 'downloads/PAUSE_ALL',
     RESUME: 'downloads/RESUME',
+    RESUME_ALL: 'downloads/RESUME_ALL',
     REMOVE: 'downloads/REMOVE',
     COMPLETE: 'downloads/COMPLETE',
     SUSPEND: 'downloads/SUSPEND',
