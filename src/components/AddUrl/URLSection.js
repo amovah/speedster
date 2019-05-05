@@ -17,9 +17,9 @@ import {
 } from 'Root/shared';
 import gatherInfo from 'Root/helpers/gatherInfo';
 import store from 'Root/store';
-import download from 'Root/actions/downloads/download/single';
-import downloadLater from 'Root/actions/downloads/download/later';
-import downloadQueue from 'Root/actions/downloads/download/queue';
+import download from 'Root/actions/downloads/addDownload/single';
+import downloadLater from 'Root/actions/downloads/addDownload/later';
+import downloadQueue from 'Root/actions/downloads/addDownload/queue';
 import styles from './index.less';
 
 export default class extends Component {
@@ -39,6 +39,9 @@ export default class extends Component {
     if (text) {
       store.dispatch(changeForm('addUrl', 'url', text));
       this.checkUrl(text);
+      this.setState({
+        stage: 'checking',
+      });
     }
   }
 
