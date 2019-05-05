@@ -11,7 +11,9 @@ import shutdown from 'Root/helpers/shutdown';
 import init from './init';
 
 if (env.NODE_ENV === 'development') {
-  require('electron-reload')(resolve(__dirname, '..')); // eslint-disable-line
+  require('electron-reload')(resolve(__dirname, '..'), { // eslint-disable-line
+    electron: resolve(__dirname, '..', 'node_modules', 'electron', 'dist', 'electron'),
+  });
 }
 
 let win;
