@@ -16,7 +16,7 @@ import { exec } from 'child_process';
 import { clipboard } from 'electron';
 import { Redirect } from 'react-router-dom';
 import pause from 'Root/actions/downloads/pause/single';
-import resume from 'Root/actions/downloads/resume';
+import resume from 'Root/actions/downloads/resume/single';
 import remove from 'Root/actions/downloads/remove';
 import reAdd from 'Root/actions/downloads/reAdd';
 import addToQueue from 'Root/actions/queue/add/single';
