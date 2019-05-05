@@ -1,8 +1,8 @@
 import { sync } from 'Root/db';
-import moveToQueue from '../moveToQueue';
+import addToQueue from './add';
 
 export default async (id) => {
-  moveToQueue(id);
+  addToQueue(id);
 
   await sync();
 };
