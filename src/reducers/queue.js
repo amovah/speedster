@@ -15,6 +15,28 @@ export default (state = {
       };
     }
 
+    case types.queue.ADD: {
+      return {
+        ...state,
+        list: [
+          ...state.list,
+          action.id,
+        ],
+      };
+    }
+
+    case types.queue.REMOVE: {
+      const index = state.list.findIndex(i => i === action.id);
+
+      return {
+        ...state,
+        list: [
+          ...state.list.slice(0, index),
+          ...state.list.slice(index + 1),
+        ],
+      };
+    }
+
     default: {
       return state;
     }
