@@ -1,2 +1,3 @@
 suspend downloads when app starting
 single download remove reAdd
+refactor queue reducer

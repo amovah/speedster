@@ -17,9 +17,9 @@ import {
 } from 'Root/shared';
 import gatherInfo from 'Root/helpers/gatherInfo';
 import store from 'Root/store';
-import download from 'Root/actions/downloads/addDownload/single';
-import downloadLater from 'Root/actions/downloads/addDownload/later';
-import downloadQueue from 'Root/actions/downloads/addDownload/queue';
+import download from 'Root/actions/downloads/add/single';
+import downloadLater from 'Root/actions/downloads/add/later';
+import downloadQueue from 'Root/actions/downloads/add/queue';
 import styles from './index.less';
 
 export default class extends Component {
