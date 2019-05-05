@@ -161,7 +161,7 @@ class AddUrl extends Component {
       return null;
     }
 
-    if (this.props.download.queue) {
+    if (this.props.inQueue) {
       return (
         <Button
           onClick={() => removeFromQueue(this.props.download.id)}
@@ -250,5 +250,6 @@ class AddUrl extends Component {
 export default connect(
   (state, props) => ({
     download: state.downloads.find(i => i.id === props.match.params.id),
+    inQueue: state.queue.list.includes(props.match.params.id),
   }),
 )(AddUrl);
