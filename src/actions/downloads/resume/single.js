@@ -1,7 +1,7 @@
 import store from 'Root/store';
 import fetch from 'Root/helpers/fetch';
 import { sync } from 'Root/db';
-import reAdd from '../reAdd';
+import reAdd from '../add/reAdd';
 import resume from './resume';
 
 export default async (id) => {
