@@ -25,6 +25,27 @@ export default (state = [], action) => {
       ];
     }
 
+    case types.downloads.BULK_UPDATE: {
+      return state.map((item) => {
+        let res;
+        if (action.ids.includes(item.id)) {
+          res = {
+            ...item,
+            ...action.modifier(item),
+          };
+        }
+
+        return res;
+      });
+    }
+
+    case types.downloads.UPDATE_ALL: {
+      return state.map(item => ({
+        ...item,
+        ...action.modifier(item),
+      }));
+    }
+
     case types.downloads.PAUSE: {
       const index = state.findIndex(item => item.id === action.id);
       return [
