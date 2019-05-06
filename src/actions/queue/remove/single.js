@@ -1,8 +1,12 @@
+import types from 'Root/actions';
+import store from 'Root/store';
 import { sync } from 'Root/db';
-import remove from './remove';
 
 export default async (id) => {
-  remove(id);
+  store.dispatch({
+    type: types.queue.REMOVE,
+    id,
+  });
 
   await sync();
 };
