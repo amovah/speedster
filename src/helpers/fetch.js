@@ -42,7 +42,12 @@ export default async (json) => {
       }),
     });
 
-    return JSON.parse(res);
+    const parsed = JSON.parse(res);
+    if (parsed.error) {
+      return null;
+    }
+
+    return parsed;
   } catch (e) {
     return null;
   }
