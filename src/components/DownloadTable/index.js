@@ -7,7 +7,8 @@ import {
   Card,
 } from 'antd';
 import { Link } from 'react-router-dom';
-import removeDownload from 'Root/actions/downloads/remove';
+import singleRemove from 'Root/actions/downloads/remove/single';
+import bulkRemove from 'Root/actions/downloads/remove/bulk';
 import singleResume from 'Root/actions/downloads/resume/single';
 import bulkResume from 'Root/actions/downloads/resume/bulk';
 import singlePause from 'Root/actions/downloads/pause/single';
@@ -28,9 +29,7 @@ export default class extends Component {
   }
 
   removeSelected = () => {
-    for (const id of this.state.selectedRowKeys) {
-      removeDownload(id);
-    }
+    bulkRemove(this.state.selectedRowKeys);
 
     this.setState({
       selectedRowKeys: [],
@@ -112,7 +111,7 @@ export default class extends Component {
       selectedRowKeys: prev.selectedRowKeys.filter(i => i !== id),
     }));
 
-    removeDownload(id, false);
+    singleRemove(id);
   }
 
   render() {

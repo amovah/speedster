@@ -1,7 +1,7 @@
 import { remote } from 'electron';
 import fetch from 'Root/helpers/fetch';
 import store from 'Root/store';
-import suspend from 'Root/actions/downloads/suspend';
+// import suspend from 'Root/actions/downloads/suspend';
 
 export default async () => {
 //   const downloadings = store.getState().downloads
