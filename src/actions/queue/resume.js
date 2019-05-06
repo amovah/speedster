@@ -1,5 +1,5 @@
 import store from 'Root/store';
-import resumeDownload from 'Root/actions/downloads/resume';
+import resumeDownload from 'Root/actions/downloads/resume/single';
 
 export default () => {
   if (store.getState().queue.isDownloading) {

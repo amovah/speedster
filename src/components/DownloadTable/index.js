@@ -7,12 +7,13 @@ import {
   Card,
 } from 'antd';
 import { Link } from 'react-router-dom';
-import moveToQueue from 'Root/actions/downloads/moveToQueue';
-import removeFromQueue from 'Root/actions/downloads/removeFromQueue';
 import removeDownload from 'Root/actions/downloads/remove';
-import resumeDownload from 'Root/actions/downloads/resume';
-import bulkPause from 'Root/actions/downloads/pause/bulk';
+import singleResume from 'Root/actions/downloads/resume/single';
+import bulkResume from 'Root/actions/downloads/resume/bulk';
 import singlePause from 'Root/actions/downloads/pause/single';
+import bulkPause from 'Root/actions/downloads/pause/bulk';
+import removeFromQueue from 'Root/actions/queue/remove/single';
+import addToQueue from 'Root/actions/queue/add/single';
 import styles from './index.less';
 
 export default class extends Component {
@@ -35,9 +36,7 @@ export default class extends Component {
   }
 
   resumeSelected = () => {
-    for (const id of this.state.selectedRowKeys) {
-      resumeDownload(id);
-    }
+    bulkResume(this.state.selectedRowKeys);
   }
 
   pauseSelected = () => {
@@ -46,7 +45,7 @@ export default class extends Component {
 
   moveToQueueSelected = () => {
     for (const id of this.state.selectedRowKeys) {
-      moveToQueue(id);
+      addToQueue(id);
     }
   }
 
@@ -178,7 +177,7 @@ export default class extends Component {
           if (['pause', 'suspend'].includes(record.status)) {
             buttons.push(
               <a
-                onClick={() => resumeDownload(record.key)}
+                onClick={() => singleResume(record.key)}
                 disabled={record.downloadStatus === 'completed'}
                 key="resume"
               >
@@ -188,7 +187,7 @@ export default class extends Component {
           } else if (record.status === 'failed') {
             buttons.push(
               <a
-                onClick={() => resumeDownload(record.key)}
+                onClick={() => singleResume(record.key)}
                 disabled={record.downloadStatus === 'completed'}
                 key="retry"
               >
@@ -242,7 +241,7 @@ export default class extends Component {
             buttons.push(
               <br key="1" />,
               <a
-                onClick={() => moveToQueue(record.key)}
+                onClick={() => addToQueue(record.key)}
                 key="moveToQueue"
               >
                 Move To Queue

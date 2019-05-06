@@ -5,7 +5,9 @@ import reAdd from '../add/reAdd';
 import bulkUpdate from '../update/bulk';
 
 export default async () => {
-  const downloads = store.getState().downloads.filter(i => i.downloadStatus === 'suspend');
+  const allDownloads = store.getState().downloads;
+
+  const downloads = allDownloads.filter(i => i.downloadStatus === 'suspend');
   const actions = [];
   for (const download of downloads) {
     actions.push(reAdd(download.id));
@@ -17,7 +19,7 @@ export default async () => {
   });
 
   bulkUpdate(
-    store.getState().downloads.filter(i => i.downloadStatus === 'pause').map(i => i.id),
+    allDownloads.filter(i => i.downloadStatus === 'pause').map(i => i.id),
     {
       downloadStatus: 'downloading',
     },
