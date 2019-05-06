@@ -1,7 +1,7 @@
 import store from 'Root/store';
 import { sync } from 'Root/db';
 import fetch from 'Root/helpers/fetch';
-import reAdd from '../reAdd';
+import reAdd from '../add/reAdd';
 import bulkUpdate from '../update/bulk';
 
 export default async () => {
