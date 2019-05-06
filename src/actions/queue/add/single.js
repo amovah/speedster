@@ -1,9 +1,13 @@
+import store from 'Root/store';
+import types from 'Root/actions';
 import { sync } from 'Root/db';
 import resume from '../resume';
-import add from './add';
 
 export default async (id) => {
-  add(id);
+  store.dispatch({
+    type: types.queue.ADD,
+    id,
+  });
 
   await sync();
 
