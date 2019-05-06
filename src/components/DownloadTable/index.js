@@ -11,7 +11,8 @@ import moveToQueue from 'Root/actions/downloads/moveToQueue';
 import removeFromQueue from 'Root/actions/downloads/removeFromQueue';
 import removeDownload from 'Root/actions/downloads/remove';
 import resumeDownload from 'Root/actions/downloads/resume';
-import pauseDownload from 'Root/actions/downloads/pause';
+import bulkPause from 'Root/actions/downloads/pause/bulk';
+import singlePause from 'Root/actions/downloads/pause/single';
 import styles from './index.less';
 
 export default class extends Component {
@@ -40,9 +41,7 @@ export default class extends Component {
   }
 
   pauseSelected = () => {
-    for (const id of this.state.selectedRowKeys) {
-      pauseDownload(id);
-    }
+    bulkPause(this.state.selectedRowKeys);
   }
 
   moveToQueueSelected = () => {
@@ -199,7 +198,7 @@ export default class extends Component {
           } else if (record.status === 'downloading') {
             buttons.push(
               <a
-                onClick={() => pauseDownload(record.key)}
+                onClick={() => singlePause(record.key)}
                 disabled={record.downloadStatus === 'completed'}
                 key="pause"
               >

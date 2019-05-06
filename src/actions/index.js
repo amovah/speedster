@@ -8,6 +8,7 @@ export default {
     UPDATE: 'downloads/UPDATE',
     PAUSE: 'downloads/PAUSE',
     PAUSE_ALL: 'downloads/PAUSE_ALL',
+    BULK_PAUSE: 'downloads/BULK_PAUSE',
     RESUME: 'downloads/RESUME',
     RESUME_ALL: 'downloads/RESUME_ALL',
     REMOVE: 'downloads/REMOVE',

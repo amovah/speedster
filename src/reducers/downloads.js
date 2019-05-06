@@ -48,6 +48,17 @@ export default (state = [], action) => {
       });
     }
 
+    case types.downloads.BULK_PAUSE: {
+      return state.map((item) => {
+        const res = { ...item };
+        if (action.ids.includes(res.id) && res.downloadStatus === 'downloading') {
+          res.downloadStatus = 'pause';
+        }
+
+        return res;
+      });
+    }
+
     case types.downloads.RESUME: {
       const index = state.findIndex(item => item.id === action.id);
       return [
