@@ -1,7 +1,7 @@
-import types from 'Root/actions';
 import fetch from 'Root/helpers/fetch';
 import { sync } from 'Root/db';
 import store from 'Root/store';
+import bulkUpdate from '../update/bulk';
 
 export default async (ids) => {
   const downloads = store.getState().downloads.filter(i => ids.includes(i.id));
@@ -16,10 +16,12 @@ export default async (ids) => {
   }
   await Promise.all(actions);
 
-  store.dispatch({
-    type: types.downloads.BULK_PAUSE,
+  bulkUpdate(
     ids,
-  });
+    {
+      downloadStatus: 'pause',
+    },
+  );
 
   await sync();
 };

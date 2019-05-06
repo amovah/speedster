@@ -27,22 +27,21 @@ export default (state = [], action) => {
 
     case types.downloads.BULK_UPDATE: {
       return state.map((item) => {
-        let res;
         if (action.ids.includes(item.id)) {
-          res = {
+          return {
             ...item,
-            ...action.modifier(item),
+            ...action.update,
           };
         }
 
-        return res;
+        return { ...item };
       });
     }
 
     case types.downloads.UPDATE_ALL: {
       return state.map(item => ({
         ...item,
-        ...action.modifier(item),
+        ...action.update,
       }));
     }
 
