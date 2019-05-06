@@ -1,7 +1,7 @@
+import types from 'Root/actions';
 import store from 'Root/store';
 import fetch from 'Root/helpers/fetch';
 import { sync } from 'Root/db';
-import remove from './remove';
 
 export default async (id) => {
   await fetch({
@@ -11,7 +11,10 @@ export default async (id) => {
     ],
   });
 
-  remove(id);
+  store.dispatch({
+    type: types.downloads.REMOVE,
+    id,
+  });
 
   await sync();
 };
