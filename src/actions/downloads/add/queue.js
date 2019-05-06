@@ -1,4 +1,4 @@
-import addToQueue from 'Root/actions/queue/add/single';
+import addToQueue from '../addToQueue/single';
 import later from './later';
 
 export default async () => {

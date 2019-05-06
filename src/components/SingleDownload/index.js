@@ -18,12 +18,12 @@ import { Redirect } from 'react-router-dom';
 import pause from 'Root/actions/downloads/pause/single';
 import resume from 'Root/actions/downloads/resume/single';
 import remove from 'Root/actions/downloads/remove/single';
-import addToQueue from 'Root/actions/queue/add/single';
-import removeFromQueue from 'Root/actions/queue/remove/single';
+import addToQueue from 'Root/actions/downloads/addToQueue/single';
+import removeFromQueue from 'Root/actions/downloads/removeFromQueue/single';
 import Advanced from './Advanced';
 import styles from './index.less';
 
-class AddUrl extends Component {
+class SingleDownload extends Component {
   progressBar = () => {
     const total = parseInt(this.props.download.totalLength, 10);
     const downloaded = parseInt(this.props.download.completedLength, 10);
@@ -160,7 +160,7 @@ class AddUrl extends Component {
       return null;
     }
 
-    if (this.props.inQueue) {
+    if (this.props.download.queue) {
       return (
         <Button
           onClick={() => removeFromQueue(this.props.download.id)}
@@ -249,6 +249,5 @@ class AddUrl extends Component {
 export default connect(
   (state, props) => ({
     download: state.downloads.find(i => i.id === props.match.params.id),
-    inQueue: state.queue.list.includes(props.match.params.id),
   }),
-)(AddUrl);
+)(SingleDownload);

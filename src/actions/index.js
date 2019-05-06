@@ -17,8 +17,5 @@ export default {
   queue: {
     LOAD: 'queue/LOAD',
     CHANGE: 'queue/CHANGE',
-    ADD: 'queue/ADD',
-    BULK_ADD: 'queue/BULK_ADD',
-    REMOVE: 'queue/REMOVE',
   },
 };

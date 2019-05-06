@@ -12,9 +12,10 @@ import singleResume from 'Root/actions/downloads/resume/single';
 import bulkResume from 'Root/actions/downloads/resume/bulk';
 import singlePause from 'Root/actions/downloads/pause/single';
 import bulkPause from 'Root/actions/downloads/pause/bulk';
-import removeFromQueue from 'Root/actions/queue/remove/single';
-import addToQueue from 'Root/actions/queue/add/single';
-import bulkAddToQueue from 'Root/actions/queue/add/bulk';
+import removeFromQueue from 'Root/actions/downloads/removeFromQueue/single';
+import bulkRemoveFromQueue from 'Root/actions/downloads/removeFromQueue/bulk';
+import addToQueue from 'Root/actions/downloads/addToQueue/single';
+import bulkAddToQueue from 'Root/actions/downloads/addToQueue/bulk';
 import styles from './index.less';
 
 export default class extends Component {
@@ -49,9 +50,7 @@ export default class extends Component {
   }
 
   removeFromQueueSelected = () => {
-    for (const id of this.state.selectedRowKeys) {
-      removeFromQueue(id);
-    }
+    bulkRemoveFromQueue(this.state.selectedRowKeys);
   }
 
   additionalAction = () => {
