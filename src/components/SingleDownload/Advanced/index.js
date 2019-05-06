@@ -21,7 +21,7 @@ export default class extends Component {
     });
   }
 
-  applyChange = () => {
+  applyChanges = () => {
     changeDownload(
       this.props.download.id,
       {
@@ -54,8 +54,8 @@ export default class extends Component {
           </Row>
           <br />
           <Row>
-            <Button onClick={this.changeSpeed}>
-              Change
+            <Button onClick={this.applyChanges}>
+              Apply
             </Button>
           </Row>
         </Panel>
