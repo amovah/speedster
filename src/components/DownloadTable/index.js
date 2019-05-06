@@ -14,6 +14,7 @@ import singlePause from 'Root/actions/downloads/pause/single';
 import bulkPause from 'Root/actions/downloads/pause/bulk';
 import removeFromQueue from 'Root/actions/queue/remove/single';
 import addToQueue from 'Root/actions/queue/add/single';
+import bulkAddToQueue from 'Root/actions/queue/add/bulk';
 import styles from './index.less';
 
 export default class extends Component {
@@ -44,9 +45,7 @@ export default class extends Component {
   }
 
   moveToQueueSelected = () => {
-    for (const id of this.state.selectedRowKeys) {
-      addToQueue(id);
-    }
+    bulkAddToQueue(this.state.selectedRowKeys);
   }
 
   removeFromQueueSelected = () => {
