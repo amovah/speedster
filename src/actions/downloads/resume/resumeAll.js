@@ -1,8 +1,8 @@
-import types from 'Root/actions';
 import store from 'Root/store';
 import { sync } from 'Root/db';
 import fetch from 'Root/helpers/fetch';
 import reAdd from '../reAdd';
+import bulkUpdate from '../update/bulk';
 
 export default async () => {
   const downloads = store.getState().downloads.filter(i => i.downloadStatus === 'suspend');
@@ -16,9 +16,12 @@ export default async () => {
     method: 'aria2.unpauseAll',
   });
 
-  store.dispatch({
-    type: types.downloads.RESUME_ALL,
-  });
+  bulkUpdate(
+    store.getState().downloads.filter(i => i.downloadStatus === 'pause').map(i => i.id),
+    {
+      downloadStatus: 'downloading',
+    },
+  );
 
   await sync();
 };

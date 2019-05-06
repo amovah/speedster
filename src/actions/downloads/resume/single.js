@@ -1,8 +1,8 @@
-import types from 'Root/actions';
 import store from 'Root/store';
 import fetch from 'Root/helpers/fetch';
 import { sync } from 'Root/db';
 import reAdd from '../add/reAdd';
+import update from '../update/single';
 
 export default async (id) => {
   const download = store.getState().downloads.find(i => i.id === id);
@@ -17,10 +17,12 @@ export default async (id) => {
       ],
     });
 
-    store.dispatch({
-      type: types.downloads.RESUME,
+    update(
       id,
-    });
+      {
+        downloadStatus: 'downloading',
+      },
+    );
   }
 
   await sync();

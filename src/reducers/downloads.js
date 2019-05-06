@@ -45,29 +45,6 @@ export default (state = [], action) => {
       }));
     }
 
-    case types.downloads.RESUME: {
-      const index = state.findIndex(item => item.id === action.id);
-      return [
-        ...state.slice(0, index),
-        {
-          ...state[index],
-          downloadStatus: 'downloading',
-        },
-        ...state.slice(index + 1),
-      ];
-    }
-
-    case types.downloads.RESUME_ALL: {
-      return state.map((item) => {
-        const res = { ...item };
-        if (res.downloadStatus === 'pause' || res.downloadStatus === 'suspend') {
-          res.downloadStatus = 'downloading';
-        }
-
-        return res;
-      });
-    }
-
     case types.downloads.REMOVE: {
       const index = state.findIndex(item => item.id === action.id);
       return [
