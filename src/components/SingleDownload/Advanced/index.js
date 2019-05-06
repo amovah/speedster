@@ -5,7 +5,6 @@ import {
   Col,
   Input,
   Button,
-  InputNumber,
 } from 'antd';
 import changeDownload from 'Root/actions/downloads/change';
 
@@ -13,8 +12,7 @@ const Panel = Collapse.Panel;
 
 export default class extends Component {
   state = {
-    maxSpeed: null,
-    maxConnection: this.props.download.maxConnection.toString(),
+    maxSpeed: this.props.download.maxSpeed,
   }
 
   onChangeSpeed = (e) => {
@@ -23,26 +21,11 @@ export default class extends Component {
     });
   }
 
-  changeSpeed = () => {
+  applyChange = () => {
     changeDownload(
-      this.props.download,
+      this.props.download.id,
       {
         maxSpeed: this.state.maxSpeed,
-      },
-    );
-  }
-
-  onChangeConnection = (number) => {
-    this.setState({
-      maxConnection: number.toString(),
-    });
-  }
-
-  changeConnection = () => {
-    changeDownload(
-      this.props.download,
-      {
-        maxConnection: this.state.maxConnection,
       },
     );
   }
@@ -58,51 +41,22 @@ export default class extends Component {
       >
         <Panel header="Advanced Options" key="1" style={{ border: 0 }}>
           <Row>
-            <Col span={14}>
+            <Col span={10}>
               <p>
                 Speed Limit:
               </p>
-              <Row>
-                <Col span={18}>
-                  <Input
-                    placeholder="like 1KB, 512KB, 1MB, ..."
-                    onChange={this.onChangeSpeed}
-                  />
-                </Col>
-                <Col span={1} />
-                <Col span={5}>
-                  <Button
-                    onClick={this.changeSpeed}
-                  >
-                    Change
-                  </Button>
-                </Col>
-              </Row>
+              <Input
+                placeholder="like 1KB, 512KB, 1MB, ..."
+                onChange={this.onChangeSpeed}
+                value={this.state.maxSpeed}
+              />
             </Col>
-            <Col span={2} />
-            <Col span={6}>
-              <p>
-                Connections:
-              </p>
-              <Row>
-                <Col span={18}>
-                  <InputNumber
-                    min={1}
-                    max={16}
-                    defaultValue={parseInt(this.props.download.maxConnection, 10)}
-                    onChange={this.onChangeConnection}
-                  />
-                </Col>
-                <Col span={1} />
-                <Col span={5}>
-                  <Button
-                    onClick={this.changeConnection}
-                  >
-                    Change
-                  </Button>
-                </Col>
-              </Row>
-            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Button onClick={this.changeSpeed}>
+              Change
+            </Button>
           </Row>
         </Panel>
       </Collapse>
