@@ -6,6 +6,8 @@ export default {
     ADD: 'downloads/ADD',
     LOAD: 'downloads/LOAD',
     UPDATE: 'downloads/UPDATE',
+    BULK_UPDATE: 'downloads/BULK_UPDATE',
+    UPDATE_ALL: 'downloads/UPDATE_ALL',
     PAUSE: 'downloads/PAUSE',
     PAUSE_ALL: 'downloads/PAUSE_ALL',
     BULK_PAUSE: 'downloads/BULK_PAUSE',
