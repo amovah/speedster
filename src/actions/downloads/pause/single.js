@@ -1,7 +1,7 @@
-import types from 'Root/actions';
 import fetch from 'Root/helpers/fetch';
 import { sync } from 'Root/db';
 import store from 'Root/store';
+import update from '../update/single';
 
 export default async (id) => {
   await fetch({
@@ -11,9 +11,8 @@ export default async (id) => {
     ],
   });
 
-  store.dispatch({
-    type: types.downloads.PAUSE,
-    id,
+  update(id, {
+    downloadStatus: 'pause',
   });
 
   await sync();
