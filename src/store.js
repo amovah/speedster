@@ -2,7 +2,7 @@ import { createStore } from 'redux';
 import { remote } from 'electron';
 import reducers from './reducers';
 
-let store;
+let store; // eslint-disable-line
 
 if (process.type === 'renderer') {
   store = remote.getGlobal('store');
@@ -10,6 +10,8 @@ if (process.type === 'renderer') {
   store = createStore( // eslint-disable-line
     reducers,
   );
+
+  global.store = store;
 }
 
 if (process.env.NODE_ENV === 'development') {
@@ -17,8 +19,4 @@ if (process.env.NODE_ENV === 'development') {
   global.reduxForm = require('redux-form'); // eslint-disable-line
 }
 
-function wh() {
-  return store;
-}
-
-export default wh();
+export default store;
