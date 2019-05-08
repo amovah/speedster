@@ -63,8 +63,3 @@ export async function sync() {
     version,
   });
 }
-
-// const setting = db.get('setting').value();
-// if (setting.version !== version) {
-//   db.setState(defaults).write();
-// }

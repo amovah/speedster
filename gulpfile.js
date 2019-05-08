@@ -51,7 +51,6 @@ gulp.task('lint', () =>
   gulp.src('src/**/*.js')
   .pipe(lint())
   .pipe(lint.format())
-  .pipe(lint.failAfterError())
 );
 
 gulp.task('default', gulp.series('clean', 'copy', 'dev:build'));
