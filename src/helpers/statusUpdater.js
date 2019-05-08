@@ -19,7 +19,7 @@ export default () => {
         ],
       });
 
-      if (!res) {
+      if (!res || res.result.status === 'error') {
         await fail(download.id);
         if (download.queue) {
           resume();
