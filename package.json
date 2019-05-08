@@ -41,7 +41,7 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.0",
     "eslint-plugin-react": "^7.12.4",
-    "gulp": "^4.0.0",
+    "gulp": "^4.0.2",
     "gulp-cli": "^2.0.1",
     "gulp-eslint": "^5.0.0",
     "less": "^3.9.0",
