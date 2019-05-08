@@ -1,13 +1,11 @@
 import store from 'Root/store';
-import pauseDownload from 'Root/actions/downloads/pause/single';
+import bulkPause from 'Root/actions/downloads/pause/bulk';
 
-export default () => {
+export default async () => {
   const downloads = store.getState().downloads.filter(
     i => i.downloadStatus === 'downloading'
     && i.queue,
   );
 
-  for (const download of downloads) {
-    pauseDownload(download.id);
-  }
+  await bulkPause(downloads.map(i => i.id));
 };
