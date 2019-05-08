@@ -64,18 +64,6 @@ export default class extends Component {
         </div>
         <div className={styles.center}>
           <Button.Group>
-            <Popconfirm
-              title="Are you sure?"
-              okText="Yes"
-              onConfirm={this.removeSelected}
-            >
-              <Button
-                type="danger"
-                disabled={!hasSelected}
-              >
-                Remove
-              </Button>
-            </Popconfirm>
             <Button
               disabled={!hasSelected}
               onClick={this.pauseSelected}
@@ -100,6 +88,18 @@ export default class extends Component {
             >
               Remove From Queue
             </Button>
+            <Popconfirm
+              title="Are you sure?"
+              okText="Yes"
+              onConfirm={this.removeSelected}
+            >
+              <Button
+                type="danger"
+                disabled={!hasSelected}
+              >
+                  Remove
+              </Button>
+            </Popconfirm>
           </Button.Group>
         </div>
       </Card>
