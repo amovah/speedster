@@ -171,8 +171,29 @@ export default class extends Component {
         render: (text, record) => {
           const buttons = [];
 
+          if (record.queue && record.status !== 'completed') {
+            buttons.push(
+              <a
+                onClick={() => removeFromQueue(record.key)}
+                key="removeFromQueue"
+              >
+                Remove From Queue
+              </a>,
+            );
+          } else if (!record.queue && record.status !== 'completed') {
+            buttons.push(
+              <a
+                onClick={() => addToQueue(record.key)}
+                key="moveToQueue"
+              >
+                Move To Queue
+              </a>,
+            );
+          }
+
           if (['pause', 'suspend'].includes(record.status)) {
             buttons.push(
+              <br key="1" />,
               <a
                 onClick={() => singleResume(record.key)}
                 disabled={record.downloadStatus === 'completed'}
@@ -183,6 +204,7 @@ export default class extends Component {
             );
           } else if (record.status === 'failed') {
             buttons.push(
+              <br key="1" />,
               <a
                 onClick={() => singleResume(record.key)}
                 disabled={record.downloadStatus === 'completed'}
@@ -193,6 +215,7 @@ export default class extends Component {
             );
           } else if (record.status === 'downloading') {
             buttons.push(
+              <br key="1" />,
               <a
                 onClick={() => singlePause(record.key)}
                 disabled={record.downloadStatus === 'completed'}
@@ -223,28 +246,6 @@ export default class extends Component {
               </a>
             </Popconfirm>,
           );
-
-          if (record.queue && record.status !== 'completed') {
-            buttons.push(
-              <br key="1" />,
-              <a
-                onClick={() => removeFromQueue(record.key)}
-                key="removeFromQueue"
-              >
-                Remove From Queue
-              </a>,
-            );
-          } else if (!record.queue && record.status !== 'completed') {
-            buttons.push(
-              <br key="1" />,
-              <a
-                onClick={() => addToQueue(record.key)}
-                key="moveToQueue"
-              >
-                Move To Queue
-              </a>,
-            );
-          }
 
           return buttons;
         },
