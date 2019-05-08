@@ -21,12 +21,16 @@ export default () => {
 
       if (!res) {
         await fail(download.id);
-        // resume();
+        if (download.queue) {
+          resume();
+        }
       } else {
         update(download.id, res.result);
         if (res.result.totalLength === res.result.completedLength) {
           await complete(download.id);
-          // resume();
+          if (download.queue) {
+            resume();
+          }
         }
       }
 
@@ -35,7 +39,7 @@ export default () => {
 
     await Promise.all(actions);
 
-    setTimeout(job, 350);
+    setTimeout(job, 500);
   };
 
   job();
