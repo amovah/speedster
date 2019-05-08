@@ -97,7 +97,7 @@ export default class extends Component {
                 type="danger"
                 disabled={!hasSelected}
               >
-                  Remove
+                Remove
               </Button>
             </Popconfirm>
           </Button.Group>
