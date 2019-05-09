@@ -8,6 +8,6 @@
     "Utility"
   ],
   "options": {
-    "depends": "aria2"
+    "depends": ["aria2", "libappindicator1"]
   }
 }

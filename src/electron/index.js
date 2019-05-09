@@ -9,6 +9,7 @@ import { resolve } from 'path';
 import { env } from 'process';
 import shutdown from 'Root/helpers/shutdown';
 import init from './init';
+import tray from './tray';
 
 if (env.NODE_ENV === 'development') {
   require('electron-reload')(resolve(__dirname, '..'), { // eslint-disable-line
@@ -63,6 +64,7 @@ if (!gotTheLock) {
       await init();
 
       createWindow();
+      tray(() => win, createWindow);
     } catch (e) {
       dialog.showErrorBox(
         'Error while initializing speedster',
@@ -79,11 +81,7 @@ if (!gotTheLock) {
     }
   });
 
-  app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
-      app.quit();
-    }
-  });
+  app.on('window-all-closed', () => {});
 
   Menu.setApplicationMenu(Menu.buildFromTemplate([]));
 }
