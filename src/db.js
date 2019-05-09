@@ -27,26 +27,21 @@ const defaults = {
   },
   version,
 };
+export async function load() {
+  let db;
 
-async function ensureDB() {
   const exist = await pathExists(dbPath);
   if (!exist) {
     await outputJson(dbPath, defaults);
-    return defaults;
+    db = defaults;
+  } else {
+    db = await readJson(dbPath);
+
+    if (db.version !== version) {
+      await outputJson(dbPath, defaults);
+      db = defaults;
+    }
   }
-
-  const db = await readJson(dbPath);
-
-  if (db.version !== version) {
-    await outputJson(dbPath, defaults);
-    return defaults;
-  }
-
-  return db;
-}
-
-export async function load() {
-  const db = await ensureDB();
 
   loadSetting(db.setting);
   loadDownloads(db.downloads);
