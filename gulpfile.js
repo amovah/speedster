@@ -47,11 +47,13 @@ gulp.task('prod:build', cb =>
   })
 );
 
-gulp.task('lint', () =>
+gulp.task('lint', (cb) => {
   gulp.src('src/**/*.js')
   .pipe(lint())
   .pipe(lint.format())
-);
+
+  cb();
+});
 
 gulp.task('default', gulp.series('clean', 'copy', 'dev:build'));
 gulp.task('dev', gulp.series('clean', 'copy', 'dev:build'));
