@@ -8,6 +8,6 @@
   deb: {
     desktop: {
       Icon: '/opt/speedster/resources/app/icons/256x256.png',
-    }
-  }
+    },
+  },
 }
