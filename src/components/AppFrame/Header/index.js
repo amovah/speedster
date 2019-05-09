@@ -2,11 +2,9 @@ import React from 'react';
 import {
   Layout,
   Menu,
-  Popconfirm,
 } from 'antd';
 import { connect } from 'react-redux';
 import history from 'Root/history';
-import shutdown from 'Root/helpers/shutdown';
 import pauseAll from 'Root/actions/downloads/pause/all';
 import resumeAll from 'Root/actions/downloads/resume/all';
 import resumeQueue from 'Root/actions/queue/resumeList';
@@ -83,15 +81,6 @@ const Head = props => (
           Pause Queue
         </Item>
       </SubMenu>
-      <Item key="shutdown">
-        <Popconfirm
-          title="Are you sure?"
-          onConfirm={shutdown}
-          okText="Yes"
-        >
-          Shutdown Speedster
-        </Popconfirm>
-      </Item>
     </Menu>
   </Header>
 );
