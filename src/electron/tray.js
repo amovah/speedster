@@ -30,7 +30,12 @@ export default (getWindow, createWindow, app) => {
       type: 'normal',
       click() {
         shutdown();
-        getWindow().close();
+
+        const win = getWindow();
+        if (win) {
+          win.close();
+        }
+
         app.quit();
       },
     },
