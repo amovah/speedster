@@ -64,7 +64,7 @@ if (!gotTheLock) {
       await init();
 
       createWindow();
-      tray(() => win, createWindow);
+      tray(() => win, createWindow, app);
     } catch (e) {
       dialog.showErrorBox(
         'Error while initializing speedster',
