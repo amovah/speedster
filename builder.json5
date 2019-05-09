@@ -1,0 +1,13 @@
+{
+  asar: false,
+  files: ['build', 'icons'],
+  linux: {
+    target: 'deb',
+    icon: './icons/256x256.png',
+  },
+  deb: {
+    desktop: {
+      Icon: '/opt/speedster/resources/app/icons/256x256.png',
+    }
+  }
+}
