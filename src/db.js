@@ -37,7 +37,7 @@ export async function load() {
   } else {
     db = await readJson(dbPath);
 
-    if (db.version !== version) {
+    if (db.version.split('.')[0] !== version.split('.')[0]) {
       await outputJson(dbPath, defaults);
       db = defaults;
     }
