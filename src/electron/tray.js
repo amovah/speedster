@@ -1,9 +1,9 @@
-import { Tray, Menu } from 'electron';
+import { Tray, Menu, app } from 'electron';
 import { resolve } from 'path';
 import shutdown from 'Root/helpers/shutdown';
 
 let tray = null;
-export default (getWindow, createWindow, app) => {
+export default (getWindow, createWindow) => {
   tray = new Tray(resolve(__dirname, '..', 'icons', '256x256.png'));
 
   const contextMenu = Menu.buildFromTemplate([
@@ -28,14 +28,15 @@ export default (getWindow, createWindow, app) => {
     {
       label: 'Close',
       type: 'normal',
-      click() {
-        shutdown();
+      async click() {
+        await shutdown();
 
         const win = getWindow();
         if (win) {
           win.close();
         }
 
+        tray.destroy();
         app.quit();
       },
     },
