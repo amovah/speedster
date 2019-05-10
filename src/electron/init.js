@@ -6,6 +6,7 @@ import categories from 'Root/categories';
 import startAria2 from 'Root/helpers/startAria2';
 import statusUpdater from 'Root/helpers/statusUpdater';
 import bulkSuspend from 'Root/actions/downloads/suspend/bulk';
+import websocket from './websocket';
 
 export default async () => {
   await loadDB();
@@ -29,4 +30,6 @@ export default async () => {
   await Promise.all(actions);
 
   statusUpdater();
+
+  websocket();
 };

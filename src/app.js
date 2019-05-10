@@ -3,6 +3,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import history from 'Root/history';
 import Speedster from './Speedster';
+import './sockets';
 
 (async () => {
   render(
