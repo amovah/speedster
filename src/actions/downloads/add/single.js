@@ -1,16 +1,13 @@
 import uid from 'uuid/v4';
-import store from 'Root/store';
 import fetch from 'Root/helpers/fetch';
 import { sync } from 'Root/db';
 import addDownload from './add';
 
-export default async () => {
-  const { data, ...rest } = store.getState().form.addUrl.values;
+export default async (values) => {
   const download = {
     id: uid(),
     downloadStatus: 'downloading',
-    ...data,
-    ...rest,
+    ...values,
   };
 
   const downloadId = await fetch({

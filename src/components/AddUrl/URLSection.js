@@ -134,20 +134,27 @@ export default class extends Component {
     });
 
     let id;
+    const { data, ...rest } = store.getState().form.addUrl.values;
 
     if (method === 'download') {
-      id = await download();
-      if (!id) {
-        return;
-      }
+      id = await download({
+        ...data,
+        ...rest,
+      });
     }
 
     if (method === 'downloadLater') {
-      id = await downloadLater();
+      id = await downloadLater({
+        ...data,
+        ...rest,
+      });
     }
 
     if (method === 'downloadQueue') {
-      id = await downloadQueue();
+      id = await downloadQueue({
+        ...data,
+        ...rest,
+      });
     }
 
     history.push(`/download/${id}`);
