@@ -61,7 +61,7 @@ if (!gotTheLock) {
 
   app.on('ready', async () => {
     try {
-      await init();
+      await init(() => win, createWindow);
 
       createWindow();
       tray(() => win, createWindow);

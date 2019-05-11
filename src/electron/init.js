@@ -8,7 +8,7 @@ import statusUpdater from './statusUpdater';
 import startAria2 from './startAria2';
 import websocket from './websocket';
 
-export default async () => {
+export default async (...params) => {
   await loadDB();
 
   const actions = [];
@@ -29,5 +29,5 @@ export default async () => {
 
   await Promise.all(actions);
 
-  statusUpdater(websocket());
+  statusUpdater(websocket(...params));
 };

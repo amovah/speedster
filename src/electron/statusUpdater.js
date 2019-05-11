@@ -5,7 +5,7 @@ import complete from 'Root/actions/downloads/complete';
 import resume from 'Root/actions/queue/resume';
 import fail from 'Root/actions/downloads/fail';
 
-export default (socket) => {
+export default (io) => {
   const job = async () => {
     const downloads = store.getState().downloads.filter(
       item => item.downloadStatus === 'downloading',
@@ -22,7 +22,7 @@ export default (socket) => {
       if (!res || res.result.status === 'error') {
         await fail(download.id);
 
-        socket.emit('fail', download.name);
+        io.of('client').emit('fail', download.name);
 
         if (download.queue) {
           resume();
@@ -32,7 +32,7 @@ export default (socket) => {
         if (res.result.totalLength === res.result.completedLength) {
           await complete(download.id);
 
-          socket.emit('complete', download.name);
+          io.of('client').emit('complete', download.name);
 
           if (download.queue) {
             resume();
