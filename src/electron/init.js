@@ -3,9 +3,9 @@ import { ensureDir } from 'fs-extra';
 import store from 'Root/store';
 import { load as loadDB } from 'Root/db';
 import categories from 'Root/categories';
-import startAria2 from 'Root/helpers/startAria2';
-import statusUpdater from 'Root/helpers/statusUpdater';
 import bulkSuspend from 'Root/actions/downloads/suspend/bulk';
+import statusUpdater from './statusUpdater';
+import startAria2 from './startAria2';
 import websocket from './websocket';
 
 export default async () => {
@@ -29,7 +29,5 @@ export default async () => {
 
   await Promise.all(actions);
 
-  statusUpdater();
-
-  websocket();
+  statusUpdater(websocket());
 };

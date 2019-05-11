@@ -12,4 +12,6 @@ export default () => {
   app.on('before-quit', () => {
     io.close();
   });
+
+  return io;
 };
