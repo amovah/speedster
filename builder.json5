@@ -2,7 +2,7 @@
   asar: false,
   files: ['build', 'icons'],
   linux: {
-    target: 'deb',
+    target: ['deb', 'tar.gz'],
     icon: './icons/256x256.png',
   },
   deb: {
