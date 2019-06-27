@@ -2,6 +2,12 @@
 
 A graphical UI for aria2, powered by Electron, React, Ant Design.
 
+# Screenshots
+
+![](./screenshots/1.jpg)
+![](./screenshots/2.jpg)
+![](./screenshots/3.jpg)
+
 # Prerequisite
 
 * [aria2](https://aria2.github.io/)
