@@ -1,6 +1,7 @@
 export default {
   setting: {
     LOAD: 'setting/LOAD',
+    CHANGE: 'setting/CHANGE',
   },
   downloads: {
     ADD: 'downloads/ADD',

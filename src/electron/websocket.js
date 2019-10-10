@@ -1,13 +1,18 @@
 import socketio from 'socket.io';
 import { app } from 'electron';
 import store from 'Root/store';
+import changeSetting from 'Root/actions/setting/change';
 
-export default (getWindow, createWindow) => {
-  const io = socketio(store.getState().setting.socketPort);
+function bind(getWindow, createWindow, port) {
+  function closeWebsocket(io) {
+    return () => {
+      io.close();
+    };
+  }
 
-  app.on('before-quit', () => {
-    io.close();
-  });
+  const io = socketio(port);
+
+  app.on('before-quit', closeWebsocket(io));
 
   io.of('extension').on('connect', (socket) => {
     socket.on('download', (url) => {
@@ -24,9 +29,23 @@ export default (getWindow, createWindow) => {
         win.focus();
       }
     });
+
+    socket.on('change-port', (newPort) => {
+      changeSetting({
+        socketPort: newPort,
+      });
+
+      bind(getWindow, createWindow, newPort);
+
+      app.off('before-quit', closeWebsocket);
+
+      io.close();
+    });
   });
 
   io.of('client');
+}
 
-  return io;
+export default (getWindow, createWindow) => {
+  bind(getWindow, createWindow, store.getState().setting.socketPort);
 };
