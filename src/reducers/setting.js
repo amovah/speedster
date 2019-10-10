@@ -6,6 +6,13 @@ export default (state = {}, action) => {
       return action.setting;
     }
 
+    case types.setting.CHANGE: {
+      return {
+        ...state,
+        ...action.setting,
+      };
+    }
+
     default: {
       return state;
     }
