@@ -3,7 +3,7 @@ import store from 'Root/store';
 
 export default () => new Promise(async (resolve, reject) => {
   const aria2 = spawn(
-    `${__dirname}/aria2c`,
+    'aria2c',
     [
       '--enable-rpc',
       `--rpc-listen-port=${store.getState().setting.port}`,

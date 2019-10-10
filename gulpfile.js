@@ -19,9 +19,6 @@ gulp.task('copy', (cb) => {
   gulp.src('src/index.html')
   .pipe(gulp.dest('build/'))
 
-  gulp.src('src/electron/aria2c')
-  .pipe(gulp.dest('build'))
-  
   cb();
 });
 
