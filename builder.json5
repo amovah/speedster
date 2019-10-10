@@ -2,12 +2,7 @@
   asar: false,
   files: ['build', 'icons'],
   linux: {
-    target: ['deb', 'tar.gz'],
+    target: ['snap'],
     icon: './icons/256x256.png',
-  },
-  deb: {
-    desktop: {
-      Icon: '/opt/speedster/resources/app/icons/256x256.png',
-    },
   },
 }
