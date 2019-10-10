@@ -44,8 +44,12 @@ function bind(getWindow, createWindow, port) {
   });
 
   io.of('client');
+
+  return io;
 }
 
-export default (getWindow, createWindow) => {
-  bind(getWindow, createWindow, store.getState().setting.socketPort);
-};
+export default (getWindow, createWindow) => bind(
+  getWindow,
+  createWindow,
+  store.getState().setting.socketPort,
+);
