@@ -20,7 +20,7 @@ gulp.task('copy', () =>
   .pipe(gulp.dest('build/'))
 );
 
-gulp.task('dev:build', () => {
+gulp.task('build:dev', () => {
   webpack(require('./webpack/dev.js'), (err, stats) => {
     if (err) {
       throw new Error('webpack build failed', err);
@@ -33,7 +33,7 @@ gulp.task('dev:build', () => {
   });
 });
 
-gulp.task('prod:build', cb =>
+gulp.task('build:prod', cb =>
   webpack(require('./webpack/prod.js'), (err, stats) => {
     if (err) {
       throw new Error('webpack build failed', err);
@@ -53,6 +53,6 @@ gulp.task('lint', () =>
   .pipe(lint.format())
 );
 
-gulp.task('default', gulp.series('clean', 'copy', 'dev:build'));
-gulp.task('dev', gulp.series('clean', 'copy', 'dev:build'));
-gulp.task('prod', gulp.series('lint', 'clean', 'copy', 'prod:build'));
+gulp.task('default', gulp.series('clean', 'copy', 'build:dev'));
+gulp.task('dev', gulp.series('clean', 'copy', 'build:dev'));
+gulp.task('prod', gulp.series('lint', 'clean', 'copy', 'build:prod'));
