@@ -14,6 +14,7 @@ const dbPath = resolve(app.getPath('appData'), 'speedster.db.json');
 const defaults = {
   setting: {
     port: 6812,
+    socketPort: 6813,
     url: 'http://localhost:6812/jsonrpc',
     downloadDir: resolve(homedir(), 'Downloads', 'Speedster'),
   },

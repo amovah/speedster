@@ -3,7 +3,7 @@ import { app } from 'electron';
 import store from 'Root/store';
 
 export default (getWindow, createWindow) => {
-  const io = socketio(store.getState().setting.port + 1);
+  const io = socketio(store.getState().setting.socketPort);
 
   app.on('before-quit', () => {
     io.close();
