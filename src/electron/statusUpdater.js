@@ -4,8 +4,9 @@ import update from 'Root/actions/downloads/update';
 import complete from 'Root/actions/downloads/complete';
 import resume from 'Root/actions/queue/resume';
 import fail from 'Root/actions/downloads/fail';
+import { getIO } from './websocket';
 
-export default (io) => {
+export default () => {
   const job = async () => {
     const downloads = store.getState().downloads.filter(
       item => item.downloadStatus === 'downloading',
@@ -22,7 +23,7 @@ export default (io) => {
       if (!res || res.result.status === 'error') {
         await fail(download.id);
 
-        io.of('client').emit('fail', download.name);
+        getIO().of('client').emit('fail', download.name);
 
         if (download.queue) {
           resume();
@@ -32,7 +33,7 @@ export default (io) => {
         if (res.result.totalLength === res.result.completedLength) {
           await complete(download.id);
 
-          io.of('client').emit('complete', download.name);
+          getIO().of('client').emit('complete', download.name);
 
           if (download.queue) {
             resume();

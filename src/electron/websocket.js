@@ -3,6 +3,8 @@ import { app } from 'electron';
 import store from 'Root/store';
 import changeSetting from 'Root/actions/setting/change';
 
+let engine;
+
 function bind(getWindow, createWindow, port) {
   function closeWebsocket(io) {
     return () => {
@@ -45,11 +47,15 @@ function bind(getWindow, createWindow, port) {
 
   io.of('client');
 
-  return io;
+  engine = io;
 }
 
-export default (getWindow, createWindow) => bind(
-  getWindow,
-  createWindow,
-  store.getState().setting.socketPort,
-);
+export const start = (getWindow, createWindow) => {
+  bind(
+    getWindow,
+    createWindow,
+    store.getState().setting.socketPort,
+  );
+};
+
+export const getIO = () => engine;

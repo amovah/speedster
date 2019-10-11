@@ -6,7 +6,7 @@ import categories from 'Root/categories';
 import bulkSuspend from 'Root/actions/downloads/suspend/bulk';
 import statusUpdater from './statusUpdater';
 import startAria2 from './startAria2';
-import websocket from './websocket';
+import { start as startWebSocket } from './websocket';
 
 export default async (...params) => {
   await loadDB();
@@ -18,7 +18,7 @@ export default async (...params) => {
     actions.push(ensureDir(resolve(state.setting.downloadDir, category.name)));
   }
 
-  actions.push(startAria2());
+  await startAria2();
 
   actions.push(bulkSuspend(
     state
@@ -29,5 +29,6 @@ export default async (...params) => {
 
   await Promise.all(actions);
 
-  statusUpdater(websocket(...params));
+  startWebSocket(...params);
+  statusUpdater();
 };
