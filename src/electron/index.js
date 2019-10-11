@@ -22,7 +22,7 @@ function createWindow() {
   win = new BrowserWindow({
     minWidth: 1000,
     minHeight: 600,
-    icon: resolve(__dirname, '../icons/256x256.png'),
+    icon: resolve(__dirname, '../icons/512x512.png'),
     title: 'Speedster',
     show: false,
     webPreferences: {
