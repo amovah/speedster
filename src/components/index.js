@@ -7,6 +7,7 @@ import Downloads from './Downloads';
 import Schedule from './Schedule';
 import Queue from './Queue';
 import SingleDownload from './SingleDownload';
+import Setting from './Setting';
 
 export default () => (
   <AppFrame>
@@ -16,6 +17,7 @@ export default () => (
       <Route path="/schedule" component={Schedule} />
       <Route path="/queue/:type" component={Queue} />
       <Route path="/download/:id" component={SingleDownload} />
+      <Route path="/setting" component={Setting} />
     </Switch404>
   </AppFrame>
 );
