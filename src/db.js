@@ -17,6 +17,7 @@ const defaults = {
     socketPort: 6813,
     url: 'http://localhost:6812/jsonrpc',
     downloadDir: resolve(homedir(), 'Downloads', 'Speedster'),
+    autoLaunch: true,
   },
   downloads: [
   ],

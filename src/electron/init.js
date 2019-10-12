@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 import { ensureDir } from 'fs-extra';
 import store from 'Root/store';
+import { init as autoLaunch } from 'Root/autoLaunch';
 import { load as loadDB } from 'Root/db';
 import categories from 'Root/categories';
 import bulkSuspend from 'Root/actions/downloads/suspend/bulk';
@@ -10,6 +11,7 @@ import { start as startWebSocket } from './websocket';
 
 export default async (...params) => {
   await loadDB();
+  autoLaunch();
 
   const actions = [];
 
