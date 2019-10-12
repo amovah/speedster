@@ -5,7 +5,7 @@ import { env } from 'process';
 import store from 'Root/store';
 import history from 'Root/history';
 
-const socket = io(`http://localhost:${store.getState().setting.port + 1}/client`);
+const socket = io(`http://localhost:${store.getState().setting.socketPort}/client`);
 
 socket.on('complete', (name) => {
   message.success(`${name} download is done.`);

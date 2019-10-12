@@ -2,6 +2,7 @@
   "name": "speedster",
   "main": "build/electron.js",
   "version": "2.5.0",
+  "needToRebaseDatabase": false,
   "description": "aria2 graphical ui, powered by electron, react.",
   "repository": "git@github.com:amovah/speedster.git",
   "author": "Ali Movahedi <ali_movahedi@aol.com>",
