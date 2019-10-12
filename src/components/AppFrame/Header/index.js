@@ -81,8 +81,8 @@ const Head = props => (
           Pause Queue
         </Item>
       </SubMenu>
-      <Item key="/setting">
-        Setting
+      <Item key="/settings">
+        Settings
       </Item>
     </Menu>
   </Header>
