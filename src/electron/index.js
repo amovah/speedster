@@ -63,7 +63,6 @@ if (!gotTheLock) {
     try {
       await init(() => win, createWindow);
 
-      createWindow();
       tray(() => win, createWindow);
     } catch (e) {
       dialog.showErrorBox(
