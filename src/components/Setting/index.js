@@ -6,10 +6,25 @@ import {
   Switch,
 } from 'antd';
 import { connect } from 'react-redux';
+import * as autoLaunch from 'Root/autoLaunch';
+import changeSetting from 'Root/actions/setting/change';
+import { sync } from 'Root/db';
 
 class Setting extends PureComponent {
-  changeAutoStart = () => {
+  changeAutoStart = async () => {
+    if (this.props.setting.autoLaunch) {
+      autoLaunch.disable();
+      changeSetting({
+        autoLaunch: false,
+      });
+    } else {
+      autoLaunch.enable();
+      changeSetting({
+        autoLaunch: true,
+      });
+    }
 
+    await sync();
   }
 
   render() {
@@ -27,6 +42,7 @@ class Setting extends PureComponent {
               unCheckedChildren="Off"
               checkedChildren="On"
               defaultChecked={this.props.setting.autoLaunch}
+              onChange={this.changeAutoStart}
             />
           </Col>
         </Row>
