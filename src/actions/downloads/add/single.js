@@ -1,4 +1,4 @@
-import uid from 'uuid/v4';
+import { v4 as uid } from 'uuid';
 import fetch from 'Root/helpers/fetch';
 import { sync } from 'Root/db';
 import addDownload from './add';

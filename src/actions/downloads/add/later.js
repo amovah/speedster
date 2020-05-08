@@ -1,4 +1,4 @@
-import uid from 'uuid/v4';
+import { v4 as uid } from 'uuid';
 import { sync } from 'Root/db';
 import addDownload from './add';
 

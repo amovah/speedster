@@ -26,7 +26,7 @@ const defaults = {
     endTime: '06:00:00',
     isDownloading: false,
   },
-  dbVersion: 1,
+  dbVersion: '1.0.0',
 };
 
 export async function load() {
@@ -39,7 +39,6 @@ export async function load() {
   } else {
     db = await readJson(dbPath);
 
-    console.log(db.dbVersion, defaults.dbVersion);
     if (db.dbVersion !== defaults.dbVersion) {
       await outputJson(dbPath, defaults);
       db = defaults;
