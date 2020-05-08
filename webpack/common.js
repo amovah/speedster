@@ -52,8 +52,9 @@ module.exports = {
                 return [autoprefixer];
               }
             }
-          }, {
-            loader: 'less-loader',
+          },
+          {
+            loader: 'less-loader', // compiles Less to CSS
             options: {
               javascriptEnabled: true,
             },
