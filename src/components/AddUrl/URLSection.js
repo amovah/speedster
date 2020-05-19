@@ -1,28 +1,152 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import {
   Row,
   Col,
   Button,
   message,
+  Input,
 } from 'antd';
-import {
-  Field,
-  change as changeForm,
-  reset as resetForm,
-} from 'redux-form';
+import { RedoOutlined, DownloadOutlined } from '@ant-design/icons';
 import { clipboard } from 'electron';
 import history from 'Root/history';
-import {
-  Input,
-} from 'Root/shared';
 import gatherInfo from 'Root/helpers/gatherInfo';
 import store from 'Root/store';
 import download from 'Root/actions/downloads/add/single';
 import downloadLater from 'Root/actions/downloads/add/later';
 import downloadQueue from 'Root/actions/downloads/add/queue';
+import { Controller, useFormContext } from 'react-hook-form';
 import styles from './index.less';
 
-export default class extends Component {
+export default function URLSection() {
+  const { watch, control, getValues } = useFormContext();
+  const [stage, setStage] = useState('empty');
+  const [toDownload, setToDownload] = useState(false);
+
+  async function checkUrl(url) {
+    const res = await gatherInfo(url);
+    if (!res) {
+      message.error('Error! Speedster cannot download this file.');
+      setStage('checked');
+    } else {
+      setStage('ready');
+
+      // this.props.changeState({
+      //   show: true,
+      // });
+    }
+  }
+
+  function recheckUrl() {
+    // this.props.changeState({
+    //   show: false,
+    // });
+
+    setStage('checking');
+    checkUrl(getValues('url'));
+  }
+
+  function CheckButton() {
+    if (stage === 'checking') {
+      return (
+        <Button
+          type="primary"
+          loading
+        >
+          Loading
+        </Button>
+      );
+    }
+
+    if (stage === 'empty') {
+      return (
+        <Button
+          type="primary"
+          disabled
+        >
+          Waiting for URL
+        </Button>
+      );
+    }
+
+    return (
+      <Button
+        type="primary"
+        icon={<RedoOutlined />}
+        onClick={recheckUrl}
+      >
+        Recheck URL
+      </Button>
+    );
+  }
+
+  function DownloadButtons() {
+    return (
+      <div className={styles.center}>
+        <Button.Group>
+          <Button
+            type="primary"
+            icon={<DownloadOutlined />}
+            disabled={toDownload}
+          >
+            Download
+          </Button>
+          <Button
+            disabled={toDownload}
+          >
+            Download Later
+          </Button>
+          <Button
+            disabled={toDownload}
+          >
+            Add To Queue
+          </Button>
+        </Button.Group>
+      </div>
+    );
+  }
+
+  useEffect(() => {
+    const url = getValues('url');
+    if (url === '' || url === undefined) {
+      setStage('empty');
+    } else {
+      setStage('checking');
+      checkUrl(url);
+    }
+  }, [watch('url')]);
+
+  return (
+    <>
+      <Row>
+        <Col span={18}>
+          <Controller
+            as={(
+              <Input
+                placeholder="Enter your URL here!"
+                type="text"
+                disabled={stage === 'checking'}
+              />
+            )}
+            name="url"
+            control={control}
+          />
+        </Col>
+        <Col span={1} />
+        <Col span={5}>
+          <CheckButton />
+        </Col>
+      </Row>
+      {stage === 'ready' && (
+        <>
+          <br />
+          <DownloadButtons />
+        </>
+      )}
+    </>
+  );
+}
+
+class AAA extends Component {
   state = {
     stage: 'empty',
     toDownload: false,

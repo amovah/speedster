@@ -1,41 +1,34 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {
   Card,
   Divider,
 } from 'antd';
-import { reduxForm } from 'redux-form';
+import { useForm, FormContext } from 'react-hook-form';
 import URLSection from './URLSection';
 import Info from './Info';
 import Advanced from './Advanced';
 
-class AddUrl extends Component {
-  state = {
-    show: false,
-  }
+const AddUrl = () => {
+  const formMethods = useForm();
+  const [show, setShow] = useState(false);
 
-  blankLine = () => {
-    if (this.state.show) {
-      return <Divider />;
-    }
+  return (
+    <Card>
+      <FormContext {...formMethods}>
+        <form onSubmit={formMethods.handleSubmit(data => console.log(data))}>
+          <URLSection />
+        </form>
+      </FormContext>
+      {show && (
+        <>
+          <Divider />
+          <Info />
+          <Divider />
+          <Advanced />
+        </>
+      )}
+    </Card>
+  );
+};
 
-    return null;
-  }
-
-  render() {
-    return (
-      <Card>
-        <URLSection changeState={this.setState.bind(this)} />
-        {this.blankLine()}
-        {this.state.show && <Info />}
-        {this.blankLine()}
-        {this.state.show && <Advanced />}
-      </Card>
-    );
-  }
-}
-
-const Wrapper = reduxForm({
-  form: 'addUrl',
-})(AddUrl);
-
-export default Wrapper;
+export default AddUrl;
