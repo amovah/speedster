@@ -6,7 +6,7 @@ import {
   message,
   Input,
 } from 'antd';
-import { RedoOutlined, DownloadOutlined } from '@ant-design/icons';
+import { RedoOutlined, DownloadOutlined, DeleteOutlined } from '@ant-design/icons';
 import { clipboard } from 'electron';
 import history from 'Root/history';
 import gatherInfo from 'Root/helpers/gatherInfo';
@@ -18,7 +18,9 @@ import { Controller, useFormContext } from 'react-hook-form';
 import styles from './index.less';
 
 export default function URLSection() {
-  const { watch, control, getValues } = useFormContext();
+  const {
+    watch, control, getValues, setValue,
+  } = useFormContext();
   const [stage, setStage] = useState('empty');
   const [toDownload, setToDownload] = useState(false);
 
@@ -125,6 +127,7 @@ export default function URLSection() {
                 placeholder="Enter your URL here!"
                 type="text"
                 disabled={stage === 'checking'}
+                suffix={<DeleteOutlined style={{ cursor: 'pointer' }} onClick={() => setValue('url', '')} />}
               />
             )}
             name="url"
