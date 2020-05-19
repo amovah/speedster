@@ -1,4 +1,6 @@
-import React, { useState, useEffect, Component } from 'react';
+import React, {
+  useState, useEffect, useRef, Component,
+} from 'react';
 import {
   Row,
   Col,
@@ -6,7 +8,7 @@ import {
   message,
   Input,
 } from 'antd';
-import { RedoOutlined, DownloadOutlined, DeleteOutlined } from '@ant-design/icons';
+import { RedoOutlined, DownloadOutlined } from '@ant-design/icons';
 import { clipboard } from 'electron';
 import history from 'Root/history';
 import gatherInfo from 'Root/helpers/gatherInfo';
@@ -23,6 +25,7 @@ export default function URLSection() {
   } = useFormContext();
   const [stage, setStage] = useState('empty');
   const [toDownload, setToDownload] = useState(false);
+  const urlTimeout = useRef(null);
 
   async function checkUrl(url) {
     const res = await gatherInfo(url);
@@ -122,12 +125,20 @@ export default function URLSection() {
       <Row>
         <Col span={18}>
           <Controller
-            as={(
+            as={props => (
               <Input
                 placeholder="Enter your URL here!"
                 type="text"
                 disabled={stage === 'checking'}
-                suffix={<DeleteOutlined style={{ cursor: 'pointer' }} onClick={() => setValue('url', '')} />}
+                allowClear
+                value={props.value}
+                onChange={(ev) => {
+                  const value = ev.target.value;
+                  clearTimeout(urlTimeout.current);
+                  urlTimeout.current = setTimeout(() => {
+                    props.onChange(value);
+                  }, 800);
+                }}
               />
             )}
             name="url"
