@@ -1,5 +1,5 @@
 import React, {
-  useState, useEffect, useRef, Component,
+  useState, useEffect, Component,
 } from 'react';
 import {
   Row,
@@ -21,11 +21,10 @@ import styles from './index.less';
 
 export default function URLSection() {
   const {
-    watch, control, getValues, setValue,
+    watch, control, getValues,
   } = useFormContext();
   const [stage, setStage] = useState('empty');
   const [toDownload, setToDownload] = useState(false);
-  const urlTimeout = useRef(null);
 
   async function checkUrl(url) {
     const res = await gatherInfo(url);
@@ -125,20 +124,12 @@ export default function URLSection() {
       <Row>
         <Col span={18}>
           <Controller
-            as={props => (
+            as={(
               <Input
                 placeholder="Enter your URL here!"
                 type="text"
                 disabled={stage === 'checking'}
                 allowClear
-                value={props.value}
-                onChange={(ev) => {
-                  const value = ev.target.value;
-                  clearTimeout(urlTimeout.current);
-                  urlTimeout.current = setTimeout(() => {
-                    props.onChange(value);
-                  }, 800);
-                }}
               />
             )}
             name="url"
