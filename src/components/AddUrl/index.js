@@ -11,20 +11,21 @@ import Advanced from './Advanced';
 const AddUrl = () => {
   const formMethods = useForm();
   const [show, setShow] = useState(false);
+  const [details, setDetails] = useState({});
 
   return (
     <Card>
       <FormContext {...formMethods}>
         <form onSubmit={formMethods.handleSubmit(data => console.log(data))}>
-          <URLSection />
+          <URLSection setDetails={setDetails} setShow={setShow} />
         </form>
       </FormContext>
       {show && (
         <>
           <Divider />
-          <Info />
+          <Info details={details} />
           <Divider />
-          <Advanced />
+          {/* <Advanced /> */}
         </>
       )}
     </Card>
