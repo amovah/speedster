@@ -19,7 +19,7 @@ import downloadQueue from 'Root/actions/downloads/add/queue';
 import { Controller, useFormContext } from 'react-hook-form';
 import styles from './index.less';
 
-export default function URLSection() {
+export default function URLSection({ setDetails, setShow }) {
   const {
     watch, control, getValues,
   } = useFormContext();
@@ -32,19 +32,14 @@ export default function URLSection() {
       message.error('Error! Speedster cannot download this file.');
       setStage('checked');
     } else {
+      setDetails(res);
       setStage('ready');
-
-      // this.props.changeState({
-      //   show: true,
-      // });
+      setShow(true);
     }
   }
 
   function recheckUrl() {
-    // this.props.changeState({
-    //   show: false,
-    // });
-
+    setShow(false);
     setStage('checking');
     checkUrl(getValues('url'));
   }

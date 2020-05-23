@@ -35,8 +35,4 @@ const Details = ({ details = {} }) => (
   </Fragment>
 );
 
-export default connect(
-  state => ({
-    details: formValueSelector('addUrl')(state, 'data'),
-  }),
-)(Details);
+export default Details;

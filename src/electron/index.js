@@ -7,17 +7,12 @@ import {
 } from 'electron';
 import { resolve } from 'path';
 import { env } from 'process';
+import elemon from 'elemon';
 import shutdown from 'Root/helpers/shutdown';
 import init from './init';
 import tray from './tray';
 
 app.allowRendererProcessReuse = true;
-
-if (env.NODE_ENV === 'development') {
-  require('electron-reload')(resolve(__dirname, '..'), { // eslint-disable-line
-    electron: resolve(__dirname, '..', 'node_modules', 'electron', 'dist', 'electron'),
-  });
-}
 
 let win;
 function createWindow() {
@@ -29,6 +24,7 @@ function createWindow() {
     show: false,
     webPreferences: {
       nodeIntegration: true,
+      enableRemoteModule: true,
     },
   });
 
@@ -69,6 +65,16 @@ if (!gotTheLock) {
 
       if (env.NODE_ENV === 'development') {
         createWindow();
+
+        elemon({
+          app,
+          mainFile: 'build/electron.js',
+          bws: [
+            {
+              bw: win, res: ['index.html', 'app.js'],
+            },
+          ],
+        });
       }
     } catch (e) {
       dialog.showErrorBox(
