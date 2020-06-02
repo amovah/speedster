@@ -10,7 +10,7 @@ const { Title, Text } = Typography;
 
 const Details = ({ details = {} }) => (
   <>
-    <Title level={3}>
+    <Title level={4}>
       File Details:
     </Title>
     <Row>
@@ -21,15 +21,15 @@ const Details = ({ details = {} }) => (
       </Col>
       <Col span={1} />
       <Col span={7}>
-        <p>
+        <Text>
           File Size: {pretty(parseInt(details.totalLength || 0, 10))}
-        </p>
+        </Text>
       </Col>
       <Col span={1} />
       <Col span={7}>
-        <p>
+        <Text>
           Category: {details.category}
-        </p>
+        </Text>
       </Col>
     </Row>
   </>
