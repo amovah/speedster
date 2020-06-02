@@ -6,7 +6,7 @@ import {
 import { useForm, FormContext } from 'react-hook-form';
 import URLSection from './URLSection';
 import Info from './Info';
-import Advanced from './Advanced';
+// import Advanced from './Advanced';
 
 const AddUrl = () => {
   const formMethods = useForm();

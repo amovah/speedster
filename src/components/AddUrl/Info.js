@@ -1,23 +1,23 @@
-import React, { Fragment } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import pretty from 'pretty-bytes';
 import {
   Row,
   Col,
+  Typography,
 } from 'antd';
-import { formValueSelector } from 'redux-form';
-import styles from './index.less';
+
+const { Title, Text } = Typography;
 
 const Details = ({ details = {} }) => (
-  <Fragment>
-    <h3>
+  <>
+    <Title level={3}>
       File Details:
-    </h3>
+    </Title>
     <Row>
       <Col span={7}>
-        <p className={styles.break}>
+        <Text ellipsis>
           Name: {details.name}
-        </p>
+        </Text>
       </Col>
       <Col span={1} />
       <Col span={7}>
@@ -32,7 +32,7 @@ const Details = ({ details = {} }) => (
         </p>
       </Col>
     </Row>
-  </Fragment>
+  </>
 );
 
 export default Details;

@@ -7,6 +7,7 @@ import {
   Button,
   message,
   Input,
+  Typography,
 } from 'antd';
 import { RedoOutlined, DownloadOutlined } from '@ant-design/icons';
 import { clipboard } from 'electron';
@@ -116,6 +117,11 @@ export default function URLSection({ setDetails, setShow }) {
 
   return (
     <>
+      <Row>
+        <Typography.Title level={2}>
+          Enter Your URL:
+        </Typography.Title>
+      </Row>
       <Row>
         <Col span={18}>
           <Controller
