@@ -1,83 +1,104 @@
-import React, { Fragment } from 'react';
+import React, { useCallback } from 'react';
 import {
   Row,
   Col,
   Button,
-} from 'antd';
-import { Field, change } from 'redux-form';
-import { remote } from 'electron';
-import store from 'Root/store';
-import {
   Input,
+  Typography,
   InputNumber,
-} from 'Root/shared';
+} from 'antd';
+import { remote } from 'electron';
+import { useFormContext, Controller } from 'react-hook-form';
 
-const changeLocation = () => {
-  remote.dialog.showOpenDialog({
-    defaultPath: store.getState().form.addUrl.values.outputDir,
-    properties: ['openDirectory'],
-  }, (files) => {
-    if (files) {
-      store.dispatch(change('addUrl', 'outputDir', files[0]));
-    }
-  });
-};
+const {
+  Title,
+  Text,
+} = Typography;
 
-export default () => (
-  <Fragment>
-    <Row>
-      <h3>
+export default function Advanced({ details }) {
+  const {
+    setValue, control,
+  } = useFormContext();
+
+  const changeLocation = useCallback(() => {
+    remote.dialog.showOpenDialog({
+      defaultPath: details.outputDir,
+      properties: ['openDirectory'],
+    }, (files) => {
+      if (files) {
+        setValue('outputDir', files[0]);
+      }
+    });
+  }, []);
+
+  return (
+    <>
+      <Title level={4}>
         Advanced Options:
-      </h3>
-      <Col span={10}>
-        <p>
-          Max Speed:
-        </p>
-        <Field
-          component={Input}
-          placeholder="like 1KB, 512KB, 1MB, ..."
-          name="maxSpeed"
-        />
-      </Col>
-      <Col span={2} />
-      <Col span={10}>
-        <p>
-          Save Location:
-        </p>
-        <Row>
-          <Col span={17}>
-            <Field
-              name="outputDir"
-              component={Input}
-              disabled
-            />
-          </Col>
-          <Col span={1} />
-          <Col span={5}>
-            <Button
-              type="primary"
-              onClick={changeLocation}
-            >
-              Change Location
-            </Button>
-          </Col>
-        </Row>
-      </Col>
-    </Row>
-    <br />
-    <Row>
-      <Col span={10}>
-        <p>
-          Connections:
-        </p>
-        <Field
-          component={InputNumber}
-          name="maxConnection"
-          min={1}
-          max={16}
-        />
-      </Col>
-      <Col span={2} />
-    </Row>
-  </Fragment>
-);
+      </Title>
+      <Row>
+        <Col span={10}>
+          <Text>
+            Max Speed:
+          </Text>
+          <br />
+          <Controller
+            as={(
+              <Input
+                placeholder="like 1KB, 512KB, 1MB, ..."
+                type="text"
+              />
+            )}
+            control={control}
+            name="maxSpeed"
+          />
+        </Col>
+        <Col span={2} />
+        <Col span={10}>
+          <Text>
+            Save Location:
+          </Text>
+          <br />
+          <Row>
+            <Col span={17}>
+              <Input
+                type="text"
+                disabled
+                value={details.outputDir}
+              />
+            </Col>
+            <Col span={1} />
+            <Col span={5}>
+              <Button
+                type="primary"
+                onClick={changeLocation}
+              >
+                Change Location
+              </Button>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+      <br />
+      <Row>
+        <Col span={10}>
+          <Text>
+            Connections:
+          </Text>
+          <br />
+          <Controller
+            as={(
+              <InputNumber
+                min={1}
+                max={16}
+              />
+            )}
+            defaultValue={16}
+            name="maxConnection"
+          />
+        </Col>
+        <Col span={2} />
+      </Row>
+    </>
+  );
+}

@@ -6,7 +6,7 @@ import {
 import { useForm, FormContext } from 'react-hook-form';
 import URLSection from './URLSection';
 import Info from './Info';
-// import Advanced from './Advanced';
+import Advanced from './Advanced';
 
 const AddUrl = () => {
   const formMethods = useForm();
@@ -19,15 +19,15 @@ const AddUrl = () => {
         <form onSubmit={formMethods.handleSubmit(data => console.log(data))}>
           <URLSection setDetails={setDetails} setShow={setShow} />
         </form>
+        {show && (
+          <>
+            <Divider />
+            <Info details={details} />
+            <Divider />
+            <Advanced details={details} />
+          </>
+        )}
       </FormContext>
-      {show && (
-        <>
-          <Divider />
-          <Info details={details} />
-          <Divider />
-          {/* <Advanced /> */}
-        </>
-      )}
     </Card>
   );
 };
