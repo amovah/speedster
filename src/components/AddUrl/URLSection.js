@@ -9,14 +9,16 @@ import {
   Input,
   Typography,
 } from 'antd';
+import { clipboard } from 'electron';
 import { RedoOutlined, DownloadOutlined } from '@ant-design/icons';
 import gatherInfo from 'Root/helpers/gatherInfo';
 import { Controller, useFormContext } from 'react-hook-form';
+import { urlRegex } from 'Root/regexs';
 import styles from './index.less';
 
 export default function URLSection({ setDetails, setShow }) {
   const {
-    watch, control, getValues,
+    watch, control, getValues, setValue,
   } = useFormContext();
   const [stage, setStage] = useState('empty');
   const [toDownload, setToDownload] = useState(false);
@@ -108,6 +110,13 @@ export default function URLSection({ setDetails, setShow }) {
       checkUrl(url);
     }
   }, [watch('url')]);
+
+  useEffect(() => {
+    const urlFromClipboard = clipboard.readText();
+    if (urlRegex.test(urlFromClipboard)) {
+      setValue('url', urlFromClipboard);
+    }
+  }, []);
 
   return (
     <>
