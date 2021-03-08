@@ -20,10 +20,7 @@ You can download from [release](https://github.com/amovah/speedster/releases) pa
 
 I really appreciate that if you donate me and keep me up on this way.
 
-- Bitcoin: `1FG8ga2M54WZ1JJFqdhntHp3Gr2wCf6xft`
-- Ether: `0x33d0b9aD12703555f40f95AB439B43295CBCd685`
-- Bitcoin Cash: `qzwxu6w85lf7egv55zy4sfgfslwmcuk8tu6xmvakm8`
-- Stellar: `GALGOLSZEQTBECAM6YUI34RRF2YTGLYCOX7B4U2ADOETAIZB2EGZA4RN`
+- Ether: `0xD70456Cba3D3a62a4294b1886D9C17600910DcE7`
 
 # LICENSE
 
